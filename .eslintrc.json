@@ -22,7 +22,8 @@
         "import/order": 0,
         "@typescript-eslint/no-useless-constructor": 0,
         "@typescript-eslint/no-shadow": 0,
-        "no-empty-function": 1,
+        "no-empty-function": 0,
+        "@typescript-eslint/no-empty-function": 0,
         "@angular-eslint/no-empty-lifecycle-method": ["warn"],
         "import/no-extraneous-dependencies": 0,
         "@angular-eslint/directive-selector": [
