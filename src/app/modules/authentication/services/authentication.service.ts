@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { LocalStorageService } from '../../../shared/services';
 import { HttpClient } from '@angular/common/http';
+import { User } from '../models';
+import { catchError, Observable, tap, throwError } from 'rxjs';
+import { API_URL } from '../../../constants';
 
 @Injectable()
 export class AuthenticationService {
@@ -8,12 +11,36 @@ export class AuthenticationService {
 
   constructor(private localStorageService: LocalStorageService, private http: HttpClient) {}
 
-  public signUp() {
-    return this.http.post('', {});
+  public signUp(user: User): Observable<User> {
+    return this.http.post<User>(`${API_URL}/registration`, user).pipe(
+      catchError((err) => {
+        return throwError(err);
+      }),
+    );
   }
 
-  public signIn() {
-    return this.http.post('', {});
+  public signIn(user: Pick<User, 'email' | 'password'>): Observable<{ token: string }> {
+    return this.http.post<{ token: string }>(`${API_URL}/authentication`, user).pipe(
+      tap(({ token }) => {
+        if (token) {
+          this.localStorageService.setItem('token', token);
+          this.setToken(token);
+        }
+
+        catchError((err) => {
+          return throwError(err);
+        });
+      }),
+    );
+  }
+
+  public isAuth(): boolean {
+    return !!this.token;
+  }
+
+  public logout(): void {
+    this.setToken('');
+    this.localStorageService.clear();
   }
 
   public setToken(token: string): void {
@@ -26,10 +53,5 @@ export class AuthenticationService {
     }
 
     return '';
-  }
-
-  public logout(): void {
-    this.setToken('');
-    this.localStorageService.clear();
   }
 }
