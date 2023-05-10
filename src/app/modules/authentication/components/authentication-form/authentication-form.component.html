@@ -1,22 +1,39 @@
 <div class="w-full flex flex-col items-end">
-  <form action="" class="w-full flex flex-col">
-    <div class="flex flex-col gap-5">
-      <span>Электронная почта *</span>
+  <form action="" class="w-full flex flex-col gap-5" [formGroup]="signInForm">
+    <div class="flex flex-col gap-3">
+      <span>Электронная почта*</span>
       <mat-form-field appearance="outline">
-        <input matInput placeholder="Введите адрес электронной почты" />
+        <input matInput placeholder="Введите адрес электронной почты" formControlName="email" />
+        <mat-error *ngIf="signInForm.controls['email'].invalid && signInForm.controls['email'].touched">
+          <span *ngIf="signInForm.controls['email'].errors?.['required']">{{ ERROR_MESSAGES.REQUIRED }}</span>
+          <span *ngIf="signInForm.controls['email'].errors?.['email']">{{ ERROR_MESSAGES.INVALID_EMAIL }}</span>
+        </mat-error>
       </mat-form-field>
     </div>
 
-    <div class="flex flex-col gap-5">
-      <span>Пароль *</span>
+    <div class="flex flex-col gap-3">
+      <span>Пароль*</span>
       <mat-form-field appearance="outline">
-        <input matInput placeholder="Введите пароль" />
+        <input matInput placeholder="Введите пароль" formControlName="password" />
+        <mat-error *ngIf="signInForm.controls['password'].invalid && signInForm.controls['password'].touched">
+          <span *ngIf="signInForm.controls['password'].errors?.['required']">{{ ERROR_MESSAGES.REQUIRED }}</span>
+          <span *ngIf="signInForm.controls['password'].errors?.['pattern']">
+            {{ ERROR_MESSAGES.INVALID_PASSWORD }}
+          </span>
+        </mat-error>
       </mat-form-field>
     </div>
 
-    <button type="submit" class="bg-teal-700 text-white p-4 rounded text-lg hover:bg-transparent">Войти</button>
+    <button
+      type="submit"
+      class="mt-5 bg-teal-700 text-white p-4 rounded-lg text-lg transition-opacity hover:opacity-75 disabled:bg-gray-200 disabled:text-black"
+      (click)="onSubmit()"
+      [disabled]="signInForm.invalid || signInForm.disabled"
+    >
+      Войти
+    </button>
   </form>
-  <div class="py-3">
+  <div class="mt-5">
     <button class="text-green-700 bg-transparent border-none p-2">Забыли пароль?</button>
   </div>
 </div>

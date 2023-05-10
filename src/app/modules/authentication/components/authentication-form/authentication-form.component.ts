@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { AuthenticationService } from '../../services/authentication.service';
+import { AuthenticationService } from '../../services';
 import { SnackBarService } from '../../../../shared/services';
 import { Subscription } from 'rxjs';
+import { sign } from 'chart.js/helpers';
+import { passwordPattern } from '../../../../constants';
+import { ERROR_MESSAGES } from '../../../../enums';
+import { STATUS_CODE } from '../../../../enums/status-code';
 
 @Component({
   selector: 'app-authentication-form',
@@ -31,8 +35,8 @@ export class AuthenticationFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.signInForm = this.fd.group({
-      email: [],
-      password: [],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.pattern(passwordPattern)]],
     });
 
     this.route.queryParams.subscribe((params: Params) => {
@@ -46,16 +50,27 @@ export class AuthenticationFormComponent implements OnInit {
   public onSubmit() {
     if (this.signInForm.invalid) return;
 
-    this.authSub = this.authService.signIn().subscribe(
+    this.signInForm.disabled;
+
+    this.authSub = this.authService.signIn(this.signInForm.value).subscribe(
       () => {
         this.router.navigate(['']);
       },
       (error) => {
-        this.snackBar.showSnackBar(error.error.message);
+        if (error.status === STATUS_CODE.NOT_FOUND) {
+          this.snackBar.showSnackBar(ERROR_MESSAGES.NOT_FOUND_USER);
+        } else {
+          this.snackBar.showSnackBar(ERROR_MESSAGES.SERVER_ERROR);
+        }
+
         this.signInForm.enabled;
       },
     );
 
     this.signInForm.reset();
   }
+
+  protected readonly sign = sign;
+
+  protected readonly ERROR_MESSAGES = ERROR_MESSAGES;
 }

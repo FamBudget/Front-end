@@ -107,6 +107,7 @@ import { HttpClientModule } from '@angular/common/http';
     RouterOutlet,
     FormsModule,
     ReactiveFormsModule,
+    MatDialogModule,
   ],
   exports: [
     [
@@ -160,6 +161,7 @@ import { HttpClientModule } from '@angular/common/http';
       ScrollingModule,
       FormsModule,
       ReactiveFormsModule,
+      MatDialogModule,
     ],
   ],
 })

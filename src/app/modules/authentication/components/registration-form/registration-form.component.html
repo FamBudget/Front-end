@@ -1,0 +1,101 @@
+<form [formGroup]="signUpForm" class="w-full flex flex-col">
+  <div class="flex flex-col gap-3">
+    <span class="text-lg">Электронная почта*</span>
+    <mat-form-field appearance="outline">
+      <input matInput placeholder="Введите адрес электронной почты..." formControlName="email" />
+      <mat-error *ngIf="f['email'].invalid && f['email'].touched">
+        <span *ngIf="f['email'].errors?.['required']">{{ ERROR_MESSAGES.REQUIRED }}</span>
+        <span *ngIf="f['email'].errors?.['email']">{{ ERROR_MESSAGES.INVALID_EMAIL }}</span>
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div class="flex flex-row gap-5">
+    <div class="flex flex-col gap-3 w-1/2">
+      <span class="text-lg">Имя</span>
+      <mat-form-field appearance="outline"
+        ><input matInput placeholder="Введите ваше имя..." formControlName="firstName" />
+        <mat-error *ngIf="f['firstName'].invalid && f['firstName'].touched">
+          <span *ngIf="f['firstName'].errors?.['required']">{{ ERROR_MESSAGES.REQUIRED }}</span>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="flex flex-col gap-3 w-1/2">
+      <span class="text-lg">Фамилия</span>
+      <mat-form-field appearance="outline"
+        ><input matInput placeholder="Введите вашу фамилию..." formControlName="lastName" />
+        <mat-error *ngIf="f['lastName'].invalid && f['lastName'].touched">
+          <span *ngIf="f['lastName'].errors?.['required']">{{ ERROR_MESSAGES.REQUIRED }}</span>
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="flex flex-col gap-3">
+    <span class="text-lg">Выбор валюты</span>
+    <mat-form-field appearance="outline">
+      <mat-select [value]="currencies[3]">
+        <mat-option *ngFor="let currency of currencies" [value]="currency" (click)="onSelectCurrency(currency)"
+          >({{ currency.symbol }}) {{ currency.currency }}</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="flex flex-col gap-6">
+    <span class="text-lg">Пароль*</span>
+    <mat-form-field appearance="outline">
+      <input matInput type="password" placeholder="Введите ваш пароль..." formControlName="password" />
+      <mat-error *ngIf="f['password'].invalid && f['password'].touched">
+        <span *ngIf="f['password'].errors?.['required']">{{ ERROR_MESSAGES.REQUIRED }}</span>
+        <span class="text-sm" *ngIf="f['password'].errors?.['pattern']">
+          {{ ERROR_MESSAGES.INVALID_PASSWORD }}
+        </span>
+      </mat-error>
+      <button matSuffix mat-icon-button>
+        <mat-icon>visibility_off</mat-icon>
+      </button>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <input matInput type="password" placeholder="Повторно введите пароль..." formControlName="confirmPassword" />
+      <mat-error *ngIf="f['confirmPassword'].invalid && f['confirmPassword'].touched">
+        <span *ngIf="f['confirmPassword'].errors?.['required']">{{ ERROR_MESSAGES.REQUIRED }}</span>
+        <span *ngIf="f['confirmPassword'].errors?.['pattern']">
+          {{ ERROR_MESSAGES.INVALID_PASSWORD }}
+        </span>
+        <span *ngIf="f['confirmPassword'].errors?.['value']">{{ ERROR_MESSAGES.PASSWORDS_MISMATCH }}</span>
+      </mat-error>
+      <button matSuffix mat-icon-button>
+        <mat-icon>visibility_off</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+
+  <div class="flex flex-col gap-1">
+    <span class="text-lg">Проверка</span>
+    <re-captcha
+      class="m-0 p-0"
+      #captchaRef
+      size="invisible"
+      errorMode="handled"
+      (errored)="onError($event)"
+      (resolved)="onRes($event)"
+      formControlName="recaptcha"
+      [siteKey]="RECAPTCHA_SITE_KEY"
+    ></re-captcha>
+    <div class="flex flex-row gap-1 w-full border-2 items-center p-2">
+      <mat-checkbox (change)="captchaRef.execute()" color="primary" />
+      <span class="text-lg">Я не робот</span>
+    </div>
+  </div>
+
+  <div class="w-full m-auto">
+    <button
+      type="submit"
+      class="w-full mt-5 bg-teal-700 text-white p-4 rounded-lg text-lg transition-opacity hover:opacity-75 disabled:bg-gray-200 disabled:text-black"
+      (click)="onSubmit()"
+      [disabled]="signUpForm.invalid || signUpForm.disabled"
+    >
+      Зарегистрироваться
+    </button>
+  </div>
+</form>
