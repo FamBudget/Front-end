@@ -8,6 +8,8 @@ import { sign } from 'chart.js/helpers';
 import { passwordPattern } from '../../../../constants';
 import { ERROR_MESSAGES } from '../../../../enums';
 import { STATUS_CODE } from '../../../../enums/status-code';
+import { MatDialog } from '@angular/material/dialog';
+import { ForgotPasswordDialogComponent } from '..';
 
 @Component({
   selector: 'app-authentication-form',
@@ -31,6 +33,7 @@ export class AuthenticationFormComponent implements OnInit {
     private snackBar: SnackBarService,
     private route: ActivatedRoute,
     private router: Router,
+    private dialog: MatDialog,
   ) {}
 
   ngOnInit(): void {
@@ -68,6 +71,13 @@ export class AuthenticationFormComponent implements OnInit {
     );
 
     this.signInForm.reset();
+  }
+
+  public openForgotPasswordDialog(): void {
+    this.dialog.open(ForgotPasswordDialogComponent, {
+      width: '100%',
+      maxWidth: '720px',
+    });
   }
 
   protected readonly sign = sign;
