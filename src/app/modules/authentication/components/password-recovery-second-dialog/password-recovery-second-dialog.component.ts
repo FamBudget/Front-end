@@ -5,6 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './password-recovery-second-dialog.component.html',
   styleUrls: ['./password-recovery-second-dialog.component.scss'],
 })
-export class PasswordRecoverySecondDialogComponent {
-
-}
+export class PasswordRecoverySecondDialogComponent {}

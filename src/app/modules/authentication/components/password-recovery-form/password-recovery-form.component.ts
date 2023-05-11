@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ERROR_MESSAGES } from 'src/app/enums';
@@ -10,7 +10,7 @@ import { passwordPattern, passwordsMatchValidator } from '../../../../constants'
   templateUrl: './password-recovery-form.component.html',
   styleUrls: ['./password-recovery-form.component.scss'],
 })
-export class PasswordRecoveryFormComponent {
+export class PasswordRecoveryFormComponent implements OnInit {
   protected readonly ERROR_MESSAGES = ERROR_MESSAGES;
 
   public hidePassword: boolean = true;
@@ -37,7 +37,7 @@ export class PasswordRecoveryFormComponent {
     );
   }
 
-  public onSubmit() {
+  public onSubmit(): void {
     if (this.passwordRecoveryForm.invalid) return;
     console.log(this.passwordRecoveryForm.value);
     this.passwordRecoveryForm.disabled;
@@ -45,7 +45,7 @@ export class PasswordRecoveryFormComponent {
     this.openNextDialog();
   }
 
-  public openNextDialog() {
+  public openNextDialog(): void {
     this.dialog.closeAll();
     this.dialog.open(PasswordRecoveredDialogComponent, {
       width: '100%',

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CaptchaService } from '../../services';
 import { ReCaptchaV3Service, RecaptchaErrorParameters } from 'ng-recaptcha';
@@ -13,7 +13,7 @@ import { PasswordRecoveryFirstDialogComponent } from '..';
   styleUrls: ['./forgot-password-form.component.scss'],
   providers: [ReCaptchaV3Service, CaptchaService],
 })
-export class ForgotPasswordFormComponent {
+export class ForgotPasswordFormComponent implements OnInit {
   public forgotPasswordForm: FormGroup = new FormGroup({
     email: new FormControl(''),
     recaptcha: new FormControl(''),
@@ -42,7 +42,7 @@ export class ForgotPasswordFormComponent {
     this.recaptchaService.onError(errDetail);
   }
 
-  public onSubmit() {
+  public onSubmit(): void {
     if (this.forgotPasswordForm.invalid) return;
     console.log(this.forgotPasswordForm.value);
     this.forgotPasswordForm.disabled;
@@ -50,7 +50,7 @@ export class ForgotPasswordFormComponent {
     this.openNextDialog();
   }
 
-  public openNextDialog() {
+  public openNextDialog(): void {
     this.dialog.closeAll();
     this.dialog.open(PasswordRecoveryFirstDialogComponent, {
       width: '100%',

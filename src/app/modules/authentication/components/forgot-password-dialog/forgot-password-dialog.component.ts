@@ -5,6 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './forgot-password-dialog.component.html',
   styleUrls: ['./forgot-password-dialog.component.scss'],
 })
-export class ForgotPasswordDialogComponent {
-
-}
+export class ForgotPasswordDialogComponent {}
