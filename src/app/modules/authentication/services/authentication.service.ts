@@ -54,4 +54,20 @@ export class AuthenticationService {
 
     return '';
   }
+
+  public resetPassword(email: string): Observable<User> {
+    return this.http.post<User>(`${API_URL}/reset-password?email=`, email).pipe(
+      catchError((err) => {
+        return throwError(err);
+      }),
+    );
+  }
+
+  // public changePassword(email: string, user: Pick<User, 'password' | 'confirmPassword'>): Observable<User> {
+  //   return this.http.put<User>(`${API_URL}/change-password/200?email=${email}`, user).pipe(
+  //     catchError((err) => {
+  //       return throwError(err);
+  //     }),
+  //   );
+  // }
 }

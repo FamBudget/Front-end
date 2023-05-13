@@ -4,14 +4,21 @@ import { MatDialog } from '@angular/material/dialog';
 import { ERROR_MESSAGES } from 'src/app/enums';
 import { PasswordRecoveredDialogComponent } from '..';
 import { passwordPattern, passwordsMatchValidator } from '../../../../constants';
+import { AuthenticationService } from '../../services';
+import { Subscription } from 'rxjs';
+import { SnackBarService } from 'src/app/shared/services';
+import { User } from '../../models';
 
 @Component({
   selector: 'app-password-recovery-form',
   templateUrl: './password-recovery-form.component.html',
   styleUrls: ['./password-recovery-form.component.scss'],
+  providers: [AuthenticationService],
 })
 export class PasswordRecoveryFormComponent implements OnInit {
   protected readonly ERROR_MESSAGES = ERROR_MESSAGES;
+
+  // private changePasswordSubscription: Subscription = new Subscription();
 
   public hidePassword: boolean = true;
   public hideConfirmPassword: boolean = true;
@@ -25,7 +32,12 @@ export class PasswordRecoveryFormComponent implements OnInit {
     return this.passwordRecoveryForm.controls;
   }
 
-  constructor(private fb: FormBuilder, private dialog: MatDialog) {}
+  constructor(
+    private fb: FormBuilder,
+    private dialog: MatDialog,
+    private authService: AuthenticationService,
+    private snackBar: SnackBarService,
+  ) {}
 
   ngOnInit(): void {
     this.passwordRecoveryForm = this.fb.group(
@@ -37,12 +49,31 @@ export class PasswordRecoveryFormComponent implements OnInit {
     );
   }
 
+  // ngOnDestroy(): void {
+  //   this.changePasswordSubscription.unsubscribe();
+  // }
+
   public onSubmit(): void {
     if (this.passwordRecoveryForm.invalid) return;
     console.log(this.passwordRecoveryForm.value);
     this.passwordRecoveryForm.disabled;
+
+    // let user: Pick<User, 'password' | 'confirmPassword'> = {
+    //   password: this.passwordRecoveryForm.value.password,
+    //   confirmPassword: this.passwordRecoveryForm.value.confirmPassword,
+    // };
+    // this.changePasswordSubscription = this.authService.changePassword('', user).subscribe(
+    //   (value) => {
+    //     console.log(value);
+    //     this.openNextDialog();
+    //   },
+    //   (err) => {
+    //     this.snackBar.showSnackBar('Ошибка при смене пароля.');
+    //     this.passwordRecoveryForm.enabled;
+    //   },
+    // );
+
     this.passwordRecoveryForm.reset();
-    this.openNextDialog();
   }
 
   public openNextDialog(): void {
