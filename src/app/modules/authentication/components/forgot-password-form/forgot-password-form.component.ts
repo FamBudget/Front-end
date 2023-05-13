@@ -15,7 +15,7 @@ import { SnackBarService } from 'src/app/shared/services';
   styleUrls: ['./forgot-password-form.component.scss'],
   providers: [AuthenticationService, ReCaptchaV3Service, CaptchaService],
 })
-export class ForgotPasswordFormComponent implements OnInit {
+export class ForgotPasswordFormComponent implements OnInit, OnDestroy {
   public forgotPasswordForm: FormGroup = new FormGroup({
     email: new FormControl(''),
     recaptcha: new FormControl(''),
@@ -57,7 +57,6 @@ export class ForgotPasswordFormComponent implements OnInit {
 
   public onSubmit(): void {
     if (this.forgotPasswordForm.invalid) return;
-    console.log(this.forgotPasswordForm.value.email);
     this.forgotPasswordForm.disabled;
 
     this.resetPasswordSubscription = this.authService.resetPassword(this.forgotPasswordForm.value.email).subscribe(
