@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import 'normalize.css';
+@import "./material";
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+
+.custom-snackbar {
+  background-color: red ; // replace with the color you want to use
+}
