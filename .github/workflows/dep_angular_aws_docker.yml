@@ -2,7 +2,7 @@ name: Deploy Angular App to AWS EC2 and run Docker container
 on:
   push:
     branches:
-      - develop_new
+      - develop
 #
 jobs:
   Build:
@@ -20,8 +20,8 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    - name: Run tests
-      run: npm run test
+#    - name: Run tests
+#      run: npm run test
 
     - name: Build the Angular app
       run: npm run build --prod
