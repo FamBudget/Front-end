@@ -12,7 +12,10 @@ export class AuthenticationService {
   constructor(private localStorageService: LocalStorageService, private http: HttpClient) {}
 
   public signUp(user: User): Observable<User> {
-    return this.http.post<User>(`${API_URL}/registration`, user).pipe(
+    return this.http.post<User>('http://13.50.233.192:8080/registration', user).pipe(
+      tap((a) => {
+        console.log(a);
+      }),
       catchError((err) => {
         return throwError(err);
       }),
