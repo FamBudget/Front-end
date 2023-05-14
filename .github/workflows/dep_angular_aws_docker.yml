@@ -1,8 +1,8 @@
 name: Deploy Angular App to AWS EC2 and run Docker container
 on:
   push:
-    branches-ignore:
-      - main
+    branches:
+      - develop_new
 #
 jobs:
   Build:
