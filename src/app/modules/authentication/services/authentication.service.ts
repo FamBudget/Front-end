@@ -13,6 +13,9 @@ export class AuthenticationService {
 
   public signUp(user: User): Observable<User> {
     return this.http.post<User>(`${API_URL}/registration`, user).pipe(
+      tap((a) => {
+        console.log(a);
+      }),
       catchError((err) => {
         return throwError(err);
       }),
@@ -55,16 +58,16 @@ export class AuthenticationService {
     return '';
   }
 
-  public resetPassword(email: string): Observable<User> {
-    return this.http.post<User>(`${API_URL}/reset-password?email=`, email).pipe(
+  public resetPassword(email: string) {
+    return this.http.post(`${API_URL}/reset-password?email=${email}`, email).pipe(
       catchError((err) => {
         return throwError(err);
       }),
     );
   }
 
-  // public changePassword(email: string, user: Pick<User, 'password' | 'confirmPassword'>): Observable<User> {
-  //   return this.http.put<User>(`${API_URL}/change-password/200?email=${email}`, user).pipe(
+  // public changePassword(email: string, user: Pick<User, 'password' | 'confirmPassword'>) {
+  //   return this.http.put(`${API_URL}/change-password/200?email=${email}`, user).pipe(
   //     catchError((err) => {
   //       return throwError(err);
   //     }),

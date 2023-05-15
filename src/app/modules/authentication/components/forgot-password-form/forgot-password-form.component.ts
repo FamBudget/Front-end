@@ -58,10 +58,10 @@ export class ForgotPasswordFormComponent implements OnInit, OnDestroy {
   public onSubmit(): void {
     if (this.forgotPasswordForm.invalid) return;
     this.forgotPasswordForm.disabled;
+    const email: string = this.forgotPasswordForm.value.email;
 
-    this.resetPasswordSubscription = this.authService.resetPassword(this.forgotPasswordForm.value.email).subscribe(
-      (value) => {
-        console.log(value);
+    this.resetPasswordSubscription = this.authService.resetPassword(email).subscribe(
+      () => {
         this.openNextDialog();
       },
       (err) => {
@@ -73,9 +73,11 @@ export class ForgotPasswordFormComponent implements OnInit, OnDestroy {
           this.forgotPasswordForm.enabled;
         }
       },
+      () => {
+        this.forgotPasswordForm.reset();
+        this.forgotPasswordForm.markAsUntouched();
+      },
     );
-
-    this.forgotPasswordForm.reset();
   }
 
   public openNextDialog(): void {
