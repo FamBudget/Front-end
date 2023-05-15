@@ -8,8 +8,8 @@ import { sign } from 'chart.js/helpers';
 import { passwordPattern } from '../../../../constants';
 import { ERROR_MESSAGES } from '../../../../enums';
 import { STATUS_CODE } from '../../../../enums/status-code';
-import { MatDialog } from '@angular/material/dialog';
 import { ForgotPasswordDialogComponent } from '..';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-authentication-form',
@@ -24,6 +24,8 @@ export class AuthenticationFormComponent implements OnInit {
     email: new FormControl(''),
     password: new FormControl(''),
   });
+
+  public showPassword: boolean = false;
 
   private authSub: Subscription = new Subscription();
 
@@ -48,6 +50,10 @@ export class AuthenticationFormComponent implements OnInit {
       } else if (params['']) {
       }
     });
+  }
+
+  public toggleShowPassword(): void {
+    this.showPassword = !this.showPassword;
   }
 
   public onSubmit() {

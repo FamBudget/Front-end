@@ -44,19 +44,29 @@
   <div class="flex flex-col gap-6">
     <span class="text-lg">Пароль*</span>
     <mat-form-field appearance="outline">
-      <input matInput type="password" placeholder="Введите ваш пароль..." formControlName="password" />
+      <input
+        matInput
+        [type]="showPassword ? 'text' : 'password'"
+        placeholder="Введите ваш пароль..."
+        formControlName="password"
+      />
       <mat-error *ngIf="f['password'].invalid && f['password'].touched">
         <span *ngIf="f['password'].errors?.['required']">{{ ERROR_MESSAGES.REQUIRED }}</span>
         <span class="text-sm" *ngIf="f['password'].errors?.['pattern']">
           {{ ERROR_MESSAGES.INVALID_PASSWORD }}
         </span>
       </mat-error>
-      <button matSuffix mat-icon-button>
-        <mat-icon>visibility_off</mat-icon>
+      <button matSuffix mat-icon-button (click)="showPassword = !showPassword">
+        <mat-icon>{{ showPassword ? 'visibility' : 'visibility_off' }}</mat-icon>
       </button>
     </mat-form-field>
     <mat-form-field appearance="outline">
-      <input matInput type="password" placeholder="Повторно введите пароль..." formControlName="confirmPassword" />
+      <input
+        matInput
+        [type]="showAdditionalPassword ? 'text' : 'password'"
+        placeholder="Повторно введите пароль..."
+        formControlName="confirmPassword"
+      />
       <mat-error *ngIf="f['confirmPassword'].invalid && f['confirmPassword'].touched">
         <span *ngIf="f['confirmPassword'].errors?.['required']">{{ ERROR_MESSAGES.REQUIRED }}</span>
         <span *ngIf="f['confirmPassword'].errors?.['pattern']">
@@ -64,8 +74,8 @@
         </span>
         <span *ngIf="f['confirmPassword'].errors?.['value']">{{ ERROR_MESSAGES.PASSWORDS_MISMATCH }}</span>
       </mat-error>
-      <button matSuffix mat-icon-button>
-        <mat-icon>visibility_off</mat-icon>
+      <button matSuffix mat-icon-button (click)="showAdditionalPassword = !showAdditionalPassword">
+        <mat-icon>{{ showAdditionalPassword ? 'visibility' : 'visibility_off' }}</mat-icon>
       </button>
     </mat-form-field>
   </div>
@@ -77,13 +87,11 @@
       #captchaRef
       size="invisible"
       errorMode="handled"
-      (errored)="onError($event)"
-      (resolved)="onRes($event)"
       formControlName="recaptcha"
       [siteKey]="RECAPTCHA_SITE_KEY"
     ></re-captcha>
     <div class="flex flex-row gap-1 w-full border-2 items-center p-2">
-      <mat-checkbox (change)="captchaRef.execute()" color="primary" />
+      <mat-checkbox (change)="captchaRef.execute()" />
       <span class="text-lg">Я не робот</span>
     </div>
   </div>

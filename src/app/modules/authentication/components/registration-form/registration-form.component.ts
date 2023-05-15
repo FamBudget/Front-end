@@ -1,99 +1,77 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnDestroy } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { AuthenticationService, CaptchaService } from '../../services';
 import { SnackBarService } from '../../../../shared/services';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Currencies } from '../../models';
 import { currencies, passwordPattern, passwordsMatchValidator, RECAPTCHA_SITE_KEY } from '../../../../constants';
 import { ERROR_MESSAGES } from '../../../../enums';
-import { RecaptchaErrorParameters, ReCaptchaV3Service } from 'ng-recaptcha';
+import { ReCaptchaV3Service } from 'ng-recaptcha';
 
 @Component({
   selector: 'app-registration-form',
   templateUrl: './registration-form.component.html',
   providers: [AuthenticationService, ReCaptchaV3Service, CaptchaService],
 })
-export class RegistrationFormComponent implements OnInit, OnDestroy {
+export class RegistrationFormComponent implements OnDestroy {
   protected readonly ERROR_MESSAGES = ERROR_MESSAGES;
 
   protected readonly RECAPTCHA_SITE_KEY = RECAPTCHA_SITE_KEY;
 
-  public signUpForm: FormGroup = new FormGroup({
-    email: new FormControl(''),
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
-    currency: new FormControl(''),
-    password: new FormControl(''),
-    confirmPassword: new FormControl(''),
-    recaptcha: new FormControl(''),
-  });
+  public signUpForm = this.fb.group(
+    {
+      email: ['', [Validators.required, Validators.email]],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      currency: ['', Validators.required],
+      password: ['', [Validators.required, Validators.pattern(passwordPattern)]],
+      confirmPassword: ['', [Validators.required, Validators.pattern(passwordPattern)]],
+      recaptcha: ['', Validators.required],
+    },
+    { validators: passwordsMatchValidator },
+  );
 
-  public get f() {
-    return this.signUpForm.controls;
-  }
+  public showPassword = false;
 
-  public currencies: Currencies[] = currencies;
+  public showAdditionalPassword = false;
 
-  private signUpSubscription: Subscription = new Subscription();
+  public currencies = currencies;
 
-  constructor(
-    private fb: FormBuilder,
-    private authService: AuthenticationService,
-    private snackBar: SnackBarService,
-    private recaptchaService: CaptchaService,
-    private router: Router,
-    private route: ActivatedRoute,
-  ) {}
+  private signUpSubscription = new Subscription();
 
-  ngOnInit(): void {
-    this.signUpForm = this.fb.group(
-      {
-        email: ['', [Validators.required, Validators.email]],
-        firstName: ['', Validators.required],
-        lastName: ['', Validators.required],
-        currency: ['', Validators.required],
-        password: ['', [Validators.required, Validators.pattern(passwordPattern)]],
-        confirmPassword: ['', [Validators.required, Validators.pattern(passwordPattern)]],
-        recaptcha: ['', Validators.required],
-      },
-      { validators: passwordsMatchValidator },
-    );
-  }
+  constructor(private fb: FormBuilder, private authService: AuthenticationService, private snackBar: SnackBarService) {}
 
-  ngOnDestroy(): void {
+  ngOnDestroy() {
     this.signUpSubscription.unsubscribe();
   }
 
-  public onRes(resolved: string): void {
-    this.recaptchaService.resolved(resolved);
-  }
-
-  public onError(errDetail: RecaptchaErrorParameters): void {
-    this.recaptchaService.onError(errDetail);
-  }
-
-  public onSelectCurrency(curr: Currencies): void {
+  public onSelectCurrency(curr: Currencies) {
     this.signUpForm.get('currency')?.setValue(curr.currency);
   }
 
-  public onSubmit(): void {
+  public onSubmit() {
     if (this.signUpForm.invalid) return;
 
-    this.signUpForm.disabled;
-    this.signUpSubscription = this.authService.signUp(this.signUpForm.value).subscribe(
+    const formValues = { ...this.signUpForm.value };
+
+    delete formValues.recaptcha;
+
+    this.signUpForm.disable();
+
+    this.signUpSubscription = this.authService.signUp(formValues).subscribe(
       () => {},
       (err) => {
         if (err.status === 409) {
           this.snackBar.showSnackBar(ERROR_MESSAGES.FOUNDED_USER);
-          this.signUpForm.enabled;
         } else {
           this.snackBar.showSnackBar('Ошибка при регистрации.');
-          this.signUpForm.enabled;
         }
       },
+      () => this.signUpForm.reset(),
     );
+  }
 
-    this.signUpForm.reset();
+  public get f() {
+    return this.signUpForm.controls;
   }
 }
