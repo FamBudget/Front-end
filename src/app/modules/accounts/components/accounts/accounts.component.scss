@@ -1,0 +1,86 @@
+:host {
+  background-color: #ffffff;
+  border-radius: 20px;
+}
+
+.accounts {
+  padding: 32px 24px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  max-width: 562px;
+  border: 1px solid green;
+}
+
+.accounts-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.accounts-top__title {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 131%;
+}
+
+.add-account-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 24px;
+  gap: 16px;
+  background: #1b9b85;
+  box-shadow: inset -5px -5px 32px rgba(255, 255, 255, 0.16), inset 5px 5px 32px rgba(255, 255, 255, 0.16);
+  border-radius: 10px;
+  color: #ffffff;
+  // font-family: 'Gilroy';
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 140%;
+}
+
+.account {
+}
+.accounts-main {
+}
+.accounts__items {
+}
+
+.accounts__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 32px;
+}
+
+.account__name {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 133%;
+  color: #263834;
+}
+
+.account__name_cash::before {
+  content: '';
+  display: inline-block;
+  margin-right: 10px;
+  width: 2em;
+  height: 1em;
+  background-image: url('../../../../../assets/accounts/cash.svg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.amount {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 32px;
+  color: #263834;
+}
