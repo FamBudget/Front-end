@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import 'normalize.css';
+@import "./material";
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+
+.custom-snackbar {
+  background-color: red ; // replace with the color you want to use
+}
+
+
+.google {
+  position: absolute;
+  left: -30px;
+  top: 20%;
+  width: 32px;
+  height: 32px;
+  background: url('./assets/google.svg') no-repeat center center;
+}
+
+.facebook {
+  position: absolute;
+  width: 32px;
+  top: 20%;
+  left: -30px;
+  height: 32px;
+  background: url('./assets/facebook.svg') no-repeat center center;
+}
