@@ -1,12 +1,6 @@
-FROM node:14-alpine as build
-WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY . .
-RUN npm run build --prod
-
 FROM nginx:alpine
-COPY nginx.conf /etc/nginx/nginx.conf
-COPY --from=build /app/dist/my-angular-app /usr/share/nginx/html
+RUN rm /etc/nginx/conf.d/default.conf
+COPY familybudget.com.conf /etc/nginx/conf.d/familybudget.com.conf
+COPY dist/family-budget /usr/share/nginx/html/familybudget.com
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]

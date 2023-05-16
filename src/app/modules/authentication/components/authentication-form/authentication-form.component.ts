@@ -23,6 +23,8 @@ export class AuthenticationFormComponent implements OnInit {
     password: new FormControl(''),
   });
 
+  public showPassword: boolean = false;
+
   private authSub: Subscription = new Subscription();
 
   constructor(
@@ -45,6 +47,10 @@ export class AuthenticationFormComponent implements OnInit {
       } else if (params['']) {
       }
     });
+  }
+
+  public toggleShowPassword(): void {
+    this.showPassword = !this.showPassword;
   }
 
   public onSubmit() {

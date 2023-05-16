@@ -13,6 +13,9 @@ export class AuthenticationService {
 
   public signUp(user: User): Observable<User> {
     return this.http.post<User>(`${API_URL}/registration`, user).pipe(
+      tap((a) => {
+        console.log(a);
+      }),
       catchError((err) => {
         return throwError(err);
       }),

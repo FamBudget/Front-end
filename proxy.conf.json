@@ -1,6 +1,6 @@
 {
-  "http://91.148.141.118:8080": {
-    "target": "http://91.148.141.118:8080",
+  "http://13.50.233.192:8080": {
+    "target": "http://13.50.233.192:8080",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true
