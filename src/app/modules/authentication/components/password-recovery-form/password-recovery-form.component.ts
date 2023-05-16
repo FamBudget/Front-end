@@ -18,7 +18,7 @@ import { User } from '../../models';
 export class PasswordRecoveryFormComponent implements OnInit {
   protected readonly ERROR_MESSAGES = ERROR_MESSAGES;
 
-  // private changePasswordSubscription: Subscription = new Subscription();
+  private changePasswordSubscription: Subscription = new Subscription();
 
   public hidePassword: boolean = true;
   public hideConfirmPassword: boolean = true;
@@ -49,31 +49,35 @@ export class PasswordRecoveryFormComponent implements OnInit {
     );
   }
 
-  // ngOnDestroy(): void {
-  //   this.changePasswordSubscription.unsubscribe();
-  // }
+  ngOnDestroy(): void {
+    this.changePasswordSubscription.unsubscribe();
+  }
 
   public onSubmit(): void {
     if (this.passwordRecoveryForm.invalid) return;
     console.log(this.passwordRecoveryForm.value);
     this.passwordRecoveryForm.disabled;
 
-    // let user: Pick<User, 'password' | 'confirmPassword'> = {
-    //   password: this.passwordRecoveryForm.value.password,
-    //   confirmPassword: this.passwordRecoveryForm.value.confirmPassword,
-    // };
-    // this.changePasswordSubscription = this.authService.changePassword('', user).subscribe(
-    //   (value) => {
-    //     console.log(value);
-    //     this.openNextDialog();
-    //   },
-    //   (err) => {
-    //     this.snackBar.showSnackBar('Ошибка при смене пароля.');
-    //     this.passwordRecoveryForm.enabled;
-    //   },
-    // );
+    const user: Pick<User, 'confirmPassword' | 'password'> = {
+      confirmPassword: this.passwordRecoveryForm.value.confirmPassword,
+      password: this.passwordRecoveryForm.value.password,
+    };
+    const code: string = '';
+    const email: string = '';
 
-    this.passwordRecoveryForm.reset();
+    this.changePasswordSubscription = this.authService.changePassword(code, email, user).subscribe(
+      () => {
+        this.openNextDialog();
+      },
+      (err) => {
+        this.snackBar.showSnackBar('Ошибка при смене пароля.');
+        this.passwordRecoveryForm.enabled;
+      },
+      () => {
+        this.passwordRecoveryForm.reset();
+        this.passwordRecoveryForm.markAsUntouched();
+      },
+    );
   }
 
   public openNextDialog(): void {

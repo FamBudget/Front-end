@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { LocalStorageService } from '../../../shared/services';
 import { HttpClient } from '@angular/common/http';
-import { User } from '../models';
+import { User, UserStatus } from '../models';
 import { catchError, Observable, tap, throwError } from 'rxjs';
 import { API_URL } from '../../../constants';
 
@@ -58,19 +58,26 @@ export class AuthenticationService {
     return '';
   }
 
-  public resetPassword(email: string) {
-    return this.http.post(`${API_URL}/reset-password?email=${email}`, email).pipe(
+  public resetPassword(email: string): Observable<{}> {
+    return this.http.post<{}>(`${API_URL}/reset-password?email=${email}`, email).pipe(
       catchError((err) => {
         return throwError(err);
       }),
     );
   }
 
-  // public changePassword(email: string, user: Pick<User, 'password' | 'confirmPassword'>) {
-  //   return this.http.put(`${API_URL}/change-password/200?email=${email}`, user).pipe(
-  //     catchError((err) => {
-  //       return throwError(err);
-  //     }),
-  //   );
-  // }
+  public changePassword(
+    code: string,
+    email: string,
+    user: Pick<User, 'confirmPassword' | 'password'>,
+  ): Observable<UserStatus> {
+    return this.http.put<UserStatus>(`${API_URL}/change-password/${code}?email=${email}`, user).pipe(
+      tap((value) => {
+        console.log(value);
+      }),
+      catchError((err) => {
+        return throwError(err);
+      }),
+    );
+  }
 }
