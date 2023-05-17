@@ -57,7 +57,10 @@ export class ForgotPasswordFormComponent implements OnInit, OnDestroy {
 
   public onSubmit(): void {
     if (this.forgotPasswordForm.invalid) return;
-    this.forgotPasswordForm.disabled;
+    this.resetPassword();
+  }
+
+  public resetPassword(): void {
     const email: string = this.forgotPasswordForm.value.email;
 
     this.resetPasswordSubscription = this.authService.resetPassword(email).subscribe(
@@ -67,10 +70,8 @@ export class ForgotPasswordFormComponent implements OnInit, OnDestroy {
       (err) => {
         if (err.status === 404) {
           this.snackBar.showSnackBar(ERROR_MESSAGES.NOT_EXIST_USER);
-          this.forgotPasswordForm.enabled;
         } else {
           this.snackBar.showSnackBar('Ошибка при сбросе пароля.');
-          this.forgotPasswordForm.enabled;
         }
       },
       () => {

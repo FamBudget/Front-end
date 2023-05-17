@@ -18,7 +18,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class PasswordRecoveryFormComponent implements OnInit {
   protected readonly ERROR_MESSAGES = ERROR_MESSAGES;
-
   private changePasswordSubscription: Subscription = new Subscription();
 
   public hidePassword: boolean = true;
@@ -68,8 +67,10 @@ export class PasswordRecoveryFormComponent implements OnInit {
 
   public onSubmit(): void {
     if (this.passwordRecoveryForm.invalid) return;
-    this.passwordRecoveryForm.disabled;
+    this.changePassword();
+  }
 
+  public changePassword(): void {
     const user: Pick<User, 'confirmPassword' | 'password'> = {
       confirmPassword: this.passwordRecoveryForm.value.confirmPassword,
       password: this.passwordRecoveryForm.value.password,
@@ -80,9 +81,8 @@ export class PasswordRecoveryFormComponent implements OnInit {
         this.router.navigate(['']);
         this.openNextDialog();
       },
-      (err) => {
+      () => {
         this.snackBar.showSnackBar('Ошибка при смене пароля.');
-        this.passwordRecoveryForm.enabled;
       },
       () => {
         this.passwordRecoveryForm.reset();
