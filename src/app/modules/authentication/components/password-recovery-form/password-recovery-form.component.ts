@@ -8,6 +8,7 @@ import { AuthenticationService } from '../../services';
 import { Subscription } from 'rxjs';
 import { SnackBarService } from 'src/app/shared/services';
 import { User } from '../../models';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-password-recovery-form',
@@ -23,6 +24,9 @@ export class PasswordRecoveryFormComponent implements OnInit {
   public hidePassword: boolean = true;
   public hideConfirmPassword: boolean = true;
 
+  public code: string = '';
+  public email: string = '';
+
   public passwordRecoveryForm: FormGroup = new FormGroup({
     password: new FormControl(''),
     confirmPassword: new FormControl(''),
@@ -37,6 +41,8 @@ export class PasswordRecoveryFormComponent implements OnInit {
     private dialog: MatDialog,
     private authService: AuthenticationService,
     private snackBar: SnackBarService,
+    private route: ActivatedRoute,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -47,6 +53,13 @@ export class PasswordRecoveryFormComponent implements OnInit {
       },
       { validators: passwordsMatchValidator },
     );
+
+    this.route.queryParams.subscribe((params) => {
+      if (params['code'] && params['email']) {
+        this.code = params['code'];
+        this.email = params['email'];
+      }
+    });
   }
 
   ngOnDestroy(): void {
@@ -55,18 +68,16 @@ export class PasswordRecoveryFormComponent implements OnInit {
 
   public onSubmit(): void {
     if (this.passwordRecoveryForm.invalid) return;
-    console.log(this.passwordRecoveryForm.value);
     this.passwordRecoveryForm.disabled;
 
     const user: Pick<User, 'confirmPassword' | 'password'> = {
       confirmPassword: this.passwordRecoveryForm.value.confirmPassword,
       password: this.passwordRecoveryForm.value.password,
     };
-    const code: string = '';
-    const email: string = '';
 
-    this.changePasswordSubscription = this.authService.changePassword(code, email, user).subscribe(
+    this.changePasswordSubscription = this.authService.changePassword(this.code, this.email, user).subscribe(
       () => {
+        this.router.navigate(['']);
         this.openNextDialog();
       },
       (err) => {

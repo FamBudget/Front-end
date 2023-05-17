@@ -72,9 +72,6 @@ export class AuthenticationService {
     user: Pick<User, 'confirmPassword' | 'password'>,
   ): Observable<UserStatus> {
     return this.http.put<UserStatus>(`${API_URL}/change-password/${code}?email=${email}`, user).pipe(
-      tap((value) => {
-        console.log(value);
-      }),
       catchError((err) => {
         return throwError(err);
       }),
