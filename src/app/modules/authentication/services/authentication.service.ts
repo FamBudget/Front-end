@@ -77,4 +77,12 @@ export class AuthenticationService {
       }),
     );
   }
+
+  public verifyCode(code: string, email: string): Observable<UserStatus> {
+    return this.http.get<UserStatus>(`${API_URL}/verify-code​/${code}?email=${email}`).pipe(
+      catchError((err) => {
+        return throwError(err);
+      }),
+    );
+  }
 }

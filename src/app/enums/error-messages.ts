@@ -8,4 +8,5 @@ export const ERROR_MESSAGES = {
   PASSWORDS_MISMATCH: 'Пароли не совпадают.',
   SERVER_ERROR: 'Ошибка сервера.',
   NOT_EXIST_USER: 'Пользователя с таким email не существует.',
+  INVALID_RECOVERY_CODE: 'Код восстановления не действителен.',
 };
