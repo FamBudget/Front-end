@@ -1,9 +1,37 @@
-<div class="table-top">
-    <div class="period">
-        <mat-form-field class="example-full-width">
-            <input matInput [matDatepicker]="picker" [(ngModel)]="date" (ngModelChange)="modelChanged($event)" />
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker touchUi #picker color="primary"></mat-datepicker>
-        </mat-form-field>
+<section class="table-section">
+    <div class="table-filters">
+
+        <div class="range">
+            <form [formGroup]="dateRangeForm" (ngSubmit)="onFormSubmit()">
+                <mat-form-field>
+                    <mat-date-range-input [rangePicker]="picker">
+                        <input matStartDate placeholder="From Date" required formControlName="fromDate">
+                        <input matEndDate placeholder="To Date" required formControlName="toDate">
+                    </mat-date-range-input>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-date-range-picker #picker></mat-date-range-picker>
+                    <!-- Invalid Date Messages -->
+                    <mat-error
+                        *ngIf="(f['fromDate'].invalid && f['fromDate'].touched) || (f['toDate'].invalid && f['toDate'].touched)">
+                        <span *ngIf="(f['fromDate'].errors?.['required']) || (f['toDate'].errors?.['required'])">{{
+                            ERROR_MESSAGES.REQUIRED }}</span>
+                    </mat-error>
+                </mat-form-field>
+
+                <!-- !можно посмотреть начало и конец -->
+                <!-- <mat-divider></mat-divider>
+                <p>Selected Date Range: </p>
+                <p>{{dateRangeForm.value | json}}</p> -->
+            </form>
+        </div>
+
+        <div class="toggle-btns">
+            <mat-button-toggle-group class="toggle-group" name="fontStyle" aria-label="Font Style">
+                <mat-button-toggle value="day">За день</mat-button-toggle>
+                <mat-button-toggle checked value="week">Неделю</mat-button-toggle>
+                <mat-button-toggle value="month">За месяц</mat-button-toggle>
+            </mat-button-toggle-group>
+        </div>
+
     </div>
-</div>
+</section>

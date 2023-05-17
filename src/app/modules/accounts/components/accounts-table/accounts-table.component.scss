@@ -1,0 +1,64 @@
+:host {
+  width: 100%;
+}
+
+.table-section {
+  max-width: 946px;
+  background: #ffffff;
+  box-shadow: -2px -2px 16px rgba(39, 222, 191, 0.06), 2px 2px 16px rgba(39, 222, 191, 0.06);
+  border-radius: 20px;
+}
+
+.table-filters {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.range {
+}
+.toggle-btns {
+}
+
+.mat-date-range-input-wrapper {
+  width: fit-content;
+}
+
+.toggle-group {
+  border-radius: 10px;
+  // font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 140%;
+  gap: 10px;
+  border: none;
+}
+
+.mat-button-toggle {
+  background-color: transparent;
+  color: #263834 !important;
+  border-radius: 10px;
+  border: 1px solid #d0d0d0;
+}
+
+.mat-button-toggle:hover {
+  background-color: transparent;
+  color: #263834 !important;
+}
+
+.mat-button-toggle-checked {
+  background: #1b9b85;
+  color: #ffffff !important;
+}
+
+.mat-mdc-icon-button .mat-mdc-button-touch-target {
+  color: #1b9b85 !important;
+}
+
+::ng-deep .mat-datepicker-toggle {
+  color: #1b9b85 !important;
+}
+
+table {
+  width: 100%;
+}
