@@ -7,4 +7,5 @@ export const ERROR_MESSAGES = {
   NOT_FOUND_USER: 'Пользователь с указанным адресом электронной почты найден не был.',
   PASSWORDS_MISMATCH: 'Пароли не совпадают.',
   SERVER_ERROR: 'Ошибка сервера.',
+  NOT_EXIST_USER: 'Пользователя с таким email не существует.',
 };

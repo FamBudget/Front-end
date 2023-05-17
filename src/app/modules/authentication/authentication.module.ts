@@ -4,7 +4,13 @@ import {
   AuthenticationDialogComponent,
   AuthenticationFormComponent,
   AuthenticationPageComponent,
+  ForgotPasswordDialogComponent,
+  PasswordRecoveredDialogComponent,
+  PasswordRecoveryFirstDialogComponent,
+  PasswordRecoverySecondDialogComponent,
   RegistrationFormComponent,
+  ForgotPasswordFormComponent,
+  PasswordRecoveryFormComponent
 } from './components';
 import { AuthenticationRoutingModule } from './authentication-routing.module';
 import { MaterialModule } from '../../shared/modules';
@@ -17,6 +23,12 @@ import { RECAPTCHA_SITE_KEY } from '../../constants';
     AuthenticationFormComponent,
     AuthenticationDialogComponent,
     RegistrationFormComponent,
+    ForgotPasswordDialogComponent,
+    PasswordRecoveryFirstDialogComponent,
+    PasswordRecoverySecondDialogComponent,
+    PasswordRecoveredDialogComponent,
+    ForgotPasswordFormComponent,
+    PasswordRecoveryFormComponent,
   ],
   imports: [
     CommonModule,
