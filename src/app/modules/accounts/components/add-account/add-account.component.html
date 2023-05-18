@@ -1,0 +1,33 @@
+<form [formGroup]="addAccountForm" (ngSubmit)="onFormSubmit()">
+    <div class="add-account-dialog">
+        <div class="add-account-dialog__header">
+            <h2 mat-dialog-title>Добавить счет</h2>
+            <app-select-icon-toggle (toggleLayout)="onToggleLayout($event)"
+                [isTileLayout]="isTileLayout"></app-select-icon-toggle>
+        </div>
+        <mat-dialog-content>
+            <div class="add-account-form">
+                <label class="add-account-form__label" for="account-name">Название счета</label>
+                <input class="add-account-form__input" type="text" name="account-name" id="account-name"
+                    placeholder="Наличные">
+
+                <label class="add-account-form__label" for="account-currency">Валюта счета</label>
+                <input class="add-account-form__input" type="text" name="account-currency" id="account-currency"
+                    placeholder="Российский рубль (RUB)">
+
+                <label class="add-account-form__label" for="initial-balance">Начальный остаток</label>
+                <input class="add-account-form__input" type="number" name="initial-balance" id="initial-balance"
+                    placeholder="0">
+
+                <label class="add-account-form__label" for="date-initial-balance">Дата начального остатка</label>
+                <input class="add-account-form__input" name="date-initial-balance" id="date-initial-balance" type="text"
+                    placeholder="Выберите дату" onfocus="(this.type='date')">
+            </div>
+
+        </mat-dialog-content>
+        <mat-dialog-actions class="add-account-dialog">
+            <button type="submit" class="submit-btn">Ок</button>
+            <button class="cancel-btn" mat-dialog-close mat-dialog-close="cancel">Отмена</button>
+        </mat-dialog-actions>
+    </div>
+</form>

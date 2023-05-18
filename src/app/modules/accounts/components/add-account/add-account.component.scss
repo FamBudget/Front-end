@@ -1,0 +1,56 @@
+.add-account-dialog {
+  background-color: #ffffff;
+  width: 100%;
+  justify-content: center;
+  gap: 40px;
+  padding: 20px;
+}
+
+.add-account-dialog__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.dialog-actions {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  justify-content: center;
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 133%;
+  padding: 0 !important;
+}
+.cancel-btn {
+  width: 45%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1b9b85;
+  background: #ffffff;
+  box-shadow: -2px -2px 16px rgba(39, 222, 191, 0.06), 2px 2px 16px rgba(39, 222, 191, 0.06);
+  border-radius: 20px;
+  padding: 16px 10px;
+}
+.submit-btn {
+  width: 47%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1b9b85;
+  box-shadow: inset -5px -5px 32px rgba(255, 255, 255, 0.16), inset 5px 5px 32px rgba(255, 255, 255, 0.16);
+  border-radius: 10px;
+  color: #ffffff;
+  padding: 16px 10px;
+}
+
+.add-account-form__input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px  0;
+  display: inline-block;
+  border: 1px solid #ccc;
+}
