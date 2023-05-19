@@ -10,8 +10,9 @@
   box-shadow: -2px -2px 16px rgba(39, 222, 191, 0.06), 2px 2px 16px rgba(39, 222, 191, 0.06);
   border-radius: 20px;
   max-width: 562px;
-  box-sizing: border-box;
- 
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
 }
 
 .accounts-top {

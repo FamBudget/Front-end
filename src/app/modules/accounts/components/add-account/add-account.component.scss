@@ -50,7 +50,23 @@
 .add-account-form__input {
   width: 100%;
   padding: 12px 20px;
-  margin: 8px  0;
+  margin: 8px 0;
   display: inline-block;
   border: 1px solid #ccc;
+}
+
+input[type='date'] {
+  cursor: pointer;
+}
+
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input[type='number'],
+input[type='number']:hover,
+input[type='number']:focus {
+  appearance: none;
+  -moz-appearance: textfield;
 }

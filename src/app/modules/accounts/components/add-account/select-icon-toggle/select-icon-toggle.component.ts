@@ -10,9 +10,11 @@ import { ACCOUNT_ICONS_DATA } from '../..';
 export class SelectIconToggleComponent {
   @Input() isTileLayout: boolean = false;
   @Output() toggleLayout: EventEmitter<boolean> = new EventEmitter();
+  @Output() selectIconChanged = new EventEmitter<number>();
 
   public accountIconOptions: AccountIcon[] = ACCOUNT_ICONS_DATA;
   public selectedLayout: AccountIcon = this.accountIconOptions[0];
+  public icon: AccountIcon = this.accountIconOptions[0];
 
   constructor() {}
 
@@ -26,5 +28,9 @@ export class SelectIconToggleComponent {
 
   public compareFn(f1: any, f2: any): boolean {
     return f1 && f2 ? f1.viewValue === f2.viewValue : f1 === f2;
+  }
+
+  public iconChange() {
+    this.selectIconChanged.emit(this.icon.id);
   }
 }

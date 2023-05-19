@@ -2,28 +2,33 @@
     <div class="add-account-dialog">
         <div class="add-account-dialog__header">
             <h2 mat-dialog-title>Добавить счет</h2>
-            <app-select-icon-toggle (toggleLayout)="onToggleLayout($event)"
-                [isTileLayout]="isTileLayout"></app-select-icon-toggle>
+            <app-select-icon-toggle (toggleLayout)="onToggleLayout($event)" [isTileLayout]="isTileLayout"
+                (selectIconChanged)="onIconChanged($event)"></app-select-icon-toggle>
         </div>
         <mat-dialog-content>
             <div class="add-account-form">
-                <label class="add-account-form__label" for="account-name">Название счета</label>
+                <label class="add-account-form__label" for="account-name">Название счета*</label>
                 <input class="add-account-form__input" type="text" name="account-name" id="account-name"
-                    placeholder="Наличные">
+                    placeholder="Наличные" formControlName="name">
+                <mat-error *ngIf="f['name'].invalid && f['name'].touched">
+                    <span *ngIf="f['name'].errors?.['required']">{{ ERROR_MESSAGES.REQUIRED }}</span>
+                </mat-error>
 
                 <label class="add-account-form__label" for="account-currency">Валюта счета</label>
                 <input class="add-account-form__input" type="text" name="account-currency" id="account-currency"
-                    placeholder="Российский рубль (RUB)">
+                    placeholder="Российский рубль (RUB)" formControlName="currency">
 
-                <label class="add-account-form__label" for="initial-balance">Начальный остаток</label>
+                <label class="add-account-form__label" for="initial-balance">Начальный остаток*</label>
                 <input class="add-account-form__input" type="number" name="initial-balance" id="initial-balance"
-                    placeholder="0">
+                    placeholder="0" formControlName="startAmount">
+                <mat-error *ngIf="f['startAmount'].invalid && f['startAmount'].touched">
+                    <span *ngIf="f['startAmount'].errors?.['required']">{{ ERROR_MESSAGES.REQUIRED }}</span>
+                </mat-error>
 
                 <label class="add-account-form__label" for="date-initial-balance">Дата начального остатка</label>
-                <input class="add-account-form__input" name="date-initial-balance" id="date-initial-balance" type="text"
-                    placeholder="Выберите дату" onfocus="(this.type='date')">
+                <input class="add-account-form__input" name="date-initial-balance" id="date-initial-balance" type="date"
+                    formControlName="createdOn">
             </div>
-
         </mat-dialog-content>
         <mat-dialog-actions class="add-account-dialog">
             <button type="submit" class="submit-btn">Ок</button>
