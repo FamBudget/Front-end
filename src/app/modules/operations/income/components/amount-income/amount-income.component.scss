@@ -1,0 +1,24 @@
+:host {
+  background: #ffffff;
+}
+
+.amount-income-container {
+  box-shadow: -2px -2px 16px rgba(39, 222, 191, 0.06), 2px 2px 16px rgba(39, 222, 191, 0.06);
+  border-radius: 20px;
+  padding: 32px;
+}
+
+.amount-income-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.amount-income-title__text {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 42px;
+  color: #263834;
+}

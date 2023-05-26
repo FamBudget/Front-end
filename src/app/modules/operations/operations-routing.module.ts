@@ -1,10 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { IncomeInputComponent } from './income';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: 'income',
+    component: IncomeInputComponent,
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class OperationsRoutingModule { }
+export class OperationsRoutingModule {}
