@@ -1,5 +1,4 @@
-export interface Account {
-  amount: number;
+export interface NewAccount {
   createdOn: string;
   currency: string;
   iconNumber: number;

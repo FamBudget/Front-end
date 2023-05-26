@@ -1,4 +1,4 @@
-<form [formGroup]="addAccountForm" (ngSubmit)="onFormSubmit()">
+<form [formGroup]="addAccountForm" (ngSubmit)="onAddAcount()">
     <div class="add-account-dialog">
         <div class="add-account-dialog__header">
             <h2 mat-dialog-title>Добавить счет</h2>
@@ -7,27 +7,35 @@
         </div>
         <mat-dialog-content>
             <div class="add-account-form">
-                <label class="add-account-form__label" for="account-name">Название счета*</label>
-                <input class="add-account-form__input" type="text" name="account-name" id="account-name"
-                    placeholder="Наличные" formControlName="name">
-                <mat-error *ngIf="f['name'].invalid && f['name'].touched">
-                    <span *ngIf="f['name'].errors?.['required']">{{ ERROR_MESSAGES.REQUIRED }}</span>
-                </mat-error>
+                <div class="add-account-form__field">
+                    <label class="add-account-form__label" for="account-name">Название счета*</label>
+                    <input class="add-account-form__input" type="text" name="account-name" id="account-name"
+                        placeholder="Наличные" formControlName="name">
+                    <mat-error *ngIf="f['name'].invalid && f['name'].touched">
+                        <span *ngIf="f['name'].errors?.['required']">{{ ERROR_MESSAGES.REQUIRED }}</span>
+                    </mat-error>
+                </div>
 
-                <label class="add-account-form__label" for="account-currency">Валюта счета</label>
-                <input class="add-account-form__input" type="text" name="account-currency" id="account-currency"
-                    placeholder="Российский рубль (RUB)" formControlName="currency">
+                <div class="add-account-form__field">
+                    <label class="add-account-form__label" for="account-currency">Валюта счета</label>
+                    <input readonly formControlName="currency" class="add-account-form__input currency-input"
+                        type="text" name="account-currency" id="account-currency" formControlName="currency">
+                </div>
 
-                <label class="add-account-form__label" for="initial-balance">Начальный остаток*</label>
-                <input class="add-account-form__input" type="number" name="initial-balance" id="initial-balance"
-                    placeholder="0" formControlName="startAmount">
-                <mat-error *ngIf="f['startAmount'].invalid && f['startAmount'].touched">
-                    <span *ngIf="f['startAmount'].errors?.['required']">{{ ERROR_MESSAGES.REQUIRED }}</span>
-                </mat-error>
+                <div class="add-account-form__field">
+                    <label class="add-account-form__label" for="initial-balance">Начальный остаток*</label>
+                    <input class="add-account-form__input" type="number" name="initial-balance" id="initial-balance"
+                        placeholder="0" formControlName="startAmount">
+                    <mat-error *ngIf="f['startAmount'].invalid && f['startAmount'].touched">
+                        <span *ngIf="f['startAmount'].errors?.['required']">{{ ERROR_MESSAGES.REQUIRED }}</span>
+                    </mat-error>
+                </div>
 
-                <label class="add-account-form__label" for="date-initial-balance">Дата начального остатка</label>
-                <input class="add-account-form__input" name="date-initial-balance" id="date-initial-balance" type="date"
-                    formControlName="createdOn">
+                <div class="add-account-form__field">
+                    <label class="add-account-form__label" for="date-initial-balance">Дата начального остатка</label>
+                    <input class="add-account-form__input" name="date-initial-balance" id="date-initial-balance"
+                        type="date" formControlName="createdOn">
+                </div>
             </div>
         </mat-dialog-content>
         <mat-dialog-actions class="add-account-dialog">

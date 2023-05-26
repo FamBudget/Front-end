@@ -10,6 +10,7 @@
 }
 
 .table-filters {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -19,6 +20,19 @@
   width: fit-content;
 }
 
+.picker-form {
+  width: 100%;
+}
+.range {
+  display: flex;
+  align-items: center;
+  justify-content: stretch;
+  width: 45%;
+}
+
+mat-form-field {
+  width: 100%;
+}
 .toggle-group {
   border-radius: 10px;
   // font-family: 'Gilroy';

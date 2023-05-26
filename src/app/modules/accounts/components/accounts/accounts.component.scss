@@ -22,6 +22,7 @@
 }
 
 .accounts-top__title {
+  font-family: 'Gilroy';
   font-style: normal;
   font-weight: 600;
   font-size: 32px;
@@ -38,55 +39,43 @@
   box-shadow: inset -5px -5px 32px rgba(255, 255, 255, 0.16), inset 5px 5px 32px rgba(255, 255, 255, 0.16);
   border-radius: 10px;
   color: #ffffff;
-  // font-family: 'Gilroy';
+  font-family: 'Gilroy';
   font-weight: 500;
   font-size: 20px;
   line-height: 140%;
 }
 
-.account {
-}
-.accounts-main {
-}
-.accounts__items {
+.account-icon {
+  max-width: 24px;
   width: 100%;
 }
 
-.accounts__item {
-  width: 100%;
+.account-name {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 133%;
+  color: #263834;
+  margin: 0;
+}
+.account-amount {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 140%;
+  color: #263834;
+  margin: 0;
+}
+
+.mdc-data-table__cell, .mdc-data-table__header-cell {
+    border-bottom-width: 0px;
+    border-bottom-style: solid;
+}
+
+.accounts-table__data {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  // padding: 20px 32px;
-}
-
-.account__name {
-  display: inline-flex;
-  align-items: center;
-  text-decoration: none;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 133%;
-  color: #263834;
-}
-
-.account__name_cash::before {
-  content: '';
-  display: inline-block;
-  margin-right: 10px;
-  width: 2em;
-  height: 1em;
-  background-image: url('../../../../../assets/accounts/account-icons/cash.svg');
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-.amount {
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 32px;
-  color: #263834;
 }

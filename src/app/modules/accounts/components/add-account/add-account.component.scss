@@ -11,6 +11,7 @@
   align-items: center;
   justify-content: space-between;
 }
+
 .dialog-actions {
   width: 100%;
   display: flex;
@@ -24,6 +25,7 @@
   line-height: 133%;
   padding: 0 !important;
 }
+
 .cancel-btn {
   width: 45%;
   display: flex;
@@ -35,6 +37,7 @@
   border-radius: 20px;
   padding: 16px 10px;
 }
+
 .submit-btn {
   width: 47%;
   display: flex;
@@ -55,6 +58,14 @@
   border: 1px solid #ccc;
 }
 
+.add-account-form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: stretch;
+  justify-content: center;
+}
+
 input[type='date'] {
   cursor: pointer;
 }
@@ -69,4 +80,10 @@ input[type='number']:hover,
 input[type='number']:focus {
   appearance: none;
   -moz-appearance: textfield;
+}
+
+.add-account-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }

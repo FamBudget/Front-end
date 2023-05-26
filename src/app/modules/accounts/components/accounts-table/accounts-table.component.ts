@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_NATIVE_DATE_FORMATS, MatDateFormats } from '@angular/material/core';
 import { ERROR_MESSAGES } from 'src/app/enums';
+import { Account, RequestGetAccounts } from '../..';
+import { AccountsService } from '../../services/accounts.service';
+import { Subscription } from 'rxjs';
+import { SnackBarService } from 'src/app/shared/services';
 
 export const GRI_DATE_FORMATS: MatDateFormats = {
   ...MAT_NATIVE_DATE_FORMATS,
@@ -53,7 +57,20 @@ export class AccountsTableComponent implements OnInit {
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = ELEMENT_DATA;
 
-  constructor(private readonly adapter: DateAdapter<Date>, private formBuilder: FormBuilder) {}
+  public params: RequestGetAccounts = {
+    email: 'mariaiscus1@gmail.com',
+    from: 0,
+    size: 10,
+  };
+
+  public accountsData: Array<Account> = [];
+
+  constructor(
+    private readonly adapter: DateAdapter<Date>,
+    private formBuilder: FormBuilder,
+    public accountService: AccountsService,
+    private snackBar: SnackBarService,
+  ) {}
 
   ngOnInit(): void {
     this.startDate = new Date(this.startDate.getTime() - 29 * 24 * 60 * 60 * 1000);
@@ -68,7 +85,18 @@ export class AccountsTableComponent implements OnInit {
     return this.dateRangeForm.controls;
   }
 
-  public onFormSubmit(): void {
-    if (this.dateRangeForm.invalid) return;
-  }
+  // public getAllAccounts() {
+  //   if (this.dateRangeForm.invalid) return;
+
+  //   this.accountService.getAccounts(this.params).subscribe(
+  //     (arrAccounts: Array<Account>) => {
+  //       this.accountsData = arrAccounts;
+  //       console.log('this.accountsData', this.accountsData);
+  //       // console.log(arrAccounts);
+  //     },
+  //     () => {
+  //       this.snackBar.showSnackBar('Ошибка при получении счётов.');
+  //     },
+  //   );
+  // }
 }

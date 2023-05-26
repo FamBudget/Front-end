@@ -1,14 +1,21 @@
 <section class="table-section">
     <div class="table-filters">
         <div class="range">
-            <form [formGroup]="dateRangeForm" (ngSubmit)="onFormSubmit()">
+            <form [formGroup]="dateRangeForm" class="picker-form">
                 <mat-form-field>
                     <mat-date-range-input [rangePicker]="picker">
-                        <input matStartDate placeholder="From Date" required formControlName="fromDate">
-                        <input matEndDate placeholder="To Date" required formControlName="toDate">
+                        <input readonly matStartDate placeholder="From Date" required formControlName="fromDate">
+                        <input readonly matEndDate placeholder="To Date" required formControlName="toDate">
                     </mat-date-range-input>
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-date-range-picker #picker></mat-date-range-picker>
+
+                    <mat-date-range-picker #picker color="accent" touchUi>
+                        <mat-date-range-picker-actions>
+                            <button mat-button matDateRangePickerCancel>Cancel</button>
+                            <button mat-raised-button color="primary" matDateRangePickerApply
+                                type="submit">Apply</button>
+                        </mat-date-range-picker-actions>
+                    </mat-date-range-picker>
                     <!-- Invalid Date Messages -->
                     <mat-error
                         *ngIf="(f['fromDate'].invalid && f['fromDate'].touched) || (f['toDate'].invalid && f['toDate'].touched)">
@@ -17,11 +24,13 @@
                     </mat-error>
                 </mat-form-field>
 
+
                 <!-- !можно посмотреть начало и конец -->
                 <!-- <mat-divider></mat-divider>
                 <p>Selected Date Range: </p>
                 <p>{{dateRangeForm.value | json}}</p> -->
             </form>
+
         </div>
 
         <div class="toggle-btns">
@@ -67,3 +76,5 @@
     </table>
 
 </section>
+
+<!-- * comparisonStart -->
