@@ -1,19 +1,18 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService, CaptchaService } from '../../services';
-import { ReCaptchaV3Service, RecaptchaErrorParameters } from 'ng-recaptcha';
 import { ERROR_MESSAGES } from 'src/app/enums';
-import { RECAPTCHA_SITE_KEY } from 'src/app/constants';
 import { MatDialog } from '@angular/material/dialog';
 import { PasswordRecoveryFirstDialogComponent } from '..';
 import { Subscription } from 'rxjs';
 import { SnackBarService } from 'src/app/shared/services';
+import { EventType } from '@angular/router';
 
 @Component({
   selector: 'app-forgot-password-form',
   templateUrl: './forgot-password-form.component.html',
   styleUrls: ['./forgot-password-form.component.scss'],
-  providers: [AuthenticationService, ReCaptchaV3Service, CaptchaService],
+  providers: [AuthenticationService],
 })
 export class ForgotPasswordFormComponent implements OnInit, OnDestroy {
   public forgotPasswordForm: FormGroup = new FormGroup({
@@ -21,13 +20,11 @@ export class ForgotPasswordFormComponent implements OnInit, OnDestroy {
     recaptcha: new FormControl(''),
   });
   protected readonly ERROR_MESSAGES = ERROR_MESSAGES;
-  protected readonly RECAPTCHA_SITE_KEY = RECAPTCHA_SITE_KEY;
   private resetPasswordSubscription: Subscription = new Subscription();
 
   constructor(
     private authService: AuthenticationService,
     private fb: FormBuilder,
-    private recaptchaService: CaptchaService,
     private dialog: MatDialog,
     private snackBar: SnackBarService,
   ) {}
@@ -39,20 +36,12 @@ export class ForgotPasswordFormComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.forgotPasswordForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      recaptcha: ['', Validators.required],
+      recaptcha: [null, [Validators.required, Validators.nullValidator]],
     });
   }
 
   ngOnDestroy(): void {
     this.resetPasswordSubscription.unsubscribe();
-  }
-
-  public onRes(resolved: string): void {
-    this.recaptchaService.resolved(resolved);
-  }
-
-  public onError(errDetail: RecaptchaErrorParameters): void {
-    this.recaptchaService.onError(errDetail);
   }
 
   public onSubmit(): void {
@@ -87,5 +76,13 @@ export class ForgotPasswordFormComponent implements OnInit, OnDestroy {
       width: '100%',
       maxWidth: '720px',
     });
+  }
+
+  public onChangeRecaptcha(checked: boolean): void {
+    if (!checked) {
+      this.forgotPasswordForm.get('recaptcha')?.setValue(null);
+    } else {
+      this.forgotPasswordForm.get('recaptcha')?.setValue(true);
+    }
   }
 }
