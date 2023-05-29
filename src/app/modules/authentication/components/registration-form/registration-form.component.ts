@@ -1,22 +1,19 @@
 import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { AuthenticationService, CaptchaService } from '../../services';
+import { AuthenticationService } from '../../services';
 import { SnackBarService } from '../../../../shared/services';
-import { Currencies } from '../../models';
-import { currencies, passwordPattern, passwordsMatchValidator, RECAPTCHA_SITE_KEY } from '../../../../constants';
+import { Currencies, User } from '../../models';
+import { currencies, passwordPattern, passwordsMatchValidator } from '../../../../constants';
 import { ERROR_MESSAGES } from '../../../../enums';
-import { ReCaptchaV3Service } from 'ng-recaptcha';
 
 @Component({
   selector: 'app-registration-form',
   templateUrl: './registration-form.component.html',
-  providers: [AuthenticationService, ReCaptchaV3Service, CaptchaService],
+  providers: [AuthenticationService],
 })
 export class RegistrationFormComponent implements OnDestroy {
   protected readonly ERROR_MESSAGES = ERROR_MESSAGES;
-
-  protected readonly RECAPTCHA_SITE_KEY = RECAPTCHA_SITE_KEY;
 
   public signUpForm = this.fb.group(
     {
@@ -26,7 +23,7 @@ export class RegistrationFormComponent implements OnDestroy {
       currency: ['', Validators.required],
       password: ['', [Validators.required, Validators.pattern(passwordPattern)]],
       confirmPassword: ['', [Validators.required, Validators.pattern(passwordPattern)]],
-      recaptcha: ['', Validators.required],
+      recaptcha: ['', [Validators.required, Validators.nullValidator]],
     },
     { validators: passwordsMatchValidator },
   );
@@ -52,13 +49,16 @@ export class RegistrationFormComponent implements OnDestroy {
   public onSubmit() {
     if (this.signUpForm.invalid) return;
 
-    const formValues = { ...this.signUpForm.value };
+    const user: User = {
+      confirmPassword: this.signUpForm.value['confirmPassword'],
+      currency: this.signUpForm.value['currency'],
+      email: this.signUpForm.value['email'],
+      firstName: this.signUpForm.value['firstName'],
+      lastName: this.signUpForm.value['lastName'],
+      password: this.signUpForm.value['password'],
+    };
 
-    delete formValues.recaptcha;
-
-    this.signUpForm.disable();
-
-    this.signUpSubscription = this.authService.signUp(formValues).subscribe(
+    this.signUpSubscription = this.authService.signUp(user).subscribe(
       () => {},
       (err) => {
         if (err.status === 409) {
@@ -73,5 +73,13 @@ export class RegistrationFormComponent implements OnDestroy {
 
   public get f() {
     return this.signUpForm.controls;
+  }
+
+  public onChangeRecaptcha(checked: boolean): void {
+    if (!checked) {
+      this.signUpForm.get('recaptcha')?.setValue(null);
+    } else {
+      this.signUpForm.get('recaptcha')?.setValue(true);
+    }
   }
 }
