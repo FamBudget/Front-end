@@ -64,5 +64,5 @@ jobs:
              sudo docker rmi fambudget/fambudget_front:latest
              sudo docker images -a
              sudo docker ps -a
-             sudo docker run -d --name 'fambudget_front' -p 4200:4200 -p 80:80 -v /etc/letsencrypt/:/etc/letsencrypt/  fambudget/fambudget_front:latest  
+             sudo docker run -d --name 'fambudget_front' -p 4200:4200 -p 80:80 -p 443:443 -v /etc/letsencrypt/:/etc/letsencrypt/  fambudget/fambudget_front:latest  
             '
