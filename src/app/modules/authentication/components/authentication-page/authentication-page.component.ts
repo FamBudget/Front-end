@@ -23,7 +23,7 @@ export class AuthenticationPageComponent {
   public openPasswordRecoveryDialog(): void {
     this.matDialog.open(PasswordRecoverySecondDialogComponent, {
       width: '100%',
-      maxWidth: '720px',
+      maxWidth: '650px',
     });
   }
 
