@@ -1,12 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthenticationService, CaptchaService } from '../../services';
+import { AuthenticationService } from '../../services';
 import { ERROR_MESSAGES } from 'src/app/enums';
 import { MatDialog } from '@angular/material/dialog';
 import { PasswordRecoveryFirstDialogComponent } from '..';
 import { Subscription } from 'rxjs';
 import { SnackBarService } from 'src/app/shared/services';
-import { EventType } from '@angular/router';
 
 @Component({
   selector: 'app-forgot-password-form',

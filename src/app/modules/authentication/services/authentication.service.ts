@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { LocalStorageService } from '../../../shared/services';
 import { HttpClient } from '@angular/common/http';
-import { User, UserStatus } from '../models';
+import { RegistrationStatus, User, UserStatus } from '../models';
 import { catchError, Observable, tap, throwError } from 'rxjs';
 import { API_URL } from '../../../constants';
 
@@ -11,12 +11,13 @@ export class AuthenticationService {
 
   constructor(private localStorageService: LocalStorageService, private http: HttpClient) {}
 
-  public signUp(user: User): Observable<User> {
-    return this.http.post<User>(`${API_URL}/registration`, user).pipe(
+  public signUp(user: User): Observable<RegistrationStatus> {
+    return this.http.post<RegistrationStatus>(`${API_URL}/registration`, user).pipe(
       tap((a) => {
         console.log(a);
       }),
       catchError((err) => {
+        console.log(err);
         return throwError(err);
       }),
     );
