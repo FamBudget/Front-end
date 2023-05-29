@@ -2,7 +2,72 @@
 @tailwind components;
 @tailwind utilities;
 @import 'normalize.css';
-@import "./material";
+@import './material';
+
+@font-face {
+  font-family: 'Gilroy';
+  font-weight: 100;
+  font-style: normal;
+  src: url('./assets/fonts/gilroy-thin.woff2') format('woff2'), url('./assets/fonts/gilroy-thin.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  font-weight: 200;
+  font-style: normal;
+  src: url('./assets/fonts/gilroy-ultralight.woff2') format('woff2'),
+    url('./assets/fonts/gilroy-ultralight.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  font-weight: 300;
+  font-style: normal;
+  src: url('./assets/fonts/gilroy-light.woff2') format('woff2'), url('./assets/fonts/gilroy-light.woff2') format('woff');
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  font-weight: 400;
+  font-style: normal;
+  src: url('./assets/fonts/gilroy-regular.woff2') format('woff2'),
+    url('./assets/fonts/gilroy-regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  font-weight: 500;
+  font-style: normal;
+  src: url('./assets/fonts/gilroy-medium.woff2') format('woff2'),
+    url('./assets/fonts/gilroy-medium.woff') format('woff');
+}
+@font-face {
+  font-family: 'Gilroy';
+  font-weight: 600;
+  font-style: normal;
+  src: url('./assets/fonts/gilroy-semibold.woff2') format('woff2'),
+    url('./assets/fonts/gilroy-semibold.woff') format('woff');
+}
+@font-face {
+  font-family: 'Gilroy';
+  font-weight: 700;
+  font-style: normal;
+  src: url('./assets/fonts/gilroy-bold.woff2') format('woff2'), url('./assets/fonts/gilroy-bold.woff') format('woff');
+}
+@font-face {
+  font-family: 'Gilroy';
+  font-weight: 800;
+  font-style: normal;
+  src: url('./assets/fonts/gilroy-extrabold.woff2') format('woff2'),
+    url('./assets/fonts/gilroy-extrabold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  font-weight: 900;
+  font-style: normal;
+  src: url('./assets/fonts/gilroy-black.woff2') format('woff2'), url('./assets/fonts/gilroy-black.woff') format('woff');
+}
 
 * {
   padding: 0;
@@ -17,16 +82,18 @@ body {
   font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
 
+body {
+  font-family: Gilroy, sans-serif;
+}
+
 img {
   width: 100%;
   height: auto;
 }
 
-
 .custom-snackbar {
-  background-color: red ; // replace with the color you want to use
+  background-color: red; // replace with the color you want to use
 }
-
 
 .google {
   position: absolute;
