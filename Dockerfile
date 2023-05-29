@@ -1,6 +1,5 @@
 FROM nginx:alpine
 RUN rm /etc/nginx/conf.d/default.conf
-COPY familybudget.com.conf /etc/nginx/conf.d/familybudget.com.conf
-COPY dist/family-budget /usr/share/nginx/html/familybudget.com
-EXPOSE 80
+COPY fambudget.ddns.net.conf /etc/nginx/conf.d/fambudget.ddns.net.conf
+COPY dist/family-budget /usr/share/nginx/html/fambudget.ddns.net
 CMD ["nginx", "-g", "daemon off;"]
