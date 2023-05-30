@@ -90,8 +90,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  gap: 30px;
   height: 100%;
+  padding: 10px;
+}
+
+@media (max-width: 1220px) {
+  .help-auth-btns {
+    flex-wrap: wrap;
+  }
 }
 
 @media (max-width: 1020px) {
@@ -115,10 +123,8 @@
 
   .auth-page__right {
     justify-content: center;
-  }
-
-  .help-auth-btns {
-    flex-wrap: wrap;
+    gap: 0;
+    padding: 0;
   }
 
   .auth-form-content {
