@@ -6,6 +6,7 @@ import { ERROR_MESSAGES } from 'src/app/enums';
 import { AccountsService } from '../../services/accounts.service';
 import { Account } from '../../models';
 import { SnackBarService } from 'src/app/shared/services';
+import { FutureDateValidator } from 'src/app/shared/validators';
 
 @Component({
   selector: 'app-add-account',
@@ -48,7 +49,7 @@ export class AddAccountComponent implements OnInit {
       name: new FormControl(null, Validators.required),
       currency: new FormControl(`${this.inputData.currency}`),
       startAmount: new FormControl(null, Validators.required),
-      createdOn: new FormControl(new Date().toISOString().substring(0, 10)),
+      createdOn: new FormControl(new Date().toISOString().substring(0, 10), FutureDateValidator),
       iconNumber: new FormControl(this.selectIconNumber),
     });
   }
@@ -64,9 +65,9 @@ export class AddAccountComponent implements OnInit {
 
   public convertDateValue(): void {
     const now = new Date();
-    const hours = now.getHours().toString().padStart(2, '0');
-    const minutes = now.getMinutes().toString().padStart(2, '0');
-    const seconds = now.getSeconds().toString().padStart(2, '0');
+    const hours = now.getUTCHours().toString().padStart(2, '0');
+    const minutes = now.getUTCMinutes().toString().padStart(2, '0');
+    const seconds = now.getUTCSeconds().toString().padStart(2, '0');
     const time = `${hours}:${minutes}:${seconds}`;
     this.addAccountForm.value['createdOn'] = `${this.addAccountForm.value['createdOn']} ${time}`;
   }

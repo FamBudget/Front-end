@@ -87,3 +87,7 @@ input[type='number']:focus {
   flex-direction: column;
   gap: 5px;
 }
+
+button[disabled] {
+  opacity: 0.5;
+}

@@ -35,11 +35,14 @@
                     <label class="add-account-form__label" for="date-initial-balance">Дата начального остатка</label>
                     <input class="add-account-form__input" name="date-initial-balance" id="date-initial-balance"
                         type="date" formControlName="createdOn">
+                    <mat-error *ngIf="f['createdOn'].errors?.['futureDate']">
+                        <span>{{ ERROR_MESSAGES.INVALID_FUTURE_DATE }}</span>
+                    </mat-error>
                 </div>
             </div>
         </mat-dialog-content>
         <mat-dialog-actions class="add-account-dialog">
-            <button type="submit" class="submit-btn">Ок</button>
+            <button type="submit" class="submit-btn" [disabled]="addAccountForm.invalid || addAccountForm.disabled">Ок</button>
             <button class="cancel-btn" mat-dialog-close mat-dialog-close="cancel">Отмена</button>
         </mat-dialog-actions>
     </div>

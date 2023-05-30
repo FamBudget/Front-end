@@ -2,13 +2,14 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { API_URL } from 'src/app/constants';
-import { Account, NewAccount, RequestGetAccounts } from '..';
+import { Account, NewAccount, OperationAccountsQuery, RequestGetAccounts } from '..';
+import { OperationAccounts } from '../models/operation-accounts.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AccountsService {
-  public url = `${API_URL}/accounts`;
+export class MovingService {
+  public url = `${API_URL}/operations/moving`;
   public headers = new HttpHeaders({
     Authorization:
       'Bearer ' +
@@ -26,18 +27,9 @@ export class AccountsService {
     return httpParams;
   }
 
-  public getAccounts(params: RequestGetAccounts): Observable<Array<Account>> {
-    console.log(this.http.get<Array<Account>>(this.url, { headers: this.headers, params: this.toHttpParams(params) }));
-    return this.http.get<Array<Account>>(this.url, { headers: this.headers, params: this.toHttpParams(params) }).pipe(
-      catchError((err) => {
-        return throwError(err);
-      }),
-    );
-  }
-
-  public addAccount(email: string, account: NewAccount): Observable<Account> {
+  public getMoves(params: OperationAccountsQuery): Observable<Array<OperationAccounts>> {
     return this.http
-      .post<Account>(this.url, account, { headers: this.headers, params: this.toHttpParams({ email }) })
+      .get<Array<OperationAccounts>>(this.url, { headers: this.headers, params: this.toHttpParams(params) })
       .pipe(
         catchError((err) => {
           return throwError(err);
@@ -45,11 +37,15 @@ export class AccountsService {
       );
   }
 
-  public getAccountById(accountId: number, email: string): Observable<Account> {
+  public addOperation(body: any, params: OperationAccountsQuery): Observable<OperationAccounts> {
     return this.http
-      .get<Account>(`${this.url}/${accountId}`, { headers: this.headers, params: this.toHttpParams({ email }) })
+      .post<OperationAccounts>('http://13.50.233.192:8080/operations/moving', body, {
+        headers: this.headers,
+        params: this.toHttpParams(params),
+      })
       .pipe(
         catchError((err) => {
+          console.log(err);
           return throwError(err);
         }),
       );

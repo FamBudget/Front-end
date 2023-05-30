@@ -48,7 +48,6 @@ export class AccountsComponent implements OnInit {
     this.accountService.getAccounts(this.params).subscribe(
       (arrAccounts: Array<Account>) => {
         this.accountsData = arrAccounts;
-        console.log('this.accountsData', this.accountsData);
       },
       () => {
         this.snackBar.showSnackBar('Ошибка при получении счётов.');

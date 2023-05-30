@@ -1,11 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_NATIVE_DATE_FORMATS, MatDateFormats } from '@angular/material/core';
 import { ERROR_MESSAGES } from 'src/app/enums';
-import { Account, RequestGetAccounts } from '../..';
+import { Account, ISelectedRangeDate, OperationAccountsQuery, RequestGetAccounts } from '../..';
 import { AccountsService } from '../../services/accounts.service';
 import { Subscription } from 'rxjs';
 import { SnackBarService } from 'src/app/shared/services';
+import { FutureDateValidator, FutureMonthValidator } from 'src/app/shared/validators';
+import { MovingService } from '../../services';
+import { OperationAccounts } from '../../models/operation-accounts.model';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 export const GRI_DATE_FORMATS: MatDateFormats = {
   ...MAT_NATIVE_DATE_FORMATS,
@@ -18,26 +24,6 @@ export const GRI_DATE_FORMATS: MatDateFormats = {
   },
 };
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-  { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-  { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-  { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-  { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-  { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-  { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-  { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
-];
-
 @Component({
   selector: 'app-accounts-table',
   templateUrl: './accounts-table.component.html',
@@ -45,7 +31,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
   providers: [{ provide: MAT_DATE_FORMATS, useValue: GRI_DATE_FORMATS }],
 })
 export class AccountsTableComponent implements OnInit {
-  public startDate: Date = new Date();
+  public startDate: Date = new Date(new Date().setDate(new Date().getDate() - 29));
   public endDate: Date = new Date();
 
   public dateRangeForm: FormGroup = new FormGroup({
@@ -53,50 +39,112 @@ export class AccountsTableComponent implements OnInit {
     toDate: new FormControl(this.endDate, Validators.required),
   });
   protected readonly ERROR_MESSAGES = ERROR_MESSAGES;
+  public selectedFilter = 'month';
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
+  public displayedColumns: string[] = ['accountFrom', 'accountTo', 'amount', 'createdOn'];
 
-  public params: RequestGetAccounts = {
+  public dataSource: any;
+
+  public empData: Array<OperationAccounts> = [];
+
+  public params: OperationAccountsQuery = {
     email: 'mariaiscus1@gmail.com',
-    from: 0,
-    size: 10,
   };
 
-  public accountsData: Array<Account> = [];
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
     private readonly adapter: DateAdapter<Date>,
     private formBuilder: FormBuilder,
     public accountService: AccountsService,
     private snackBar: SnackBarService,
+    private movingService: MovingService,
   ) {}
 
   ngOnInit(): void {
     this.startDate = new Date(this.startDate.getTime() - 29 * 24 * 60 * 60 * 1000);
+    this.getMovingAccounts();
+
     this.adapter.setLocale('Ru');
     this.dateRangeForm = this.formBuilder.group({
-      fromDate: new FormControl(this.startDate, Validators.required),
-      toDate: new FormControl(this.endDate, Validators.required),
+      fromDate: new FormControl(this.startDate, [Validators.required, FutureMonthValidator]),
+      toDate: new FormControl(this.endDate, [Validators.required, FutureMonthValidator]),
     });
+    // Получение данных для таблицы и фильтрация по умолчанию за текущий месяц
   }
 
   public get f() {
     return this.dateRangeForm.controls;
   }
 
-  // public getAllAccounts() {
-  //   if (this.dateRangeForm.invalid) return;
+  public getMovingAccounts(): void {
+    this.movingService.getMoves(this.params).subscribe(
+      (res: Array<OperationAccounts>) => {
+        this.empData = res;
+        this.dataSource = new MatTableDataSource<OperationAccounts>(this.empData);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+        this.dataSource.sort.sort({ id: 'createdOn', start: 'desc', disableClear: true });
+        this.filterData();
+      },
+      () => {
+        this.snackBar.showSnackBar('Ошибка при получении операций.');
+      },
+    );
+  }
 
-  //   this.accountService.getAccounts(this.params).subscribe(
-  //     (arrAccounts: Array<Account>) => {
-  //       this.accountsData = arrAccounts;
-  //       console.log('this.accountsData', this.accountsData);
-  //       // console.log(arrAccounts);
-  //     },
-  //     () => {
-  //       this.snackBar.showSnackBar('Ошибка при получении счётов.');
-  //     },
-  //   );
-  // }
+  public filterData() {
+    const currentDate = new Date();
+    const weekAgoDate = new Date();
+    const monthAgoDate = new Date();
+    weekAgoDate.setDate(currentDate.getDate() - 7);
+    monthAgoDate.setDate(currentDate.getDate() - 30);
+    switch (this.selectedFilter) {
+      case 'day':
+        this.dataSource.data = this.empData.filter((transaction) => {
+          const transactionDate = new Date(transaction.createdOn);
+          return (
+            transactionDate.getFullYear() === currentDate.getFullYear() &&
+            transactionDate.getMonth() === currentDate.getMonth() &&
+            transactionDate.getDate() === currentDate.getDate()
+          );
+        });
+        break;
+      case 'week':
+        this.dataSource.data = this.empData.filter((transaction) => {
+          const transactionDate = new Date(transaction.createdOn);
+          return transactionDate >= weekAgoDate && transactionDate <= currentDate;
+        });
+        break;
+      case 'month':
+        this.dataSource.data = this.empData.filter((transaction) => {
+          const transactionDate = new Date(transaction.createdOn);
+          return transactionDate >= monthAgoDate && transactionDate <= currentDate;
+        });
+        break;
+      default:
+        this.dataSource.data = this.empData;
+        break;
+    }
+    this.dataSource.paginator.firstPage(); // сброс пагинации при фильтрации
+  }
+
+  public addOperation(): void {
+    const body: any = {
+      accountFromId: 5,
+      accountToId: 4,
+      amount: 500,
+      createdOn: '2023-05-30 08:12:23',
+      description: 'Перевод5',
+    };
+    this.movingService.addOperation(body, this.params).subscribe(
+      (value: OperationAccounts) => {
+        console.log(value);
+      },
+      () => {
+        this.snackBar.showSnackBar('Ошибка!');
+      },
+    );
+  }
 }
