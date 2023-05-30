@@ -71,10 +71,7 @@ export class ForgotPasswordFormComponent implements OnInit, OnDestroy {
 
   public openNextDialog(): void {
     this.dialog.closeAll();
-    this.dialog.open(PasswordRecoveryFirstDialogComponent, {
-      width: '100%',
-      maxWidth: '720px',
-    });
+    this.dialog.open(PasswordRecoveryFirstDialogComponent, {});
   }
 
   public onChangeRecaptcha(checked: boolean): void {
