@@ -11,7 +11,7 @@
   </div>
   <div class="flex flex-row gap-5 registration__name-field">
     <div class="flex flex-col gap-3 w-1/2 registration__name-container">
-      <span class="registration-form__text registration__name">Имя</span>
+      <span class="registration-form__text registration__name">Имя*</span>
       <mat-form-field appearance="outline"><input matInput placeholder="Введите ваше имя..."
           formControlName="firstName" />
         <mat-error *ngIf="f['firstName'].invalid && f['firstName'].touched">
@@ -20,7 +20,7 @@
       </mat-form-field>
     </div>
     <div class="flex flex-col gap-3 w-1/2 registration__surname-container">
-      <span class="registration-form__text registration__surname">Фамилия</span>
+      <span class="registration-form__text registration__surname">Фамилия*</span>
       <mat-form-field appearance="outline"><input matInput placeholder="Введите вашу фамилию..."
           formControlName="lastName" />
         <mat-error *ngIf="f['lastName'].invalid && f['lastName'].touched">
@@ -31,7 +31,7 @@
   </div>
 
   <div class="flex flex-col gap-3">
-    <span class="registration-form__text">Выбор валюты</span>
+    <span class="registration-form__text">Выбор валюты*</span>
     <mat-form-field appearance="outline">
       <mat-select [value]="currencies[3]">
         <mat-option *ngFor="let currency of currencies" [value]="currency" (click)="onSelectCurrency(currency)">({{
