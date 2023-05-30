@@ -1,6 +1,6 @@
 <form [formGroup]="signUpForm" class="w-full flex flex-col">
   <div class="flex flex-col gap-3">
-    <span class="text-lg">Электронная почта*</span>
+    <span class="registration-form__text">Электронная почта*</span>
     <mat-form-field appearance="outline">
       <input matInput placeholder="Введите адрес электронной почты..." formControlName="email" />
       <mat-error *ngIf="f['email'].invalid && f['email'].touched">
@@ -9,9 +9,9 @@
       </mat-error>
     </mat-form-field>
   </div>
-  <div class="flex flex-row gap-5">
-    <div class="flex flex-col gap-3 w-1/2">
-      <span class="text-lg">Имя</span>
+  <div class="flex flex-row gap-5 registration__name-field">
+    <div class="flex flex-col gap-3 w-1/2 registration__name-container">
+      <span class="registration-form__text registration__name">Имя</span>
       <mat-form-field appearance="outline"><input matInput placeholder="Введите ваше имя..."
           formControlName="firstName" />
         <mat-error *ngIf="f['firstName'].invalid && f['firstName'].touched">
@@ -19,8 +19,8 @@
         </mat-error>
       </mat-form-field>
     </div>
-    <div class="flex flex-col gap-3 w-1/2">
-      <span class="text-lg">Фамилия</span>
+    <div class="flex flex-col gap-3 w-1/2 registration__surname-container">
+      <span class="registration-form__text registration__surname">Фамилия</span>
       <mat-form-field appearance="outline"><input matInput placeholder="Введите вашу фамилию..."
           formControlName="lastName" />
         <mat-error *ngIf="f['lastName'].invalid && f['lastName'].touched">
@@ -31,7 +31,7 @@
   </div>
 
   <div class="flex flex-col gap-3">
-    <span class="text-lg">Выбор валюты</span>
+    <span class="registration-form__text">Выбор валюты</span>
     <mat-form-field appearance="outline">
       <mat-select [value]="currencies[3]">
         <mat-option *ngFor="let currency of currencies" [value]="currency" (click)="onSelectCurrency(currency)">({{
@@ -41,7 +41,7 @@
   </div>
 
   <div class="flex flex-col gap-6">
-    <span class="text-lg">Пароль*</span>
+    <span class="registration-form__text">Пароль*</span>
     <mat-form-field appearance="outline">
       <input matInput [type]="showPassword ? 'text' : 'password'" placeholder="Введите ваш пароль..."
         formControlName="password" />
@@ -72,9 +72,9 @@
   </div>
 
   <div class="flex flex-col gap-1 w-full">
-    <p class="text-lg">Проверка*</p>
+    <p class="registration-form__text">Проверка*</p>
     <mat-checkbox formControlName="recaptcha" (change)="onChangeRecaptcha($event.checked)">
-      <span class="text-lg">Я не робот</span>
+      <span class="registration-form__text">Я не робот</span>
     </mat-checkbox>
     <mat-error class="w-full" *ngIf="f['recaptcha'].invalid && f['recaptcha'].touched">
       <span *ngIf="f['recaptcha'].errors?.['required']">{{ ERROR_MESSAGES.REQUIRED }}</span>
@@ -83,7 +83,7 @@
 
   <div class="w-full m-auto">
     <button type="submit"
-      class="w-full mt-5 bg-teal-700 text-white p-4 rounded-lg text-lg transition-opacity hover:opacity-75 disabled:bg-gray-200 disabled:text-black"
+      class="btn-submit cursor-pointer w-full"
       (click)="onSubmit()" [disabled]="signUpForm.invalid || signUpForm.disabled">
       Зарегистрироваться
     </button>

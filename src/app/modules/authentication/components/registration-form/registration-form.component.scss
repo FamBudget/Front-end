@@ -1,19 +1,11 @@
-.auth-form__text {
-  font-family: 'Gilroy';
-  font-style: normal;
-  font-weight: 500;
-  font-size: calc(14px + 2 * (100vw - 320px) / 1600);
-  line-height: 28px;
-  color: #263834;
-}
-
-.auth__forgot-password {
+.registration-form__text {
   font-family: Gilroy, sans-serif;
   font-style: normal;
   font-weight: 500;
-  font-size: calc(14px + 2 * (100vw - 320px) / 1600);
+  font-size: 20px;
   line-height: 28px;
-  color: #1b9b85;
+  color: #263834;
+  font-size: calc(14px + 3 * (100vw - 320px) / 1600);
 }
 
 .btn-submit {
@@ -29,6 +21,7 @@
   text-align: center;
   color: #ffffff;
   transition: 0.5s;
+  margin-top: 10px;
 }
 
 .btn-submit:hover {
@@ -46,4 +39,26 @@ mat-error .ng-star-inserted {
   font-style: normal;
   font-weight: 500;
   font-size: calc(10px + 3 * (100vw - 320px) / 1600) !important;
+}
+
+@media (max-width: 1020px) {
+  .registration__name-field {
+    flex-wrap: wrap;
+  }
+
+  .registration__name {
+    width: 100%;
+  }
+
+  .registration__surname {
+    width: 100%;
+  }
+
+  .registration__name-container {
+    width: 100%;
+  }
+
+  .registration__surname-container {
+    width: 100%;
+  }
 }

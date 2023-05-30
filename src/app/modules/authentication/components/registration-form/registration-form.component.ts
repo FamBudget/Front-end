@@ -11,6 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-registration-form',
   templateUrl: './registration-form.component.html',
+  styleUrls: ['./registration-form.component.scss'],
   providers: [AuthenticationService],
 })
 export class RegistrationFormComponent implements OnDestroy {
