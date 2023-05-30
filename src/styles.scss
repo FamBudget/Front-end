@@ -112,3 +112,7 @@ img {
   height: 32px;
   background: url('./assets/facebook.svg') no-repeat center center;
 }
+
+.mat-mdc-form-field-hint-wrapper, .mat-mdc-form-field-error-wrapper {
+  padding: 0 !important;
+ }
