@@ -1,0 +1,131 @@
+:host {
+  width: 100%;
+  margin: 0 auto;
+  display: block;
+  height: 100%;
+}
+
+.auth-page__container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100%;
+  gap: calc(15px + 50 * (100vw - 320px) / 1600);
+}
+
+.auth-page__left {
+  background: #e2fffa;
+  border-radius: 0px 64px 64px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.auth__arrow-img-container {
+  align-self: start;
+  max-width: 140px;
+}
+
+.auth-page__img-container {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: stretch;
+}
+
+.auth-page__img {
+  max-width: 768px;
+}
+
+.auth-form-content {
+  background: #ffffff;
+  box-shadow: -2px -2px 16px rgba(39, 222, 191, 0.06), 2px 2px 16px rgba(39, 222, 191, 0.06);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+}
+
+.auth-form-card {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  gap: 10px;
+}
+
+.auth-title {
+  font-family: Gilroy, sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: calc(25px + 24 * (100vw - 320px) / 1600);
+  line-height: 50px;
+  color: #263834;
+}
+
+.auth-text {
+  font-family: Gilroy, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: calc(14px + 2 * (100vw - 320px) / 1600);
+  line-height: 28px;
+  color: #263834;
+  text-align: center;
+}
+
+.help-auth-btn {
+  font-family: Gilroy, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: calc(15px + 3 * (100vw - 320px) / 1600);
+  line-height: 32px;
+  color: #263834;
+}
+
+.auth-page__right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+@media (max-width: 1020px) {
+  .auth-page__container {
+    grid-template-columns: 1fr;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .auth-page__left {
+    order: 2;
+  }
+
+  .auth-page__right {
+    order: 1;
+  }
+
+  .auth__arrow-img-container {
+    display: none;
+  }
+
+  .auth-page__right {
+    justify-content: center;
+  }
+
+  .help-auth-btns {
+    flex-wrap: wrap;
+  }
+
+  .auth-form-content {
+    width: 100%;
+  }
+
+  .auth-title {
+    line-height: 37px;
+  }
+}

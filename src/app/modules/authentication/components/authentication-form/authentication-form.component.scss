@@ -1,0 +1,42 @@
+.auth-form__text {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 500;
+  font-size: calc(14px + 2 * (100vw - 320px) / 1600);
+  line-height: 28px;
+  color: #263834;
+}
+
+.auth__forgot-password {
+  font-family: Gilroy, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: calc(14px + 2 * (100vw - 320px) / 1600);
+  line-height: 28px;
+  color: #1b9b85;
+}
+
+.btn-submit {
+  padding: 10px;
+  background: #1b9b85;
+  box-shadow: inset -5px -5px 32px rgba(255, 255, 255, 0.16), inset 5px 5px 32px rgba(255, 255, 255, 0.16);
+  border-radius: 10px;
+  font-family: Gilroy, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: calc(15px + 3 * (100vw - 320px) / 1600);
+  line-height: 32px;
+  text-align: center;
+  color: #ffffff;
+  transition: 0.5s;
+}
+
+.btn-submit:hover {
+  opacity: 0.75;
+}
+
+.btn-submit[disabled] {
+  background-color: #cccccc;
+  color: black;
+  cursor: default;
+}

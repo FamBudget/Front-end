@@ -14,6 +14,7 @@ import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-authentication-form',
   templateUrl: './authentication-form.component.html',
+  styleUrls: ['./authentication-form.component.scss'],
   providers: [AuthenticationService],
 })
 export class AuthenticationFormComponent implements OnInit {

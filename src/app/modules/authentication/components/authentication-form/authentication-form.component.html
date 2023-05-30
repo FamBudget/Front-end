@@ -1,7 +1,7 @@
 <div class="w-full flex flex-col items-end">
   <form action="" class="w-full flex flex-col gap-5" [formGroup]="signInForm">
     <div class="flex flex-col gap-3">
-      <span>Электронная почта*</span>
+      <span class="auth-form__text">Электронная почта*</span>
       <mat-form-field appearance="outline">
         <input matInput placeholder="Введите адрес электронной почты" formControlName="email" />
         <mat-error *ngIf="signInForm.controls['email'].invalid && signInForm.controls['email'].touched">
@@ -12,7 +12,7 @@
     </div>
 
     <div class="flex flex-col gap-3">
-      <span>Пароль*</span>
+      <span class="auth-form__text">Пароль*</span>
       <mat-form-field appearance="outline">
         <input
           matInput
@@ -34,7 +34,7 @@
 
     <button
       type="submit"
-      class="mt-5 bg-teal-700 text-white p-4 rounded-lg text-lg transition-opacity hover:opacity-75 disabled:bg-gray-200 disabled:text-black"
+      class="btn-submit cursor-pointer w-full"
       (click)="onSubmit()"
       [disabled]="signInForm.invalid || signInForm.disabled"
     >
@@ -42,6 +42,6 @@
     </button>
   </form>
   <div class="mt-5">
-    <button (click)="openForgotPasswordDialog()" class="text-green-700 bg-transparent border-none p-2">Забыли пароль?</button>
+    <button (click)="openForgotPasswordDialog()" class="auth__forgot-password">Забыли пароль?</button>
   </div>
 </div>
