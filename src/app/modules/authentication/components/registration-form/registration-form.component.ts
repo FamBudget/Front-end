@@ -6,6 +6,7 @@ import { SnackBarService } from '../../../../shared/services';
 import { Currencies, User } from '../../models';
 import { currencies, passwordPattern, passwordsMatchValidator } from '../../../../constants';
 import { ERROR_MESSAGES } from '../../../../enums';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-registration-form',
@@ -36,7 +37,12 @@ export class RegistrationFormComponent implements OnDestroy {
 
   private signUpSubscription = new Subscription();
 
-  constructor(private fb: FormBuilder, private authService: AuthenticationService, private snackBar: SnackBarService) {}
+  constructor(
+    private dialog: MatDialog,
+    private fb: FormBuilder,
+    private authService: AuthenticationService,
+    private snackBar: SnackBarService,
+  ) {}
 
   ngOnDestroy() {
     this.signUpSubscription.unsubscribe();
@@ -59,7 +65,11 @@ export class RegistrationFormComponent implements OnDestroy {
     };
 
     this.signUpSubscription = this.authService.signUp(user).subscribe(
-      () => {},
+      () => {
+        this.signUpForm.markAsUntouched();
+        this.signUpForm.reset();
+        this.dialog.closeAll();
+      },
       (err) => {
         if (err.status === 409) {
           this.snackBar.showSnackBar(ERROR_MESSAGES.FOUNDED_USER);
@@ -67,7 +77,6 @@ export class RegistrationFormComponent implements OnDestroy {
           this.snackBar.showSnackBar('Ошибка при регистрации.');
         }
       },
-      () => this.signUpForm.reset(),
     );
   }
 
