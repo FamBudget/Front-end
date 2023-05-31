@@ -1,17 +1,16 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_NATIVE_DATE_FORMATS, MatDateFormats } from '@angular/material/core';
 import { ERROR_MESSAGES } from 'src/app/enums';
-import { Account, ISelectedRangeDate, OperationAccountsQuery, RequestGetAccounts } from '../..';
+import { OperationAccountsQuery, SelectedRangeDate } from '../..';
 import { AccountsService } from '../../services/accounts.service';
-import { Subscription } from 'rxjs';
 import { SnackBarService } from 'src/app/shared/services';
-import { FutureDateValidator, FutureMonthValidator } from 'src/app/shared/validators';
 import { MovingService } from '../../services';
 import { OperationAccounts } from '../../models/operation-accounts.model';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { FutureDateValidator } from 'src/app/shared/validators';
 
 export const GRI_DATE_FORMATS: MatDateFormats = {
   ...MAT_NATIVE_DATE_FORMATS,
@@ -33,20 +32,13 @@ export const GRI_DATE_FORMATS: MatDateFormats = {
 export class AccountsTableComponent implements OnInit {
   public startDate: Date = new Date(new Date().setDate(new Date().getDate() - 29));
   public endDate: Date = new Date();
+  public dateRangeForm: FormGroup = new FormGroup({});
 
-  public dateRangeForm: FormGroup = new FormGroup({
-    fromDate: new FormControl(this.startDate, Validators.required),
-    toDate: new FormControl(this.endDate, Validators.required),
-  });
   protected readonly ERROR_MESSAGES = ERROR_MESSAGES;
   public selectedFilter = 'month';
-
   public displayedColumns: string[] = ['accountFrom', 'accountTo', 'amount', 'createdOn'];
-
   public dataSource: any;
-
   public empData: Array<OperationAccounts> = [];
-
   public params: OperationAccountsQuery = {
     email: 'mariaiscus1@gmail.com',
   };
@@ -67,11 +59,10 @@ export class AccountsTableComponent implements OnInit {
     this.getMovingAccounts();
 
     this.adapter.setLocale('Ru');
-    this.dateRangeForm = this.formBuilder.group({
-      fromDate: new FormControl(this.startDate, [Validators.required, FutureMonthValidator]),
-      toDate: new FormControl(this.endDate, [Validators.required, FutureMonthValidator]),
+    this.dateRangeForm = new FormGroup({
+      start: new FormControl(this.startDate, [Validators.required, FutureDateValidator, Validators.nullValidator]),
+      end: new FormControl(this.endDate, [Validators.required, FutureDateValidator, Validators.nullValidator]),
     });
-    // Получение данных для таблицы и фильтрация по умолчанию за текущий месяц
   }
 
   public get f() {
@@ -94,7 +85,31 @@ export class AccountsTableComponent implements OnInit {
     );
   }
 
-  public filterData() {
+  public onDateRangeChange(): void {
+    if (this.dateRangeForm.invalid) return;
+    this.startDate = this.dateRangeForm.controls['start'].value;
+    this.endDate = this.dateRangeForm.controls['end'].value;
+    this.selectedFilter = '';
+    this.filterDataByDateRange();
+  }
+
+  public filterDataByDateRange(): void {
+    const dateStart = new Date(this.startDate.getFullYear(), this.startDate.getMonth(), this.startDate.getDate());
+    const dateEnd = new Date(this.endDate.getFullYear(), this.endDate.getMonth(), this.endDate.getDate());
+
+    this.dataSource.data = this.empData.filter((transaction) => {
+      const transactionDate = new Date(
+        new Date(transaction.createdOn).getFullYear(),
+        new Date(transaction.createdOn).getMonth(),
+        new Date(transaction.createdOn).getDate(),
+      );
+
+      return transactionDate.getTime() >= dateStart.getTime() && transactionDate.getTime() <= dateEnd.getTime();
+    });
+    this.dataSource.paginator.firstPage();
+  }
+
+  public filterData(): void {
     const currentDate = new Date();
     const weekAgoDate = new Date();
     const monthAgoDate = new Date();

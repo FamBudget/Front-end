@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { API_URL } from 'src/app/constants';
-import { Account, NewAccount, OperationAccountsQuery, RequestGetAccounts } from '..';
+import { OperationAccountsQuery } from '..';
 import { OperationAccounts } from '../models/operation-accounts.model';
 
 @Injectable({
@@ -13,7 +13,7 @@ export class MovingService {
   public headers = new HttpHeaders({
     Authorization:
       'Bearer ' +
-      'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJpYWlzY3VzMUBnbWFpbC5jb20iLCJleHAiOjE2ODU0NDI1MDl9.Kls5bOd4hnna9TXMZYX6Aucqe4_YPkYFwlk9MCbwYbc',
+      'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJpYWlzY3VzMUBnbWFpbC5jb20iLCJleHAiOjE2ODU1MzE5Nzd9.FlGVE__kqs31rBWMAhnGbW8QXNwvzIt-dU-PmnaQpTI',
     // 'Bearer ' + this.authServise.getToken(),
   });
 

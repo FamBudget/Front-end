@@ -2,41 +2,32 @@
     <button (click)="addOperation()">Add operation</button>
     <div class="table-filters">
         <div class="range">
-            <mat-form-field>
-                <mat-date-range-input [rangePicker]="picker" [formGroup]="dateRangeForm" >
+                <mat-form-field>
+                    <mat-date-range-input [rangePicker]="picker" [formGroup]="dateRangeForm">
+                        <input readonly matStartDate placeholder="From Date" required formControlName="start"
+                            [(ngModel)]="startDate">
+                        <input readonly matEndDate placeholder="To Date" required formControlName="end"
+                            [(ngModel)]="endDate" (dateChange)="onDateRangeChange()">
+                    </mat-date-range-input>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-date-range-picker #picker color="accent"></mat-date-range-picker>
+                    <!-- Invalid Date Messages -->
+                    <mat-error *ngIf="(f['start'].errors?.['required']) || (f['end'].errors?.['required'])">
+                        {{ERROR_MESSAGES.REQUIRED}}
+                    </mat-error>
+                    <mat-error *ngIf="f['start'].errors?.['futureDate'] || f['end'].errors?.['futureDate']">
+                        <span>{{ ERROR_MESSAGES.INVALID_FUTURE_DATE }}</span>
+                    </mat-error>
+                </mat-form-field>
 
-                    <input readonly matStartDate placeholder="From Date" required formControlName="fromDate"
-                        [(ngModel)]="startDate">
-                    <input readonly matEndDate placeholder="To Date" required formControlName="toDate"
-                        [(ngModel)]="endDate">
-                </mat-date-range-input>
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-
-                <mat-date-range-picker #picker color="accent" touchUi>
-                    <mat-date-range-picker-actions>
-                        <button mat-button matDateRangePickerCancel>Cancel</button>
-                        <button mat-raised-button color="primary" matDateRangePickerApply type="submit">Apply</button>
-                    </mat-date-range-picker-actions>
-                </mat-date-range-picker>
-                <!-- Invalid Date Messages -->
-                <mat-error *ngIf="(f['fromDate'].errors?.['required']) || (f['toDate'].errors?.['required'])">
-                    {{ERROR_MESSAGES.REQUIRED}}
-                </mat-error>
-                <mat-error *ngIf="(f['fromDate'].errors?.['futureMonth']) || (f['toDate'].errors?.['futureMonth'])">
-                    {{ERROR_MESSAGES.INVALID_FUTURE_DATE }}
-                </mat-error>
-            </mat-form-field>
-
-
-            <!-- !можно посмотреть начало и конец -->
-            <!-- <mat-divider></mat-divider>
+                <!-- !можно посмотреть начало и конец -->
+                <!-- <mat-divider></mat-divider>
                 <p>Selected Date Range: </p>
                 <p>{{dateRangeForm.value | json}}</p> -->
-
         </div>
 
         <div class="toggle-btns">
-            <mat-button-toggle-group class="toggle-group" name="fontStyle" aria-label="Font Style"
+            <mat-button-toggle-group #group="matButtonToggleGroup" class="toggle-group" name="fontStyle" aria-label="Font Style"
                 [(ngModel)]="selectedFilter" (change)="filterData()">
                 <mat-button-toggle value="day">За день</mat-button-toggle>
                 <mat-button-toggle checked value="week">Неделю</mat-button-toggle>
@@ -74,7 +65,7 @@
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <tr class="table-moving__row" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
         <mat-paginator [pageSizeOptions]="[5,10,20]" showFirstLastButtons></mat-paginator>
     </div>

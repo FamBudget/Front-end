@@ -70,9 +70,10 @@
   margin: 0;
 }
 
-.mdc-data-table__cell, .mdc-data-table__header-cell {
-    border-bottom-width: 0px;
-    border-bottom-style: solid;
+.mdc-data-table__cell,
+.mdc-data-table__header-cell {
+  border-bottom-width: 0px;
+  border-bottom-style: solid;
 }
 
 .account-amount__currency {
@@ -81,4 +82,8 @@
 
 .mat-mdc-cell {
   justify-content: flex-start;
+}
+
+.account-amount {
+  text-align: end;
 }

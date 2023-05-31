@@ -5,4 +5,4 @@ export * from './new-account.model';
 export * from './operation-account.model';
 export * from './operation-account.model';
 export * from './operation-accounts-query.model';
-export * from './selected-range-date';
+export * from './selected-range-date.model';
