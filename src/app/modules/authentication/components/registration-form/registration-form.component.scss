@@ -61,3 +61,13 @@ mat-error .ng-star-inserted {
     width: 100%;
   }
 }
+
+@media (max-width: 768px) {
+  .registration-form {
+    gap: 40px;
+  }
+
+  .registration-form__passwords {
+    gap: 40px;
+  }
+}
