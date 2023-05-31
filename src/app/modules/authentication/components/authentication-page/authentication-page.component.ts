@@ -22,7 +22,9 @@ export class AuthenticationPageComponent {
   }
 
   public openPasswordRecoveryDialog(): void {
-    this.matDialog.open(PasswordRecoverySecondDialogComponent, {});
+    this.matDialog.open(PasswordRecoverySecondDialogComponent, {
+      panelClass: 'password-recovery-second-dialog'
+    });
   }
 
   public openDialog(): void {

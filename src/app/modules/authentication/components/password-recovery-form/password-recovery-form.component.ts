@@ -93,6 +93,8 @@ export class PasswordRecoveryFormComponent implements OnInit {
 
   public openNextDialog(): void {
     this.dialog.closeAll();
-    this.dialog.open(PasswordRecoveredDialogComponent, {});
+    this.dialog.open(PasswordRecoveredDialogComponent, {
+      panelClass: 'password-recovered-dialog',
+    });
   }
 }
