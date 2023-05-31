@@ -113,6 +113,20 @@ img {
   background: url('./assets/facebook.svg') no-repeat center center;
 }
 
-.mat-mdc-form-field-hint-wrapper, .mat-mdc-form-field-error-wrapper {
+.mat-mdc-form-field-hint-wrapper,
+.mat-mdc-form-field-error-wrapper {
   padding: 0 !important;
- }
+}
+
+@media (max-width: 768px) {
+  .mat-mdc-dialog-surface,
+  .mdc-dialog__surface {
+    width: 93% !important;
+  }
+}
+
+.cdk-overlay-backdrop,
+.cdk-overlay-dark-backdrop,
+.cdk-overlay-backdrop-showing {
+  background: rgba(38, 50, 56, 0.32) !important;
+}
