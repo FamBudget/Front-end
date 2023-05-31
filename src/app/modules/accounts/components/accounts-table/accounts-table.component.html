@@ -1,34 +1,34 @@
 <section class="table-section">
-    <button (click)="addOperation()">Add operation</button>
+    <!-- <button (click)="addOperation()">Add operation</button> -->
     <div class="table-filters">
         <div class="range">
-                <mat-form-field>
-                    <mat-date-range-input [rangePicker]="picker" [formGroup]="dateRangeForm">
-                        <input readonly matStartDate placeholder="From Date" required formControlName="start"
-                            [(ngModel)]="startDate">
-                        <input readonly matEndDate placeholder="To Date" required formControlName="end"
-                            [(ngModel)]="endDate" (dateChange)="onDateRangeChange()">
-                    </mat-date-range-input>
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-date-range-picker #picker color="accent"></mat-date-range-picker>
-                    <!-- Invalid Date Messages -->
-                    <mat-error *ngIf="(f['start'].errors?.['required']) || (f['end'].errors?.['required'])">
-                        {{ERROR_MESSAGES.REQUIRED}}
-                    </mat-error>
-                    <mat-error *ngIf="f['start'].errors?.['futureDate'] || f['end'].errors?.['futureDate']">
-                        <span>{{ ERROR_MESSAGES.INVALID_FUTURE_DATE }}</span>
-                    </mat-error>
-                </mat-form-field>
+            <mat-form-field>
+                <mat-date-range-input [rangePicker]="picker" [formGroup]="dateRangeForm">
+                    <input readonly matStartDate placeholder="From Date" required formControlName="start"
+                        [(ngModel)]="startDate">
+                    <input readonly matEndDate placeholder="To Date" required formControlName="end"
+                        [(ngModel)]="endDate" (dateChange)="onDateRangeChange()">
+                </mat-date-range-input>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker color="accent"></mat-date-range-picker>
+                <!-- Invalid Date Messages -->
+                <mat-error *ngIf="(f['start'].errors?.['required']) || (f['end'].errors?.['required'])">
+                    {{ERROR_MESSAGES.REQUIRED}}
+                </mat-error>
+                <mat-error *ngIf="f['start'].errors?.['futureDate'] || f['end'].errors?.['futureDate']">
+                    <span>{{ ERROR_MESSAGES.INVALID_FUTURE_DATE }}</span>
+                </mat-error>
+            </mat-form-field>
 
-                <!-- !можно посмотреть начало и конец -->
-                <!-- <mat-divider></mat-divider>
+            <!-- !можно посмотреть начало и конец -->
+            <!-- <mat-divider></mat-divider>
                 <p>Selected Date Range: </p>
                 <p>{{dateRangeForm.value | json}}</p> -->
         </div>
 
         <div class="toggle-btns">
-            <mat-button-toggle-group #group="matButtonToggleGroup" class="toggle-group" name="fontStyle" aria-label="Font Style"
-                [(ngModel)]="selectedFilter" (change)="filterData()">
+            <mat-button-toggle-group #group="matButtonToggleGroup" class="toggle-group" name="fontStyle"
+                aria-label="Font Style" [(ngModel)]="selectedFilter" (change)="filterData()">
                 <mat-button-toggle value="day">За день</mat-button-toggle>
                 <mat-button-toggle checked value="week">Неделю</mat-button-toggle>
                 <mat-button-toggle value="month">За месяц</mat-button-toggle>
@@ -39,28 +39,26 @@
     <div class="mat-elevation-z8 table-moving ">
         <table class="table table-moving" mat-table [dataSource]="dataSource" matSort>
             <ng-container matColumnDef="accountFrom">
-                <th class="table-moving__header" mat-header-cell *matHeaderCellDef mat-sort-header
+                <th class="table-moving__header" mat-header-cell *matHeaderCellDef mat-sort-header="accountFrom"
                     [disableClear]="true"> Откуда</th>
-                <td class="table-moving__data" mat-cell *matCellDef="let element"> {{element.accountFrom.name}} </td>
+                <td class="table-moving__data" mat-cell *matCellDef="let element"> {{element.accountFrom.name }} </td>
             </ng-container>
 
             <ng-container matColumnDef="accountTo">
-                <th class="table-moving__header" mat-header-cell *matHeaderCellDef mat-sort-header
+                <th class="table-moving__header" mat-header-cell *matHeaderCellDef mat-sort-header="accountTo"
                     [disableClear]="true"> Куда </th>
                 <td class="table-moving__data" mat-cell *matCellDef="let element"> {{element.accountTo.name}} </td>
             </ng-container>
 
-
             <ng-container matColumnDef="amount">
-                <th class="table-moving__header" mat-header-cell *matHeaderCellDef mat-sort-header
-                    [disableClear]="true"> Сумма </th>
+                <th class="table-moving__header" mat-header-cell *matHeaderCellDef [disableClear]="true"
+                    mat-sort-header="amount"> Сумма </th>
                 <td class="table-moving__data" mat-cell *matCellDef="let element"> {{element.amount}} </td>
             </ng-container>
 
-
             <ng-container matColumnDef="createdOn">
-                <th class="table-moving__header" mat-header-cell *matHeaderCellDef mat-sort-header
-                    [disableClear]="true"> Дата </th>
+                <th class="table-moving__header" mat-header-cell *matHeaderCellDef [disableClear]="true"
+                    mat-sort-header="createdOn"> Дата </th>
                 <td class="table-moving__data" mat-cell *matCellDef="let element"> {{element.createdOn}} </td>
             </ng-container>
 

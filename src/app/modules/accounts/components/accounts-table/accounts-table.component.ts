@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_NATIVE_DATE_FORMATS, MatDateFormats } from '@angular/material/core';
 import { ERROR_MESSAGES } from 'src/app/enums';
-import { OperationAccountsQuery, SelectedRangeDate } from '../..';
+import { OperationAccountsQuery } from '../..';
 import { AccountsService } from '../../services/accounts.service';
 import { SnackBarService } from 'src/app/shared/services';
 import { MovingService } from '../../services';
@@ -77,6 +77,22 @@ export class AccountsTableComponent implements OnInit {
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
         this.dataSource.sort.sort({ id: 'createdOn', start: 'desc', disableClear: true });
+        if (this.dataSource) {
+          this.dataSource.sortingDataAccessor = (data: OperationAccounts, sortHeaderId: string) => {
+            switch (sortHeaderId) {
+              case 'accountFrom':
+                return data.accountFrom.name.toLowerCase();
+              case 'accountTo':
+                return data.accountTo.name.toLowerCase();
+              case 'amount':
+                return data.amount;
+              case 'createdOn':
+                return data.createdOn;
+              default:
+                return '';
+            }
+          };
+        }
         this.filterData();
       },
       () => {
@@ -106,6 +122,7 @@ export class AccountsTableComponent implements OnInit {
 
       return transactionDate.getTime() >= dateStart.getTime() && transactionDate.getTime() <= dateEnd.getTime();
     });
+
     this.dataSource.paginator.firstPage();
   }
 
@@ -143,6 +160,10 @@ export class AccountsTableComponent implements OnInit {
         break;
     }
     this.dataSource.paginator.firstPage(); // сброс пагинации при фильтрации
+  }
+
+  public nameComparator(a: any, b: any): number {
+    return a.name.localeCompare(b.name, undefined, { sensitivity: 'base' });
   }
 
   public addOperation(): void {
