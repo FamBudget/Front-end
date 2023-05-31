@@ -11,7 +11,7 @@ export class DialogService {
       width: '100%',
       maxWidth: '650px',
       role: 'dialog',
-      panelClass: 'registrationDialog'
+      panelClass: 'registration-dialog'
     });
   }
 }

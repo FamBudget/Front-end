@@ -80,7 +80,9 @@ export class AuthenticationFormComponent implements OnInit {
   }
 
   public openForgotPasswordDialog(): void {
-    this.dialog.open(ForgotPasswordDialogComponent, {});
+    this.dialog.open(ForgotPasswordDialogComponent, {
+      panelClass: 'forgot-password-dialog'
+    });
   }
 
   protected readonly sign = sign;
