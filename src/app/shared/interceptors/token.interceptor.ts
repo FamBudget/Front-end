@@ -9,7 +9,7 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor(private authService: AuthenticationService, private router: Router) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-     console.log('Intercepted request:', request);
+    console.log('Intercepted request:', request);
     if (this.authService.isAuth()) {
       request = request.clone({
         setHeaders: {
@@ -17,7 +17,12 @@ export class TokenInterceptor implements HttpInterceptor {
         },
       });
     }
-    return next.handle(request).pipe(catchError((err: HttpErrorResponse) => this.errorHandler(err)));
+
+    return next.handle(request).pipe(
+      catchError((err: HttpErrorResponse) => {
+        return this.errorHandler(err);
+      }),
+    );
   }
 
   private errorHandler(error: HttpErrorResponse) {

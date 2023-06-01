@@ -12,7 +12,7 @@ export class AccountsService {
   public headers = new HttpHeaders({
     Authorization:
       'Bearer ' +
-      'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJpYWlzY3VzMUBnbWFpbC5jb20iLCJleHAiOjE2ODU2MjQyNzV9.Av8Mqg0f2Mjfqr7geUOq2E9kUhUqj1FYAMTzsulDuOU',
+      'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJpYWlzY3VzMUBnbWFpbC5jb20iLCJleHAiOjE2ODU2MzQxNzh9.AC7z1M-HwiwiBWRgx83Zz5m-M9LsP7ZXT2CZTEkeK7M',
     // 'Bearer ' + this.authServise.getToken(),
   });
 
