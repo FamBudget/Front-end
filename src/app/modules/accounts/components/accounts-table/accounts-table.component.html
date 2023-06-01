@@ -41,19 +41,20 @@
             <ng-container matColumnDef="accountFrom">
                 <th class="table-moving__header" mat-header-cell *matHeaderCellDef mat-sort-header="accountFrom"
                     [disableClear]="true"> Откуда</th>
-                <td class="table-moving__data" mat-cell *matCellDef="let element"> {{element.accountFrom.name }} </td>
+                <td class="table-moving__name-from" mat-cell *matCellDef="let element"> {{element.accountFrom.name }}
+                </td>
             </ng-container>
 
             <ng-container matColumnDef="accountTo">
                 <th class="table-moving__header" mat-header-cell *matHeaderCellDef mat-sort-header="accountTo"
                     [disableClear]="true"> Куда </th>
-                <td class="table-moving__data" mat-cell *matCellDef="let element"> {{element.accountTo.name}} </td>
+                <td class="table-moving__name-to" mat-cell *matCellDef="let element"> {{element.accountTo.name}} </td>
             </ng-container>
 
             <ng-container matColumnDef="amount">
                 <th class="table-moving__header" mat-header-cell *matHeaderCellDef [disableClear]="true"
                     mat-sort-header="amount"> Сумма </th>
-                <td class="table-moving__data" mat-cell *matCellDef="let element"> {{element.amount}} </td>
+                <td class="table-moving__amount" mat-cell *matCellDef="let element"> {{element.amount}} </td>
             </ng-container>
 
             <ng-container matColumnDef="createdOn">

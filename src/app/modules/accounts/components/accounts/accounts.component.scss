@@ -16,9 +16,10 @@
 }
 
 .accounts-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 20px;
+  grid-auto-flow: dense;
 }
 
 .accounts-top__title {
@@ -41,8 +42,10 @@
   color: #ffffff;
   font-family: 'Gilroy';
   font-weight: 500;
-  font-size: 20px;
   line-height: 140%;
+  font-size: calc(14px + 6 * (100vw - 320px) / 1600);
+  white-space: nowrap;
+
 }
 
 .account-icon {

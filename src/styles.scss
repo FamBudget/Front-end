@@ -23,8 +23,7 @@
   font-family: 'Gilroy';
   font-weight: 300;
   font-style: normal;
-  src: url('./assets/fonts/gilroy-light.woff2') format('woff2'),
-    url('./assets/fonts/gilroy-light.woff2') format('woff');
+  src: url('./assets/fonts/gilroy-light.woff2') format('woff2'), url('./assets/fonts/gilroy-light.woff2') format('woff');
 }
 
 @font-face {
@@ -183,4 +182,8 @@ select {
   left: -30px;
   height: 32px;
   background: url('./assets/facebook.svg') no-repeat center center;
+}
+
+.add-account-dialog-item .mat-mdc-dialog-container .mdc-dialog__surface {
+  border-radius: 1.25rem;
 }

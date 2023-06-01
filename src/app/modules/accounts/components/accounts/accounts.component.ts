@@ -32,8 +32,9 @@ export class AccountsComponent implements OnInit {
     let addDialogRef = this.dialog.open(AddAccountComponent, {
       width: '100%',
       maxWidth: '720px',
-      enterAnimationDuration: '400ms',
-      exitAnimationDuration: '400ms',
+      enterAnimationDuration: '500ms',
+      exitAnimationDuration: '500ms',
+      panelClass: 'add-account-dialog-item',
       data: {
         currency: this.accountsData[0].currency,
       },

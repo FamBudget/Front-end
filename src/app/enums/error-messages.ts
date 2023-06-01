@@ -10,4 +10,5 @@ export const ERROR_MESSAGES = {
   NOT_EXIST_USER: 'Пользователя с таким email не существует.',
   INVALID_RECOVERY_CODE: 'Код восстановления не действителен.',
   INVALID_FUTURE_DATE: 'Не может содержать будущую дату.',
+  ONLY_NUMBERS_PATTERN: 'Поле должно содержать только цифры',
 };

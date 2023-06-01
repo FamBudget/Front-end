@@ -23,6 +23,8 @@ export const GRI_DATE_FORMATS: MatDateFormats = {
   },
 };
 
+
+
 @Component({
   selector: 'app-accounts-table',
   templateUrl: './accounts-table.component.html',
@@ -42,6 +44,7 @@ export class AccountsTableComponent implements OnInit {
   public params: OperationAccountsQuery = {
     email: 'mariaiscus1@gmail.com',
   };
+
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;

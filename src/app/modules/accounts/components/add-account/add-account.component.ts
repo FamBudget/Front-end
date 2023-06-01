@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { currencies } from 'src/app/constants';
@@ -6,7 +6,7 @@ import { ERROR_MESSAGES } from 'src/app/enums';
 import { AccountsService } from '../../services/accounts.service';
 import { Account } from '../../models';
 import { SnackBarService } from 'src/app/shared/services';
-import { FutureDateValidator } from 'src/app/shared/validators';
+import { EmptyStringValidator, FutureDateValidator } from 'src/app/shared/validators';
 
 @Component({
   selector: 'app-add-account',
@@ -14,12 +14,14 @@ import { FutureDateValidator } from 'src/app/shared/validators';
   styleUrls: ['./add-account.component.scss'],
 })
 export class AddAccountComponent implements OnInit {
+
+
   public isTileLayout: boolean = true;
   public selectIconNumber: number = 0;
   public addAccountForm: FormGroup = new FormGroup({
     name: new FormControl(null, Validators.required),
     currency: new FormControl(''),
-    startAmount: new FormControl(null, Validators.required),
+    startAmount: new FormControl(null, [Validators.required, Validators.pattern('[0-9]+')]),
     createdOn: new FormControl(new Date().toISOString().substring(0, 10)),
     iconNumber: new FormControl(this.selectIconNumber),
   });
@@ -46,13 +48,15 @@ export class AddAccountComponent implements OnInit {
   ngOnInit(): void {
     this.inputData = this.data;
     this.addAccountForm = this.formBuilder.group({
-      name: new FormControl(null, Validators.required),
+      name: new FormControl(null, [Validators.required, EmptyStringValidator]),
       currency: new FormControl(`${this.inputData.currency}`),
-      startAmount: new FormControl(null, Validators.required),
+      startAmount: new FormControl(null, [Validators.required, Validators.pattern('[0-9]+')]),
       createdOn: new FormControl(new Date().toISOString().substring(0, 10), FutureDateValidator),
       iconNumber: new FormControl(this.selectIconNumber),
     });
   }
+
+
 
   public get f() {
     return this.addAccountForm.controls;
@@ -60,6 +64,7 @@ export class AddAccountComponent implements OnInit {
 
   public convertValues(): void {
     this.addAccountForm.value['iconNumber'] = this.selectIconNumber;
+    this.addAccountForm.value['startAmount'] = parseInt(this.addAccountForm.value['startAmount']);
     this.convertDateValue();
   }
 
@@ -86,16 +91,16 @@ export class AddAccountComponent implements OnInit {
 
     console.log('this.addAccountForm.value', this.addAccountForm.value);
     const email: string = 'mariaiscus1@gmail.com';
-    this.accountsService.addAccount(email, this.addAccountForm.value).subscribe(
-      (account: Account) => {
-        this.newAccount = account;
-        console.log('this.newAccount', this.newAccount);
-        this.dialog.closeAll();
-      },
-      (error) => {
-        console.log(error);
-        this.snackBar.showSnackBar('Ошибка при добавлении счёта.');
-      },
-    );
+    // this.accountsService.addAccount(email, this.addAccountForm.value).subscribe(
+    //   (account: Account) => {
+    //     this.newAccount = account;
+    //     console.log('this.newAccount', this.newAccount);
+    //     this.dialog.closeAll();
+    //   },
+    //   (error) => {
+    //     console.log(error);
+    //     this.snackBar.showSnackBar('Ошибка при добавлении счёта.');
+    //   },
+    // );
   }
 }

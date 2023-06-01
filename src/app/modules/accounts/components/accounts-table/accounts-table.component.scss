@@ -9,19 +9,39 @@
   justify-content: flex-start;
   gap: 40px;
   max-width: 946px;
-  background: #ffffff;
-  box-shadow: -2px -2px 16px rgba(39, 222, 191, 0.06), 2px 2px 16px rgba(39, 222, 191, 0.06);
-  border-radius: 20px;
 }
 .table-moving {
   width: 100%;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  background-color: #ffffff;
+  box-shadow: -2px -2px 16px rgba(39, 222, 191, 0.06), 2px 2px 16px rgba(39, 222, 191, 0.06);
+}
+
+.table-moving .mat-table {
+  border-collapse: initial;
+}
+
+.table-moving .mat-cell,
+.table-moving .mat-header-cell {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 8px;
+  border-right: 1px solid #ddd;
+  white-space: nowrap;
+}
+
+.table-moving .mat-cell:last-child,
+.table-moving .mat-header-cell:last-child {
+  border-right: none;
 }
 
 .table-filters {
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 20px;
+  grid-auto-flow: dense;
 }
 
 .mat-date-range-input-wrapper {
@@ -35,13 +55,11 @@
   display: flex;
   align-items: center;
   justify-content: stretch;
-  width: 45%;
 }
 
-mat-form-field {
-  width: 100%;
+.mat-mdc-form-field {
+  width: 90% !important;
 }
-
 .toggle-group {
   border-radius: 10px;
   // font-family: 'Gilroy';
@@ -86,16 +104,26 @@ mat-form-field {
   font-family: 'Gilroy';
   font-style: normal;
   font-weight: 600;
-  font-size: 24px;
   line-height: 133%;
+  color: #263834;
+  font-size: calc(18px + 6 * (100vw - 320px) / 1600);
+}
+
+.table-moving__amount,
+.table-moving__name-to,
+.table-moving__name-from {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 600;
+   font-size: calc(16px + 4 * (100vw - 320px) / 1600);
+  line-height: 140%;
   color: #263834;
 }
 .table-moving__data {
   font-family: 'Gilroy';
   font-style: normal;
-  font-weight: 600;
-  font-size: 20px;
+  font-weight: 500;
+  font-size: calc(16px + 4 * (100vw - 320px) / 1600);
   line-height: 140%;
   color: #263834;
 }
-

@@ -6,12 +6,13 @@
   padding: 20px;
 }
 
-.add-account-dialog__header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
 
+.add-account-dialog__header {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 20px;
+  grid-auto-flow: dense;
+}
 .dialog-actions {
   width: 100%;
   display: flex;
@@ -61,9 +62,28 @@
 .add-account-form {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  font-size: calc(14px + 2 * (100vw - 320px) / 1600);
   align-items: stretch;
   justify-content: center;
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 500;
+  font-size: calc(16px + 4 * (100vw - 320px) / 1600);
+  line-height: 140%;
+  color: #263834;
+}
+
+.add-account-form__err {
+  font-size: calc(12px + 2 * (100vw - 320px) / 1600);
+}
+
+.add-account-dialog__title {
+  font-weight: 700;
+  font-size: calc(24px + 24 * (100vw - 320px) / 1600);
+  line-height: 135%;
+  color: #263834;
+  padding: 0;
+  white-space: nowrap;
 }
 
 input[type='date'] {
@@ -90,4 +110,17 @@ input[type='number']:focus {
 
 button[disabled] {
   opacity: 0.5;
+}
+
+
+
+.add-account-form__input-initial-balance::-webkit-calendar-picker-indicator,
+.add-account-form__input-initial-balance::-webkit-inner-spin-button {
+  filter: invert(45%) sepia(99%) saturate(342%) hue-rotate(120deg) brightness(90%) contrast(91%); /* установите нужный цвет иконки */
+}
+
+.add-account-form__input-initial-balance[type="date"]::-webkit-calendar-picker-indicator,
+.add-account-form__input-initial-balance[type="date"]::-webkit-inner-spin-button,
+.add-account-form__input-initial-balance[type="date"]::-moz-calendar-picker-icon {
+  filter: invert(45%) sepia(99%) saturate(342%) hue-rotate(120deg) brightness(90%) contrast(91%); /* установите нужный цвет иконки */
 }
