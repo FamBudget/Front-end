@@ -1,55 +1,59 @@
-<form [formGroup]="signUpForm" class="w-full flex flex-col">
+<form [formGroup]="signUpForm" class="w-full flex flex-col registration-form">
   <div class="flex flex-col gap-3">
-    <span class="text-lg">Электронная почта*</span>
+    <span class="registration-form__text">Электронная почта*</span>
     <mat-form-field appearance="outline">
-      <input matInput placeholder="Введите адрес электронной почты..." formControlName="email" />
+      <input autocomplete="off" matInput placeholder="Введите адрес электронной почты..." formControlName="email" />
       <mat-error *ngIf="f['email'].invalid && f['email'].touched">
         <span *ngIf="f['email'].errors?.['required']">{{ ERROR_MESSAGES.REQUIRED }}</span>
         <span *ngIf="f['email'].errors?.['email']">{{ ERROR_MESSAGES.INVALID_EMAIL }}</span>
       </mat-error>
     </mat-form-field>
   </div>
-  <div class="flex flex-row gap-5">
-    <div class="flex flex-col gap-3 w-1/2">
-      <span class="text-lg">Имя</span>
-      <mat-form-field appearance="outline"
-        ><input matInput placeholder="Введите ваше имя..." formControlName="firstName" />
+  <div class="flex flex-row gap-5 registration__name-field">
+    <div class="flex flex-col gap-3 w-1/2 registration__name-container">
+      <span class="registration-form__text registration__name">Имя*</span>
+      <mat-form-field appearance="outline">
+        <input autocomplete="off" matInput placeholder="Введите ваше имя..." formControlName="firstName" trimOnChange />
         <mat-error *ngIf="f['firstName'].invalid && f['firstName'].touched">
-          <span *ngIf="f['firstName'].errors?.['required']">{{ ERROR_MESSAGES.REQUIRED }}</span>
+          <span *ngIf="f['firstName'].errors?.['required']  || f['firstName'].errors?.['emptyString']">{{
+            ERROR_MESSAGES.REQUIRED }}</span>
+          <span
+            *ngIf="f['firstName'].errors?.['pattern'] && !f['firstName'].errors?.['required'] && !f['firstName'].errors?.['emptyString']">{{
+            ERROR_MESSAGES.INVALID_NAME }}</span>
         </mat-error>
       </mat-form-field>
     </div>
-    <div class="flex flex-col gap-3 w-1/2">
-      <span class="text-lg">Фамилия</span>
-      <mat-form-field appearance="outline"
-        ><input matInput placeholder="Введите вашу фамилию..." formControlName="lastName" />
+    <div class="flex flex-col gap-3 w-1/2 registration__surname-container">
+      <span class="registration-form__text registration__surname">Фамилия*</span>
+      <mat-form-field appearance="outline">
+        <input autocomplete="off" matInput placeholder="Введите вашу фамилию..." formControlName="lastName"
+          trimOnChange />
         <mat-error *ngIf="f['lastName'].invalid && f['lastName'].touched">
-          <span *ngIf="f['lastName'].errors?.['required']">{{ ERROR_MESSAGES.REQUIRED }}</span>
+          <span *ngIf="f['lastName'].errors?.['required'] || f['lastName'].errors?.['emptyString']">{{
+            ERROR_MESSAGES.REQUIRED }}</span>
+          <span
+            *ngIf="f['lastName'].errors?.['pattern'] && !f['lastName'].errors?.['required'] && !f['lastName'].errors?.['emptyString']">{{
+            ERROR_MESSAGES.INVALID_NAME }}</span>
         </mat-error>
       </mat-form-field>
     </div>
   </div>
 
   <div class="flex flex-col gap-3">
-    <span class="text-lg">Выбор валюты</span>
+    <span class="registration-form__text">Выбор валюты*</span>
     <mat-form-field appearance="outline">
       <mat-select [value]="currencies[3]">
-        <mat-option *ngFor="let currency of currencies" [value]="currency" (click)="onSelectCurrency(currency)"
-          >({{ currency.symbol }}) {{ currency.currency }}</mat-option
-        >
+        <mat-option *ngFor="let currency of currencies" [value]="currency" (click)="onSelectCurrency(currency)">({{
+          currency.symbol }}) {{ currency.currency }}</mat-option>
       </mat-select>
     </mat-form-field>
   </div>
 
-  <div class="flex flex-col gap-6">
-    <span class="text-lg">Пароль*</span>
+  <div class="flex flex-col gap-6 registration-form__passwords">
+    <span class="registration-form__text">Пароль*</span>
     <mat-form-field appearance="outline">
-      <input
-        matInput
-        [type]="showPassword ? 'text' : 'password'"
-        placeholder="Введите ваш пароль..."
-        formControlName="password"
-      />
+      <input autocomplete="off" matInput [type]="showPassword ? 'text' : 'password'" placeholder="Введите ваш пароль..."
+        formControlName="password" class="registration-form__password-input" />
       <mat-error *ngIf="f['password'].invalid && f['password'].touched">
         <span *ngIf="f['password'].errors?.['required']">{{ ERROR_MESSAGES.REQUIRED }}</span>
         <span class="text-sm" *ngIf="f['password'].errors?.['pattern']">
@@ -61,12 +65,9 @@
       </button>
     </mat-form-field>
     <mat-form-field appearance="outline">
-      <input
-        matInput
-        [type]="showAdditionalPassword ? 'text' : 'password'"
-        placeholder="Повторно введите пароль..."
-        formControlName="confirmPassword"
-      />
+      <input autocomplete="off" matInput [type]="showAdditionalPassword ? 'text' : 'password'"
+        placeholder="Повторно введите пароль..." formControlName="confirmPassword"
+        class="registration-form__password-input" />
       <mat-error *ngIf="f['confirmPassword'].invalid && f['confirmPassword'].touched">
         <span *ngIf="f['confirmPassword'].errors?.['required']">{{ ERROR_MESSAGES.REQUIRED }}</span>
         <span *ngIf="f['confirmPassword'].errors?.['pattern']">
@@ -80,29 +81,19 @@
     </mat-form-field>
   </div>
 
-  <div class="flex flex-col gap-1">
-    <span class="text-lg">Проверка</span>
-    <re-captcha
-      class="m-0 p-0"
-      #captchaRef
-      size="invisible"
-      errorMode="handled"
-      formControlName="recaptcha"
-      [siteKey]="RECAPTCHA_SITE_KEY"
-    ></re-captcha>
-    <div class="flex flex-row gap-1 w-full border-2 items-center p-2">
-      <mat-checkbox (change)="captchaRef.execute()" />
-      <span class="text-lg">Я не робот</span>
-    </div>
+  <div class="flex flex-col gap-1 w-full">
+    <p class="registration-form__text">Проверка*</p>
+    <mat-checkbox formControlName="recaptcha" (change)="onChangeRecaptcha($event.checked)">
+      <span class="registration-form__text">Я не робот</span>
+    </mat-checkbox>
+    <mat-error class="w-full" *ngIf="f['recaptcha'].invalid && f['recaptcha'].touched">
+      <span *ngIf="f['recaptcha'].errors?.['required']">{{ ERROR_MESSAGES.REQUIRED }}</span>
+    </mat-error>
   </div>
 
   <div class="w-full m-auto">
-    <button
-      type="submit"
-      class="w-full mt-5 bg-teal-700 text-white p-4 rounded-lg text-lg transition-opacity hover:opacity-75 disabled:bg-gray-200 disabled:text-black"
-      (click)="onSubmit()"
-      [disabled]="signUpForm.invalid || signUpForm.disabled"
-    >
+    <button type="submit" class="btn-submit cursor-pointer w-full" (click)="onSubmit()"
+      [disabled]="signUpForm.invalid || signUpForm.disabled">
       Зарегистрироваться
     </button>
   </div>

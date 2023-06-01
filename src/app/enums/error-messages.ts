@@ -11,4 +11,6 @@ export const ERROR_MESSAGES = {
   INVALID_RECOVERY_CODE: 'Код восстановления не действителен.',
   INVALID_FUTURE_DATE: 'Не может содержать будущую дату.',
   ONLY_NUMBERS_PATTERN: 'Поле должно содержать только цифры',
+  PATTERN_SYMBOLS: 'Поле не должно содержать символы',
+  INVALID_NAME: 'Поле может содержать только слова',
 };

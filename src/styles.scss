@@ -187,3 +187,41 @@ select {
 .add-account-dialog-item .mat-mdc-dialog-container .mdc-dialog__surface {
   border-radius: 1.25rem;
 }
+
+.mat-mdc-form-field-hint-wrapper,
+.mat-mdc-form-field-error-wrapper {
+  padding: 0 !important;
+}
+
+@media (max-width: 768px) {
+  .mat-mdc-dialog-surface,
+  .mdc-dialog__surface {
+    width: 93% !important;
+  }
+}
+
+.cdk-overlay-backdrop,
+.cdk-overlay-dark-backdrop,
+.cdk-overlay-backdrop-showing {
+  background: rgba(38, 50, 56, 0.32) !important;
+}
+
+.registration-dialog .mat-mdc-dialog-container .mdc-dialog__surface {
+  border-radius: 1.1rem;
+}
+
+.forgot-password-dialog .mat-mdc-dialog-container .mdc-dialog__surface {
+  border-radius: 1.1rem;
+}
+
+.password-recovery-dialog .mat-mdc-dialog-container .mdc-dialog__surface {
+  border-radius: 1.1rem;
+}
+
+.password-recovery-second-dialog .mat-mdc-dialog-container .mdc-dialog__surface {
+  border-radius: 1.1rem;
+}
+
+.password-recovered-dialog .mat-mdc-dialog-container .mdc-dialog__surface {
+  border-radius: 1.1rem;
+}

@@ -14,6 +14,7 @@ import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-authentication-form',
   templateUrl: './authentication-form.component.html',
+  styleUrls: ['./authentication-form.component.scss'],
   providers: [AuthenticationService],
 })
 export class AuthenticationFormComponent implements OnInit {
@@ -59,11 +60,10 @@ export class AuthenticationFormComponent implements OnInit {
   public onSubmit() {
     if (this.signInForm.invalid) return;
 
-    this.signInForm.disabled;
-
     this.authSub = this.authService.signIn(this.signInForm.value).subscribe(
       () => {
-        this.router.navigate(['']);
+        this.router.navigate(['operations/expense']);
+        this.signInForm.reset();
       },
       (error) => {
         if (error.status === STATUS_CODE.NOT_FOUND) {
@@ -71,18 +71,13 @@ export class AuthenticationFormComponent implements OnInit {
         } else {
           this.snackBar.showSnackBar(ERROR_MESSAGES.SERVER_ERROR);
         }
-
-        this.signInForm.enabled;
       },
     );
-
-    this.signInForm.reset();
   }
 
   public openForgotPasswordDialog(): void {
     this.dialog.open(ForgotPasswordDialogComponent, {
-      width: '100%',
-      maxWidth: '720px',
+      panelClass: 'forgot-password-dialog',
     });
   }
 

@@ -9,12 +9,14 @@
             <div class="add-account-form">
                 <div class="add-account-form__field">
                     <label class="add-account-form__label" for="account-name">Название счета*</label>
-                    <input autocomplete="off" class="add-account-form__input" type="text" name="account-name" id="account-name"
-                        placeholder="Наличные" formControlName="name" trimOnChange>
+                    <input autocomplete="off" class="add-account-form__input" type="text" name="account-name"
+                        id="account-name" placeholder="Наличные" formControlName="name" trimOnChange>
                     <mat-error *ngIf="f['name'].invalid && f['name'].touched">
                         <span *ngIf="f['name'].errors?.['required'] || f['name'].errors?.['emptyString']">{{
                             ERROR_MESSAGES.REQUIRED }}</span>
+                        <span *ngIf="f['name'].errors?.['pattern']">{{ ERROR_MESSAGES['PATTERN_SYMBOLS']}}</span>
                     </mat-error>
+
                 </div>
 
                 <div class="add-account-form__field">
@@ -25,8 +27,8 @@
 
                 <div class="add-account-form__field">
                     <label class="add-account-form__label" for="initial-balance">Начальный остаток*</label>
-                    <input autocomplete="off" class="add-account-form__input" name="initial-balance" id="initial-balance" placeholder="0"
-                        formControlName="startAmount" inputmode="numeric">
+                    <input autocomplete="off" class="add-account-form__input" name="initial-balance"
+                        id="initial-balance" placeholder="0" formControlName="startAmount" inputmode="numeric">
                     <mat-error *ngIf="f['startAmount'].invalid && f['startAmount'].touched  && f['startAmount'].dirty">
                         <span *ngIf="f['startAmount'].errors?.['required']">{{ ERROR_MESSAGES.REQUIRED }}</span>
                         <span *ngIf="f['startAmount'].errors?.['pattern']">{{ ERROR_MESSAGES['ONLY_NUMBERS_PATTERN']

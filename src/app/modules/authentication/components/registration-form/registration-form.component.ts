@@ -1,32 +1,46 @@
 import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { AuthenticationService, CaptchaService } from '../../services';
+import { AuthenticationService } from '../../services';
 import { SnackBarService } from '../../../../shared/services';
-import { Currencies } from '../../models';
-import { currencies, passwordPattern, passwordsMatchValidator, RECAPTCHA_SITE_KEY } from '../../../../constants';
+import { Currencies, User } from '../../models';
+import { currencies, passwordPattern, passwordsMatchValidator } from '../../../../constants';
 import { ERROR_MESSAGES } from '../../../../enums';
-import { ReCaptchaV3Service } from 'ng-recaptcha';
+import { MatDialog } from '@angular/material/dialog';
+import { EmptyStringValidator } from 'src/app/shared/validators';
 
 @Component({
   selector: 'app-registration-form',
   templateUrl: './registration-form.component.html',
-  providers: [AuthenticationService, ReCaptchaV3Service, CaptchaService],
+  styleUrls: ['./registration-form.component.scss'],
+  providers: [AuthenticationService],
 })
 export class RegistrationFormComponent implements OnDestroy {
   protected readonly ERROR_MESSAGES = ERROR_MESSAGES;
 
-  protected readonly RECAPTCHA_SITE_KEY = RECAPTCHA_SITE_KEY;
-
   public signUpForm = this.fb.group(
     {
       email: ['', [Validators.required, Validators.email]],
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      currency: ['', Validators.required],
+      firstName: [
+        '',
+        [
+          Validators.required,
+          EmptyStringValidator,
+          Validators.pattern("^[a-zA-Zа-яА-Я]+([-' ][a-zA-Zа-яА-Я]+)*(\\s+[a-zA-Zа-яА-Я]*)*$"),
+        ],
+      ],
+      lastName: [
+        '',
+        [
+          Validators.required,
+          EmptyStringValidator,
+          Validators.pattern("^[a-zA-Zа-яА-Я]+([-' ][a-zA-Zа-яА-Я]+)*(\\s+[a-zA-Zа-яА-Я]*)*$"),
+        ],
+      ],
+      currency: ['RUB', Validators.required],
       password: ['', [Validators.required, Validators.pattern(passwordPattern)]],
       confirmPassword: ['', [Validators.required, Validators.pattern(passwordPattern)]],
-      recaptcha: ['', Validators.required],
+      recaptcha: ['', [Validators.required, Validators.nullValidator]],
     },
     { validators: passwordsMatchValidator },
   );
@@ -39,7 +53,12 @@ export class RegistrationFormComponent implements OnDestroy {
 
   private signUpSubscription = new Subscription();
 
-  constructor(private fb: FormBuilder, private authService: AuthenticationService, private snackBar: SnackBarService) {}
+  constructor(
+    private dialog: MatDialog,
+    private fb: FormBuilder,
+    private authService: AuthenticationService,
+    private snackBar: SnackBarService,
+  ) {}
 
   ngOnDestroy() {
     this.signUpSubscription.unsubscribe();
@@ -52,14 +71,21 @@ export class RegistrationFormComponent implements OnDestroy {
   public onSubmit() {
     if (this.signUpForm.invalid) return;
 
-    const formValues = { ...this.signUpForm.value };
+    const user: User = {
+      confirmPassword: this.signUpForm.value['confirmPassword'].trim(),
+      currency: this.signUpForm.value['currency'].trim(),
+      email: this.signUpForm.value['email'].trim(),
+      firstName: this.signUpForm.value['firstName'].trim(),
+      lastName: this.signUpForm.value['lastName'].trim(),
+      password: this.signUpForm.value['password'].trim(),
+    };
 
-    delete formValues.recaptcha;
-
-    this.signUpForm.disable();
-
-    this.signUpSubscription = this.authService.signUp(formValues).subscribe(
-      () => {},
+    this.signUpSubscription = this.authService.signUp(user).subscribe(
+      () => {
+        this.signUpForm.markAsUntouched();
+        this.signUpForm.reset();
+        this.dialog.closeAll();
+      },
       (err) => {
         if (err.status === 409) {
           this.snackBar.showSnackBar(ERROR_MESSAGES.FOUNDED_USER);
@@ -67,11 +93,18 @@ export class RegistrationFormComponent implements OnDestroy {
           this.snackBar.showSnackBar('Ошибка при регистрации.');
         }
       },
-      () => this.signUpForm.reset(),
     );
   }
 
   public get f() {
     return this.signUpForm.controls;
+  }
+
+  public onChangeRecaptcha(checked: boolean): void {
+    if (!checked) {
+      this.signUpForm.get('recaptcha')?.setValue(null);
+    } else {
+      this.signUpForm.get('recaptcha')?.setValue(true);
+    }
   }
 }

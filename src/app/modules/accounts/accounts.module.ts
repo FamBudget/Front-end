@@ -7,14 +7,13 @@ import { AccountsComponent } from './components/accounts/accounts.component';
 import { AccountsHeaderComponent } from './components/accounts-header/accounts-header.component';
 import { AccountsTableComponent } from './components/accounts-table/accounts-table.component';
 import { MaterialModule } from 'src/app/shared/modules';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AddAccountComponent } from './components/add-account/add-account.component';
 import { SelectIconToggleComponent } from './components/add-account/select-icon-toggle/select-icon-toggle.component';
 import { TokenInterceptor } from 'src/app/shared/interceptors';
-import { AuthenticationService } from '../authentication/services';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { CustomPaginatorIntl } from './components/accounts/data/custom-paginator-intl';
-import { TrimOnChangeDirective } from 'src/app/shared/directives';
+import { SharedModule } from 'src/app/shared';
 
 @NgModule({
   declarations: [
@@ -24,9 +23,8 @@ import { TrimOnChangeDirective } from 'src/app/shared/directives';
     AccountsTableComponent,
     AddAccountComponent,
     SelectIconToggleComponent,
-    TrimOnChangeDirective,
   ],
-  imports: [CommonModule, AccountsRoutingModule, MaterialModule],
+  imports: [CommonModule, AccountsRoutingModule, MaterialModule, SharedModule],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     { provide: MatPaginatorIntl, useClass: CustomPaginatorIntl },

@@ -2,10 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { OperationsRoutingModule } from './operations-routing.module';
+import { ExpenseInputComponent } from './expense/components/expense-input/expense-input.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    ExpenseInputComponent
+  ],
   imports: [
     CommonModule,
     OperationsRoutingModule

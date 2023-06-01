@@ -48,7 +48,11 @@ export class AddAccountComponent implements OnInit {
   ngOnInit(): void {
     this.inputData = this.data;
     this.addAccountForm = this.formBuilder.group({
-      name: new FormControl(null, [Validators.required, EmptyStringValidator]),
+      name: new FormControl(null, [
+        Validators.required,
+        EmptyStringValidator,
+        Validators.pattern('^[^W_]+( [^W_]+)*$'),
+      ]),
       currency: new FormControl(`${this.inputData.currency}`),
       startAmount: new FormControl(null, [Validators.required, Validators.pattern('[0-9]+')]),
       createdOn: new FormControl(new Date().toISOString().substring(0, 10), FutureDateValidator),
