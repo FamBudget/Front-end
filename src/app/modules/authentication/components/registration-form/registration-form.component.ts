@@ -22,7 +22,7 @@ export class RegistrationFormComponent implements OnDestroy {
       email: ['', [Validators.required, Validators.email]],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      currency: ['', Validators.required],
+      currency: ['RUB', Validators.required],
       password: ['', [Validators.required, Validators.pattern(passwordPattern)]],
       confirmPassword: ['', [Validators.required, Validators.pattern(passwordPattern)]],
       recaptcha: ['', [Validators.required, Validators.nullValidator]],
@@ -57,12 +57,12 @@ export class RegistrationFormComponent implements OnDestroy {
     if (this.signUpForm.invalid) return;
 
     const user: User = {
-      confirmPassword: this.signUpForm.value['confirmPassword'],
-      currency: this.signUpForm.value['currency'],
-      email: this.signUpForm.value['email'],
-      firstName: this.signUpForm.value['firstName'],
-      lastName: this.signUpForm.value['lastName'],
-      password: this.signUpForm.value['password'],
+      confirmPassword: this.signUpForm.value['confirmPassword'].trim(),
+      currency: this.signUpForm.value['currency'].trim(),
+      email: this.signUpForm.value['email'].trim(),
+      firstName: this.signUpForm.value['firstName'].trim(),
+      lastName: this.signUpForm.value['lastName'].trim(),
+      password: this.signUpForm.value['password'].trim(),
     };
 
     this.signUpSubscription = this.authService.signUp(user).subscribe(

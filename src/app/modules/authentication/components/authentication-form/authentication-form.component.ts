@@ -59,12 +59,11 @@ export class AuthenticationFormComponent implements OnInit {
 
   public onSubmit() {
     if (this.signInForm.invalid) return;
-    console.log(this.signInForm.value);
-    this.signInForm.disabled;
 
     this.authSub = this.authService.signIn(this.signInForm.value).subscribe(
       () => {
         this.router.navigate(['operations/expense']);
+        this.signInForm.reset();
       },
       (error) => {
         if (error.status === STATUS_CODE.NOT_FOUND) {
@@ -72,16 +71,13 @@ export class AuthenticationFormComponent implements OnInit {
         } else {
           this.snackBar.showSnackBar(ERROR_MESSAGES.SERVER_ERROR);
         }
-        this.signInForm.enabled;
       },
     );
-
-    this.signInForm.reset();
   }
 
   public openForgotPasswordDialog(): void {
     this.dialog.open(ForgotPasswordDialogComponent, {
-      panelClass: 'forgot-password-dialog'
+      panelClass: 'forgot-password-dialog',
     });
   }
 
