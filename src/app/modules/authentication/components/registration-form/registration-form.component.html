@@ -2,7 +2,7 @@
   <div class="flex flex-col gap-3">
     <span class="registration-form__text">Электронная почта*</span>
     <mat-form-field appearance="outline">
-      <input matInput placeholder="Введите адрес электронной почты..." formControlName="email" />
+      <input autocomplete="off" matInput placeholder="Введите адрес электронной почты..." formControlName="email" />
       <mat-error *ngIf="f['email'].invalid && f['email'].touched">
         <span *ngIf="f['email'].errors?.['required']">{{ ERROR_MESSAGES.REQUIRED }}</span>
         <span *ngIf="f['email'].errors?.['email']">{{ ERROR_MESSAGES.INVALID_EMAIL }}</span>
@@ -12,19 +12,28 @@
   <div class="flex flex-row gap-5 registration__name-field">
     <div class="flex flex-col gap-3 w-1/2 registration__name-container">
       <span class="registration-form__text registration__name">Имя*</span>
-      <mat-form-field appearance="outline"><input matInput placeholder="Введите ваше имя..."
-          formControlName="firstName" />
+      <mat-form-field appearance="outline">
+        <input autocomplete="off" matInput placeholder="Введите ваше имя..." formControlName="firstName" trimOnChange />
         <mat-error *ngIf="f['firstName'].invalid && f['firstName'].touched">
-          <span *ngIf="f['firstName'].errors?.['required']">{{ ERROR_MESSAGES.REQUIRED }}</span>
+          <span *ngIf="f['firstName'].errors?.['required']  || f['firstName'].errors?.['emptyString']">{{
+            ERROR_MESSAGES.REQUIRED }}</span>
+          <span
+            *ngIf="f['firstName'].errors?.['pattern'] && !f['firstName'].errors?.['required'] && !f['firstName'].errors?.['emptyString']">{{
+            ERROR_MESSAGES.INVALID_NAME }}</span>
         </mat-error>
       </mat-form-field>
     </div>
     <div class="flex flex-col gap-3 w-1/2 registration__surname-container">
       <span class="registration-form__text registration__surname">Фамилия*</span>
-      <mat-form-field appearance="outline"><input matInput placeholder="Введите вашу фамилию..."
-          formControlName="lastName" />
+      <mat-form-field appearance="outline">
+        <input autocomplete="off" matInput placeholder="Введите вашу фамилию..." formControlName="lastName"
+          trimOnChange />
         <mat-error *ngIf="f['lastName'].invalid && f['lastName'].touched">
-          <span *ngIf="f['lastName'].errors?.['required']">{{ ERROR_MESSAGES.REQUIRED }}</span>
+          <span *ngIf="f['lastName'].errors?.['required'] || f['lastName'].errors?.['emptyString']">{{
+            ERROR_MESSAGES.REQUIRED }}</span>
+          <span
+            *ngIf="f['lastName'].errors?.['pattern'] && !f['lastName'].errors?.['required'] && !f['lastName'].errors?.['emptyString']">{{
+            ERROR_MESSAGES.INVALID_NAME }}</span>
         </mat-error>
       </mat-form-field>
     </div>
@@ -43,8 +52,8 @@
   <div class="flex flex-col gap-6 registration-form__passwords">
     <span class="registration-form__text">Пароль*</span>
     <mat-form-field appearance="outline">
-      <input matInput [type]="showPassword ? 'text' : 'password'" placeholder="Введите ваш пароль..."
-        formControlName="password" class="registration-form__password-input"/>
+      <input autocomplete="off" matInput [type]="showPassword ? 'text' : 'password'" placeholder="Введите ваш пароль..."
+        formControlName="password" class="registration-form__password-input" />
       <mat-error *ngIf="f['password'].invalid && f['password'].touched">
         <span *ngIf="f['password'].errors?.['required']">{{ ERROR_MESSAGES.REQUIRED }}</span>
         <span class="text-sm" *ngIf="f['password'].errors?.['pattern']">
@@ -56,8 +65,9 @@
       </button>
     </mat-form-field>
     <mat-form-field appearance="outline">
-      <input matInput [type]="showAdditionalPassword ? 'text' : 'password'" placeholder="Повторно введите пароль..."
-        formControlName="confirmPassword" class="registration-form__password-input"/>
+      <input autocomplete="off" matInput [type]="showAdditionalPassword ? 'text' : 'password'"
+        placeholder="Повторно введите пароль..." formControlName="confirmPassword"
+        class="registration-form__password-input" />
       <mat-error *ngIf="f['confirmPassword'].invalid && f['confirmPassword'].touched">
         <span *ngIf="f['confirmPassword'].errors?.['required']">{{ ERROR_MESSAGES.REQUIRED }}</span>
         <span *ngIf="f['confirmPassword'].errors?.['pattern']">
@@ -82,9 +92,8 @@
   </div>
 
   <div class="w-full m-auto">
-    <button type="submit"
-      class="btn-submit cursor-pointer w-full"
-      (click)="onSubmit()" [disabled]="signUpForm.invalid || signUpForm.disabled">
+    <button type="submit" class="btn-submit cursor-pointer w-full" (click)="onSubmit()"
+      [disabled]="signUpForm.invalid || signUpForm.disabled">
       Зарегистрироваться
     </button>
   </div>

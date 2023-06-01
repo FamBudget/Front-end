@@ -10,12 +10,13 @@ import {
   PasswordRecoverySecondDialogComponent,
   RegistrationFormComponent,
   ForgotPasswordFormComponent,
-  PasswordRecoveryFormComponent
+  PasswordRecoveryFormComponent,
 } from './components';
 import { AuthenticationRoutingModule } from './authentication-routing.module';
 import { MaterialModule } from '../../shared/modules';
 import { RECAPTCHA_V3_SITE_KEY, RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha';
 import { RECAPTCHA_SITE_KEY } from '../../constants';
+import { TrimOnChangeDirective } from 'src/app/shared/directives';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { RECAPTCHA_SITE_KEY } from '../../constants';
     PasswordRecoveredDialogComponent,
     ForgotPasswordFormComponent,
     PasswordRecoveryFormComponent,
+    TrimOnChangeDirective,
   ],
   imports: [
     CommonModule,

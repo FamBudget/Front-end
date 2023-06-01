@@ -7,6 +7,7 @@ import { Currencies, User } from '../../models';
 import { currencies, passwordPattern, passwordsMatchValidator } from '../../../../constants';
 import { ERROR_MESSAGES } from '../../../../enums';
 import { MatDialog } from '@angular/material/dialog';
+import { EmptyStringValidator } from 'src/app/shared/validators';
 
 @Component({
   selector: 'app-registration-form',
@@ -20,8 +21,22 @@ export class RegistrationFormComponent implements OnDestroy {
   public signUpForm = this.fb.group(
     {
       email: ['', [Validators.required, Validators.email]],
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
+      firstName: [
+        '',
+        [
+          Validators.required,
+          EmptyStringValidator,
+          Validators.pattern("^[a-zA-Zа-яА-Я]+([-' ][a-zA-Zа-яА-Я]+)*(\\s+[a-zA-Zа-яА-Я]*)*$"),
+        ],
+      ],
+      lastName: [
+        '',
+        [
+          Validators.required,
+          EmptyStringValidator,
+          Validators.pattern("^[a-zA-Zа-яА-Я]+([-' ][a-zA-Zа-яА-Я]+)*(\\s+[a-zA-Zа-яА-Я]*)*$"),
+        ],
+      ],
       currency: ['RUB', Validators.required],
       password: ['', [Validators.required, Validators.pattern(passwordPattern)]],
       confirmPassword: ['', [Validators.required, Validators.pattern(passwordPattern)]],
