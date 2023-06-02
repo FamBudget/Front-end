@@ -1,39 +1,42 @@
 import { Injectable } from '@angular/core';
-import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
-import { Observable, catchError, throwError } from 'rxjs';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { tap, catchError } from 'rxjs/operators';
+import { AuthenticationService } from 'src/app/modules/authentication';
+import { LoaderService } from '../services';
 import { Router } from '@angular/router';
-import { AuthenticationService } from 'src/app/modules/authentication/services';
 
 @Injectable()
-export class TokenInterceptor implements HttpInterceptor {
-  constructor(private authService: AuthenticationService, private router: Router) {}
+export class AuthInterceptor implements HttpInterceptor {
+  constructor(
+    private authService: AuthenticationService,
+    private loaderService: LoaderService,
+    private router: Router,
+  ) {}
 
-  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    console.log('Intercepted request:', request);
-    if (this.authService.isAuth()) {
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    this.loaderService.show();
+    const token = this.authService.getToken();
+    if (token) {
       request = request.clone({
         setHeaders: {
-          Authorization: this.authService.getToken(),
+          Authorization: `Bearer ${token}`,
         },
       });
     }
 
     return next.handle(request).pipe(
-      catchError((err: HttpErrorResponse) => {
-        return this.errorHandler(err);
+      tap(() => {
+        this.loaderService.hide();
+      }),
+      catchError((error) => {
+        this.loaderService.hide();
+        if (error.status === 401) {
+          this.router.navigate(['']);
+        }
+        console.log(error);
+        return throwError(error);
       }),
     );
-  }
-
-  private errorHandler(error: HttpErrorResponse) {
-    if (error.status === 401) {
-      this.router.navigate(['/sign-in'], {
-        queryParams: {
-          sessionFailed: true,
-        },
-      });
-    }
-
-    return throwError(error);
   }
 }

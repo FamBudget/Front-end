@@ -11,7 +11,6 @@ import { SnackBarService } from 'src/app/shared/services';
   selector: 'app-forgot-password-form',
   templateUrl: './forgot-password-form.component.html',
   styleUrls: ['./forgot-password-form.component.scss'],
-  providers: [AuthenticationService],
 })
 export class ForgotPasswordFormComponent implements OnInit, OnDestroy {
   public forgotPasswordForm: FormGroup = new FormGroup({

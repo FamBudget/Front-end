@@ -13,7 +13,6 @@ import { EmptyStringValidator } from 'src/app/shared/validators';
   selector: 'app-registration-form',
   templateUrl: './registration-form.component.html',
   styleUrls: ['./registration-form.component.scss'],
-  providers: [AuthenticationService],
 })
 export class RegistrationFormComponent implements OnDestroy {
   protected readonly ERROR_MESSAGES = ERROR_MESSAGES;

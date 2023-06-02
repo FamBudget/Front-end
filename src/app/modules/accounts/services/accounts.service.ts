@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { API_URL } from 'src/app/constants';
@@ -9,12 +9,6 @@ import { Account, NewAccount, RequestGetAccounts } from '..';
 })
 export class AccountsService {
   public url = `${API_URL}/accounts`;
-  public headers = new HttpHeaders({
-    Authorization:
-      'Bearer ' +
-      'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJpYWlzY3VzMUBnbWFpbC5jb20iLCJleHAiOjE2ODU2MzQxNzh9.AC7z1M-HwiwiBWRgx83Zz5m-M9LsP7ZXT2CZTEkeK7M',
-    // 'Bearer ' + this.authServise.getToken(),
-  });
 
   constructor(private http: HttpClient) {}
 
@@ -27,17 +21,22 @@ export class AccountsService {
   }
 
   public getAccounts(params: RequestGetAccounts): Observable<Array<Account>> {
-    console.log(this.http.get<Array<Account>>(this.url, { headers: this.headers, params: this.toHttpParams(params) }));
-    return this.http.get<Array<Account>>(this.url, { headers: this.headers, params: this.toHttpParams(params) }).pipe(
-      catchError((err) => {
-        return throwError(err);
-      }),
-    );
+    return this.http
+      .get<Array<Account>>(this.url, {
+        params: this.toHttpParams(params),
+      })
+      .pipe(
+        catchError((err) => {
+          return throwError(err);
+        }),
+      );
   }
 
   public addAccount(email: string, account: NewAccount): Observable<Account> {
     return this.http
-      .post<Account>(this.url, account, { headers: this.headers, params: this.toHttpParams({ email }) })
+      .post<Account>(this.url, account, {
+        params: this.toHttpParams({ email }),
+      })
       .pipe(
         catchError((err) => {
           return throwError(err);
@@ -47,7 +46,9 @@ export class AccountsService {
 
   public getAccountById(accountId: number, email: string): Observable<Account> {
     return this.http
-      .get<Account>(`${this.url}/${accountId}`, { headers: this.headers, params: this.toHttpParams({ email }) })
+      .get<Account>(`${this.url}/${accountId}`, {
+        params: this.toHttpParams({ email }),
+      })
       .pipe(
         catchError((err) => {
           return throwError(err);
