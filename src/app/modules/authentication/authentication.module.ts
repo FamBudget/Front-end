@@ -16,7 +16,7 @@ import { AuthenticationRoutingModule } from './authentication-routing.module';
 import { MaterialModule } from '../../shared/modules';
 import { RECAPTCHA_V3_SITE_KEY, RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha';
 import { RECAPTCHA_SITE_KEY } from '../../constants';
-import { TrimOnChangeDirective } from 'src/app/shared/directives';
+import { SharedModule } from 'src/app/shared';
 
 @NgModule({
   declarations: [
@@ -30,7 +30,6 @@ import { TrimOnChangeDirective } from 'src/app/shared/directives';
     PasswordRecoveredDialogComponent,
     ForgotPasswordFormComponent,
     PasswordRecoveryFormComponent,
-    TrimOnChangeDirective,
   ],
   imports: [
     CommonModule,
@@ -39,6 +38,7 @@ import { TrimOnChangeDirective } from 'src/app/shared/directives';
     AuthenticationRoutingModule,
     MaterialModule,
     NgOptimizedImage,
+    SharedModule
   ],
   providers: [{ provide: RECAPTCHA_V3_SITE_KEY, useValue: RECAPTCHA_SITE_KEY }],
 })

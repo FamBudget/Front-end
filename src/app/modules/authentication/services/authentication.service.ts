@@ -5,10 +5,10 @@ import { RegistrationStatus, User, UserStatus } from '../models';
 import { catchError, Observable, tap, throwError } from 'rxjs';
 import { API_URL } from '../../../constants';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class AuthenticationService {
-  private token: string | null = null;
-
   constructor(private localStorageService: LocalStorageService, private http: HttpClient) {}
 
   public signUp(user: User): Observable<RegistrationStatus> {
@@ -26,35 +26,33 @@ export class AuthenticationService {
       tap(({ token }) => {
         if (token) {
           this.localStorageService.setItem('token', token);
-          this.setToken(token);
         }
-
-        catchError((err) => {
-          return throwError(err);
-        });
+      }),
+      catchError((err) => {
+        console.log(err);
+        return throwError(err);
       }),
     );
   }
 
   public isAuth(): boolean {
-    return !!this.token;
-  }
-
-  public logout(): void {
-    this.setToken('');
-    this.localStorageService.clear();
-  }
-
-  public setToken(token: string): void {
-    this.token = token;
+    if (this.localStorageService.getItem('token')) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   public getToken(): string {
-    if (this.token) {
-      return this.token;
+    if (this.localStorageService.getItem('token')) {
+      return this.localStorageService.getItem('token') as string;
     }
 
     return '';
+  }
+
+  public logout(): void {
+    this.localStorageService.clear();
   }
 
   public resetPassword(email: string): Observable<{}> {
