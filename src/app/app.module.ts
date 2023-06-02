@@ -7,6 +7,9 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { SharedModule } from './shared';
+import { AuthInterceptor } from './shared/interceptors';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,8 +20,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot(),
     BrowserAnimationsModule,
+    HttpClientModule,
+    SharedModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

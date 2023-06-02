@@ -14,7 +14,6 @@ import { ActivatedRoute, Router } from '@angular/router';
   selector: 'app-password-recovery-form',
   templateUrl: './password-recovery-form.component.html',
   styleUrls: ['./password-recovery-form.component.scss'],
-  providers: [AuthenticationService],
 })
 export class PasswordRecoveryFormComponent implements OnInit {
   protected readonly ERROR_MESSAGES = ERROR_MESSAGES;
