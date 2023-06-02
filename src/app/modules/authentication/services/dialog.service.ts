@@ -9,8 +9,9 @@ export class DialogService {
   public openDialog() {
     this.dialog.open(AuthenticationDialogComponent, {
       width: '100%',
-      maxWidth: '720px',
+      maxWidth: '650px',
       role: 'dialog',
+      panelClass: 'registration-dialog'
     });
   }
 }

@@ -1,0 +1,73 @@
+.registration-form__text {
+  font-family: Gilroy, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  color: #263834;
+  font-size: calc(14px + 3 * (100vw - 320px) / 1600);
+}
+
+.btn-submit {
+  padding: 10px;
+  background: #1b9b85;
+  box-shadow: inset -5px -5px 32px rgba(255, 255, 255, 0.16), inset 5px 5px 32px rgba(255, 255, 255, 0.16);
+  border-radius: 10px;
+  font-family: Gilroy, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: calc(15px + 3 * (100vw - 320px) / 1600);
+  line-height: 32px;
+  text-align: center;
+  color: #ffffff;
+  transition: 0.5s;
+  margin-top: 10px;
+}
+
+.btn-submit:hover {
+  opacity: 0.75;
+}
+
+.btn-submit[disabled] {
+  background-color: #cccccc;
+  color: black;
+  cursor: default;
+}
+
+mat-error .ng-star-inserted {
+  font-family: Gilroy, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: calc(10px + 3 * (100vw - 320px) / 1600) !important;
+}
+
+@media (max-width: 1020px) {
+  .registration__name-field {
+    flex-wrap: wrap;
+  }
+
+  .registration__name {
+    width: 100%;
+  }
+
+  .registration__surname {
+    width: 100%;
+  }
+
+  .registration__name-container {
+    width: 100%;
+  }
+
+  .registration__surname-container {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .registration-form {
+    gap: 40px;
+  }
+
+  .registration-form__passwords {
+    gap: 40px;
+  }
+}

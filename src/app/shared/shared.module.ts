@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
+import { TrimOnChangeDirective } from './directives';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
-  declarations: [
-    SnackBarComponent
-  ],
+  declarations: [TrimOnChangeDirective, LoaderComponent],
+  exports: [TrimOnChangeDirective, LoaderComponent],
   imports: [CommonModule],
 })
 export class SharedModule {}

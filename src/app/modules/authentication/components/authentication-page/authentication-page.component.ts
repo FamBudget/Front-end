@@ -7,6 +7,7 @@ import { PasswordRecoverySecondDialogComponent } from '..';
 @Component({
   selector: 'app-authentication-page',
   templateUrl: './authentication-page.component.html',
+  styleUrls: ['./authentication-page.component.scss'],
   providers: [DialogService],
 })
 export class AuthenticationPageComponent {
@@ -22,8 +23,7 @@ export class AuthenticationPageComponent {
 
   public openPasswordRecoveryDialog(): void {
     this.matDialog.open(PasswordRecoverySecondDialogComponent, {
-      width: '100%',
-      maxWidth: '720px',
+      panelClass: 'password-recovery-second-dialog'
     });
   }
 
