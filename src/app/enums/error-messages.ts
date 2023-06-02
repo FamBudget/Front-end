@@ -9,8 +9,8 @@ export const ERROR_MESSAGES = {
   SERVER_ERROR: 'Ошибка сервера.',
   NOT_EXIST_USER: 'Пользователя с таким email не существует.',
   INVALID_RECOVERY_CODE: 'Код восстановления не действителен.',
+  INVALID_NAME: 'Поле может содержать только слова',
   INVALID_FUTURE_DATE: 'Не может содержать будущую дату.',
   ONLY_NUMBERS_PATTERN: 'Поле должно содержать только цифры',
   PATTERN_SYMBOLS: 'Поле не должно содержать символы',
-  INVALID_NAME: 'Поле может содержать только слова',
 };
