@@ -212,3 +212,19 @@ select {
 .password-recovered-dialog .mat-mdc-dialog-container .mdc-dialog__surface {
   border-radius: 1.1rem;
 }
+
+.add-account-dialog-item .mat-mdc-dialog-container .mdc-dialog__surface {
+  border-radius: 1.25rem;
+}
+
+.mat-mdc-list-item-unscoped-content,
+.mdc-list-item__primary-text {
+  display: flex !important;
+  gap: 10px !important;
+}
+
+.mini-variant .mdc-list-item__content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
