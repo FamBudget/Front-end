@@ -1,0 +1,54 @@
+.mat-sidenav-container {
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+.mat-sidenav {
+  height: 80%;
+}
+
+// .mat-sidenav-content {
+//   min-height: 100vh;
+//   box-sizing: border-box;
+//   padding: 25px;
+//   overflow: auto;
+// }
+
+.active {
+  border-left: 8px solid #4caf50;
+  //   color: white;
+}
+
+.top__title {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 131%;
+}
+
+.sidenav__logo {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 700;
+  font-size: calc(20px + 13 * (100vw - 320px) / 1600);
+  line-height: 80%;
+  text-transform: uppercase;
+  color: #263834;
+}
+
+mat-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.mat-sidenav {
+  transition: width 0.2s;
+  width: fit-content !important;
+}
+
+.sidenav {
+  padding: 10px;
+}
+

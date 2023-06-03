@@ -7,13 +7,18 @@ import { AuthGuard } from '../authentication/services/auth-guard.service';
 const routes: Routes = [
   {
     path: 'expense',
+    canActivateChild: [AuthGuard],
     component: ExpenseInputComponent,
-    canActivate: [AuthGuard],
   },
   {
     path: 'income',
+    canActivateChild: [AuthGuard],
     component: IncomeInputComponent,
-    canActivate: [AuthGuard],
+  },
+  {
+    path: '',
+    redirectTo: 'expense',
+    pathMatch: 'full',
   },
 ];
 
