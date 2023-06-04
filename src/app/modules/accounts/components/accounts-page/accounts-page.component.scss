@@ -1,0 +1,14 @@
+.accounts-section{
+  background: #F9FFFE;
+  width: 100%;
+  height: 100%;
+  padding: 40px 32px;
+}
+
+.accounts-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  grid-gap: calc(20px + 20 * (100vw - 320px) / 1600);
+  grid-auto-flow: dense;
+}
+

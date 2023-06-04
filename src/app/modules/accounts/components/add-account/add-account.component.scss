@@ -1,0 +1,126 @@
+.add-account-dialog {
+  background-color: #ffffff;
+  width: 100%;
+  justify-content: center;
+  gap: 40px;
+  padding: 20px;
+}
+
+
+.add-account-dialog__header {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 20px;
+  grid-auto-flow: dense;
+}
+.dialog-actions {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  justify-content: center;
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 133%;
+  padding: 0 !important;
+}
+
+.cancel-btn {
+  width: 45%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1b9b85;
+  background: #ffffff;
+  box-shadow: -2px -2px 16px rgba(39, 222, 191, 0.06), 2px 2px 16px rgba(39, 222, 191, 0.06);
+  border-radius: 20px;
+  padding: 16px 10px;
+}
+
+.submit-btn {
+  width: 47%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1b9b85;
+  box-shadow: inset -5px -5px 32px rgba(255, 255, 255, 0.16), inset 5px 5px 32px rgba(255, 255, 255, 0.16);
+  border-radius: 10px;
+  color: #ffffff;
+  padding: 16px 10px;
+}
+
+.add-account-form__input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+}
+
+.add-account-form {
+  display: flex;
+  flex-direction: column;
+  font-size: calc(14px + 2 * (100vw - 320px) / 1600);
+  align-items: stretch;
+  justify-content: center;
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 500;
+  font-size: calc(16px + 4 * (100vw - 320px) / 1600);
+  line-height: 140%;
+  color: #263834;
+}
+
+.add-account-form__err {
+  font-size: calc(12px + 2 * (100vw - 320px) / 1600);
+}
+
+.add-account-dialog__title {
+  font-weight: 700;
+  font-size: calc(24px + 24 * (100vw - 320px) / 1600);
+  line-height: 135%;
+  color: #263834;
+  padding: 0;
+  white-space: nowrap;
+}
+
+input[type='date'] {
+  cursor: pointer;
+}
+
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input[type='number'],
+input[type='number']:hover,
+input[type='number']:focus {
+  appearance: none;
+  -moz-appearance: textfield;
+}
+
+.add-account-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+button[disabled] {
+  opacity: 0.5;
+}
+
+
+
+.add-account-form__input-initial-balance::-webkit-calendar-picker-indicator,
+.add-account-form__input-initial-balance::-webkit-inner-spin-button {
+  filter: invert(45%) sepia(99%) saturate(342%) hue-rotate(120deg) brightness(90%) contrast(91%); /* установите нужный цвет иконки */
+}
+
+.add-account-form__input-initial-balance[type="date"]::-webkit-calendar-picker-indicator,
+.add-account-form__input-initial-balance[type="date"]::-webkit-inner-spin-button,
+.add-account-form__input-initial-balance[type="date"]::-moz-calendar-picker-icon {
+  filter: invert(45%) sepia(99%) saturate(342%) hue-rotate(120deg) brightness(90%) contrast(91%); /* установите нужный цвет иконки */
+}
