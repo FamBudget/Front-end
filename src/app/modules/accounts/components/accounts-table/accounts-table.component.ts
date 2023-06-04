@@ -23,8 +23,6 @@ export const GRI_DATE_FORMATS: MatDateFormats = {
   },
 };
 
-
-
 @Component({
   selector: 'app-accounts-table',
   templateUrl: './accounts-table.component.html',
@@ -59,7 +57,7 @@ export class AccountsTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.startDate = new Date(this.startDate.getTime() - 29 * 24 * 60 * 60 * 1000);
-    // this.getMovingAccounts();
+    this.getMovingAccounts();
 
     this.adapter.setLocale('Ru');
     this.dateRangeForm = new FormGroup({
