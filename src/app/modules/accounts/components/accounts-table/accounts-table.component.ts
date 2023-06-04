@@ -4,7 +4,7 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_NATIVE_DATE_FORMATS, MatDateFormats 
 import { ERROR_MESSAGES } from 'src/app/enums';
 import { OperationAccountsQuery } from '../..';
 import { AccountsService } from '../../services/accounts.service';
-import { SnackBarService } from 'src/app/shared/services';
+import { LocalStorageService, SnackBarService } from 'src/app/shared/services';
 import { MovingService } from '../../services';
 import { OperationAccounts } from '../../models/operation-accounts.model';
 import { MatSort } from '@angular/material/sort';
@@ -23,8 +23,6 @@ export const GRI_DATE_FORMATS: MatDateFormats = {
   },
 };
 
-
-
 @Component({
   selector: 'app-accounts-table',
   templateUrl: './accounts-table.component.html',
@@ -42,9 +40,8 @@ export class AccountsTableComponent implements OnInit {
   public dataSource: any;
   public empData: Array<OperationAccounts> = [];
   public params: OperationAccountsQuery = {
-    email: 'mariaiscus1@gmail.com',
+    email: this.localStorageService.getItem('email') as string,
   };
-
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -55,6 +52,7 @@ export class AccountsTableComponent implements OnInit {
     public accountService: AccountsService,
     private snackBar: SnackBarService,
     private movingService: MovingService,
+    private localStorageService: LocalStorageService,
   ) {}
 
   ngOnInit(): void {

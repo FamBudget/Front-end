@@ -26,6 +26,7 @@ export class AuthenticationService {
       tap(({ token }) => {
         if (token) {
           this.localStorageService.setItem('token', token);
+          this.localStorageService.setItem('email', user.email);
         }
       }),
       catchError((err) => {
