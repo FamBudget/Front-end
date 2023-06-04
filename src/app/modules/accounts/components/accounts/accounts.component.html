@@ -1,13 +1,12 @@
 <div class="accounts">
     <div class="accounts-top">
+        <h2 class="accounts-title">Счета</h2>
         <button class="add-account-btn" (click)="openAccountDialog()">
             <mat-icon>add_circle</mat-icon>
             Добавить счет</button>
-
     </div>
 
     <table mat-table [dataSource]="accountsData" class="accounts-table">
-
 
         <ng-container matColumnDef="iconNumber">
 

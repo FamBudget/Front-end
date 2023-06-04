@@ -10,6 +10,7 @@
   gap: 40px;
   max-width: 946px;
 }
+
 .table-moving {
   width: 100%;
   border-radius: 1.25rem;
@@ -60,12 +61,13 @@
 .mat-mdc-form-field {
   width: 90% !important;
 }
+
 .toggle-group {
   border-radius: 10px;
   // font-family: 'Gilroy';
   font-style: normal;
   font-weight: 500;
-  font-size: 20px;
+  font-size: calc(14px + 6 * (100vw - 320px) / 1600);
   line-height: 140%;
   gap: 10px;
   border: none;
@@ -97,7 +99,7 @@
 }
 
 .table-moving {
-  width: 100%;
+  max-width: 100%;
 }
 
 .table-moving__header {
@@ -106,7 +108,7 @@
   font-weight: 600;
   line-height: 133%;
   color: #263834;
-  font-size: calc(18px + 6 * (100vw - 320px) / 1600);
+  font-size: calc(14px + 6 * (100vw - 320px) / 1600);
 }
 
 .table-moving__amount,
@@ -115,15 +117,16 @@
   font-family: 'Gilroy';
   font-style: normal;
   font-weight: 600;
-  font-size: calc(16px + 4 * (100vw - 320px) / 1600);
+  font-size: calc(14px + 6 * (100vw - 320px) / 1600);
   line-height: 140%;
   color: #263834;
 }
+
 .table-moving__data {
   font-family: 'Gilroy';
   font-style: normal;
   font-weight: 500;
-  font-size: calc(16px + 4 * (100vw - 320px) / 1600);
+  font-size: calc(15px + 3 * (100vw - 320px) / 1600);
   line-height: 140%;
   color: #263834;
 }
@@ -134,7 +137,7 @@
 
 .table-moving__paginator ::ng-deep .mat-mdc-paginator-page-size-label,
 ::ng-deep .mat-mdc-paginator-range-label,
-::ng-deep .ng-tns-c26-6{
+::ng-deep .ng-tns-c26-6 {
   font-family: 'Gilroy';
   font-style: normal;
   font-weight: 400;
