@@ -26,7 +26,6 @@ export class AppComponent {
 
   public getPageTitle(url: string): string {
     const route = url.substring(1, url.length);
-    console.log(url, route);
 
     if (
       route === 'operations' ||

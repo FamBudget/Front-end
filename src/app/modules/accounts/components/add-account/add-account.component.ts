@@ -5,7 +5,7 @@ import { currencies } from 'src/app/constants';
 import { ERROR_MESSAGES } from 'src/app/enums';
 import { AccountsService } from '../../services/accounts.service';
 import { Account } from '../../models';
-import { SnackBarService } from 'src/app/shared/services';
+import { LocalStorageService, SnackBarService } from 'src/app/shared/services';
 import { EmptyStringValidator, FutureDateValidator } from 'src/app/shared/validators';
 
 @Component({
@@ -14,8 +14,6 @@ import { EmptyStringValidator, FutureDateValidator } from 'src/app/shared/valida
   styleUrls: ['./add-account.component.scss'],
 })
 export class AddAccountComponent implements OnInit {
-
-
   public isTileLayout: boolean = true;
   public selectIconNumber: number = 0;
   public addAccountForm: FormGroup = new FormGroup({
@@ -43,6 +41,7 @@ export class AddAccountComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: { currency: string },
     private accountsService: AccountsService,
     private snackBar: SnackBarService,
+    private localStorageService: LocalStorageService,
   ) {}
 
   ngOnInit(): void {
@@ -59,8 +58,6 @@ export class AddAccountComponent implements OnInit {
       iconNumber: new FormControl(this.selectIconNumber),
     });
   }
-
-
 
   public get f() {
     return this.addAccountForm.controls;
@@ -94,17 +91,17 @@ export class AddAccountComponent implements OnInit {
     this.convertValues();
 
     console.log('this.addAccountForm.value', this.addAccountForm.value);
-    const email: string = 'mariaiscus1@gmail.com';
-    // this.accountsService.addAccount(email, this.addAccountForm.value).subscribe(
-    //   (account: Account) => {
-    //     this.newAccount = account;
-    //     console.log('this.newAccount', this.newAccount);
-    //     this.dialog.closeAll();
-    //   },
-    //   (error) => {
-    //     console.log(error);
-    //     this.snackBar.showSnackBar('Ошибка при добавлении счёта.');
-    //   },
-    // );
+    const email: string = this.localStorageService.getItem('email') as string;
+    this.accountsService.addAccount(email, this.addAccountForm.value).subscribe(
+      (account: Account) => {
+        this.newAccount = account;
+        console.log('this.newAccount', this.newAccount);
+        this.dialog.closeAll();
+      },
+      (error) => {
+        console.log(error);
+        this.snackBar.showSnackBar('Ошибка при добавлении счёта.');
+      },
+    );
   }
 }
