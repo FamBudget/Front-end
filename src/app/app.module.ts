@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './shared';
 import { AuthInterceptor } from './shared/interceptors';
+import { MaterialModule } from './shared/modules';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,6 +23,7 @@ import { AuthInterceptor } from './shared/interceptors';
     BrowserAnimationsModule,
     HttpClientModule,
     SharedModule,
+    MaterialModule
   ],
   providers: [
     {

@@ -1,0 +1,84 @@
+:host {
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 20px;
+}
+
+.accounts {
+  padding: 32px 24px;
+  background-color: #ffffff;
+  box-shadow: -2px -2px 16px rgba(39, 222, 191, 0.06), 2px 2px 16px rgba(39, 222, 191, 0.06);
+  border-radius: 20px;
+  max-width: 562px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.accounts-top {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 20px;
+  grid-auto-flow: dense;
+}
+
+.add-account-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 24px;
+  gap: 16px;
+  background: #1b9b85;
+  box-shadow: inset -5px -5px 32px rgba(255, 255, 255, 0.16), inset 5px 5px 32px rgba(255, 255, 255, 0.16);
+  border-radius: 10px;
+  color: #ffffff;
+  font-family: 'Gilroy';
+  font-weight: 500;
+  line-height: 140%;
+  font-size: calc(14px + 6 * (100vw - 320px) / 1600);
+  white-space: nowrap;
+
+}
+
+.account-icon {
+  max-width: 24px;
+  width: 100%;
+}
+
+.account-name {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 133%;
+  color: #263834;
+  margin: 0;
+}
+
+.account-amount {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 140%;
+  color: #263834;
+  margin: 0;
+}
+
+.mdc-data-table__cell,
+.mdc-data-table__header-cell {
+  border-bottom-width: 0px;
+  border-bottom-style: solid;
+}
+
+.account-amount__currency {
+  margin-left: 5px;
+}
+
+.mat-mdc-cell {
+  justify-content: flex-start;
+}
+
+.account-amount {
+  text-align: end;
+}

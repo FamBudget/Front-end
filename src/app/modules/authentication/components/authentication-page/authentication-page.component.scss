@@ -24,7 +24,7 @@
 
 .auth__arrow-img-container {
   align-self: start;
-  max-width: 140px;
+  max-width: 90px;
 }
 
 .auth-page__img-container {
@@ -62,7 +62,7 @@
   font-family: Gilroy, sans-serif;
   font-style: normal;
   font-weight: 700;
-  font-size: calc(25px + 24 * (100vw - 320px) / 1600);
+  font-size: calc(22px + 20 * (100vw - 320px) / 1600);
   line-height: 50px;
   color: #263834;
 }
@@ -91,9 +91,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  gap: 30px;
+  gap: 25px;
   height: 100%;
-  padding: 10px;
 }
 
 @media (max-width: 1220px) {

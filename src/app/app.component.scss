@@ -1,0 +1,89 @@
+.mat-sidenav-container {
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+.mat-sidenav {
+  height: 98%;
+}
+
+.mat-sidenav-content {
+  padding: 10px;
+}
+
+.sidenav__list-text {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 500;
+  font-size: calc(18px + 6 * (100vw - 320px) / 1600);
+  line-height: 133%;
+  color: #263834;
+}
+
+.active {
+  border-left: 3px solid #1b9b85;
+
+  .sidenav__list-text {
+    color: #1b9b85;
+    font-weight: 600;
+    margin: 0 !important;
+  }
+
+  .sidenav__list-icon {
+    color: #1b9b85 !important;
+  }
+}
+
+.sidenav__list-icon {
+  margin-top: 3px;
+}
+
+.chevron-btn {
+  margin-top: 1rem;
+  margin-left: 30%;
+}
+
+.chevron-btn:hover {
+  .sidenav__list-icon-chevron {
+    color: #1b9b85;
+    font-weight: 600;
+    transition: 0.3s;
+  }
+}
+
+.top__title {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 131%;
+}
+
+.sidenav__logo {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 700;
+  font-size: calc(20px + 13 * (100vw - 320px) / 1600);
+  line-height: 80%;
+  text-transform: uppercase;
+  color: #263834;
+}
+
+mat-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.mat-sidenav {
+  transition: width 0.2s;
+  width: fit-content !important;
+}
+
+.sidenav {
+  padding: 10px;
+}
+
+.sidenav__link .ng-star-inserted {
+  margin: 0;
+}
