@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddAccountComponent } from '../add-account';
 import { AccountsService } from '../../services/accounts.service';
-import { SnackBarService } from 'src/app/shared/services';
+import { LocalStorageService, SnackBarService } from 'src/app/shared/services';
 import { Account, AccountIcon, RequestGetAccounts } from '../../models';
 import { ACCOUNT_ICONS_DATA } from './data';
 
@@ -13,7 +13,7 @@ import { ACCOUNT_ICONS_DATA } from './data';
 })
 export class AccountsComponent implements OnInit {
   public params: RequestGetAccounts = {
-    email: 'mariaiscus1@gmail.com',
+    email: this.localStorageService.getItem('email') as string,
     from: 0,
     size: 10,
   };
@@ -22,7 +22,12 @@ export class AccountsComponent implements OnInit {
   public displayedColumns: string[] = ['iconNumber', 'name', 'amount'];
   public iconsData: Array<AccountIcon> = ACCOUNT_ICONS_DATA;
 
-  constructor(public dialog: MatDialog, public accountService: AccountsService, private snackBar: SnackBarService) {}
+  constructor(
+    public dialog: MatDialog,
+    public accountService: AccountsService,
+    private snackBar: SnackBarService,
+    private localStorageService: LocalStorageService,
+  ) {}
 
   ngOnInit(): void {
     this.getAllAccounts();
@@ -57,7 +62,7 @@ export class AccountsComponent implements OnInit {
   }
 
   public getAccount(id: number): void {
-    const email: string = 'mariaiscus1@gmail.com';
+    const email: string = this.localStorageService.getItem('email') as string;
     this.accountService.getAccountById(id, email).subscribe(
       (account: Account) => {
         console.log('account', account);

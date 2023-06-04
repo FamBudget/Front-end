@@ -4,7 +4,7 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_NATIVE_DATE_FORMATS, MatDateFormats 
 import { ERROR_MESSAGES } from 'src/app/enums';
 import { OperationAccountsQuery } from '../..';
 import { AccountsService } from '../../services/accounts.service';
-import { SnackBarService } from 'src/app/shared/services';
+import { LocalStorageService, SnackBarService } from 'src/app/shared/services';
 import { MovingService } from '../../services';
 import { OperationAccounts } from '../../models/operation-accounts.model';
 import { MatSort } from '@angular/material/sort';
@@ -42,9 +42,8 @@ export class AccountsTableComponent implements OnInit {
   public dataSource: any;
   public empData: Array<OperationAccounts> = [];
   public params: OperationAccountsQuery = {
-    email: 'mariaiscus1@gmail.com',
+    email: this.localStorageService.getItem('email') as string,
   };
-
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -55,11 +54,12 @@ export class AccountsTableComponent implements OnInit {
     public accountService: AccountsService,
     private snackBar: SnackBarService,
     private movingService: MovingService,
+    private localStorageService: LocalStorageService,
   ) {}
 
   ngOnInit(): void {
     this.startDate = new Date(this.startDate.getTime() - 29 * 24 * 60 * 60 * 1000);
-    this.getMovingAccounts();
+    // this.getMovingAccounts();
 
     this.adapter.setLocale('Ru');
     this.dateRangeForm = new FormGroup({
