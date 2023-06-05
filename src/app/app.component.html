@@ -1,5 +1,5 @@
 <mat-sidenav-container class="sidenav-container" autosize>
-    <mat-sidenav #sidenav mat-elevation-z8 class="sidenav" mode="side" [ngClass]="{'mini-variant': !isExpanded}"
+    <mat-sidenav #sidenav mat-elevation-z8 class="sidenav" [ngClass]="{'mini-variant': !isExpanded}"
         [opened]="isSidenavExisted() && !this.checkIsMobile()">
         <p class="sidenav__logo">Logo</p>
         <mat-nav-list class="sidenav__list" (click)="toggleSidenav()">
@@ -58,15 +58,16 @@
 
     <!-- контент страницы -->
     <mat-sidenav-content class="content">
-        <mat-toolbar *ngIf="isSidenavExisted()">
-            <div>
-                <p class="top__title">{{ pageTitle }}</p>
+        <div *ngIf="isSidenavExisted()" class="header-content">
+            <div class="header-top" *ngIf="checkIsMobile()">
+                <p class="sidenav__logo">Logo</p>
+                <button mat-icon-button class="sidenav__toggle-button" (click)="sidenav.toggle()">
+                    <mat-icon class="sidenav__toggle-icon" *ngIf="!sidenav.opened"> menu </mat-icon>
+                    <mat-icon class="sidenav__toggle-icon" *ngIf="sidenav.opened"> close </mat-icon>
+                </button>
             </div>
-            <button *ngIf="checkIsMobile()" mat-icon-button class="sidenav__toggle-button" (click)="sidenav.toggle()">
-                <mat-icon class="sidenav__toggle-icon" *ngIf="!sidenav.opened"> menu </mat-icon>
-                <mat-icon class="sidenav__toggle-icon" *ngIf="sidenav.opened"> close </mat-icon>
-            </button>
-        </mat-toolbar>
+            <p class="top__title">{{ pageTitle }}</p>
+        </div>
 
         <router-outlet></router-outlet>
     </mat-sidenav-content>

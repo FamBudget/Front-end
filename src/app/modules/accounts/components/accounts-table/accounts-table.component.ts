@@ -19,6 +19,7 @@ export const GRI_DATE_FORMATS: MatDateFormats = {
     dateInput: {
       year: 'numeric',
       month: 'long',
+      day: '2-digit'
     } as Intl.DateTimeFormatOptions,
   },
 };
@@ -30,7 +31,7 @@ export const GRI_DATE_FORMATS: MatDateFormats = {
   providers: [{ provide: MAT_DATE_FORMATS, useValue: GRI_DATE_FORMATS }],
 })
 export class AccountsTableComponent implements OnInit {
-  public startDate: Date = new Date(new Date().setDate(new Date().getDate() - 29));
+  public startDate: Date = new Date();
   public endDate: Date = new Date();
   public dateRangeForm: FormGroup = new FormGroup({});
 
@@ -167,21 +168,21 @@ export class AccountsTableComponent implements OnInit {
     return a.name.localeCompare(b.name, undefined, { sensitivity: 'base' });
   }
 
-  public addOperation(): void {
-    const body: any = {
-      accountFromId: 5,
-      accountToId: 4,
-      amount: 500,
-      createdOn: '2023-05-30 08:12:23',
-      description: 'Перевод5',
-    };
-    this.movingService.addOperation(body, this.params).subscribe(
-      (value: OperationAccounts) => {
-        console.log(value);
-      },
-      () => {
-        this.snackBar.showSnackBar('Ошибка!');
-      },
-    );
-  }
+  // public addOperation(): void {
+  //   const body: any = {
+  //     accountFromId: 5,
+  //     accountToId: 4,
+  //     amount: 500,
+  //     createdOn: '2023-05-30 08:12:23',
+  //     description: 'Перевод5',
+  //   };
+  //   this.movingService.addOperation(body, this.params).subscribe(
+  //     (value: OperationAccounts) => {
+  //       console.log(value);
+  //     },
+  //     () => {
+  //       this.snackBar.showSnackBar('Ошибка!');
+  //     },
+  //   );
+  // }
 }

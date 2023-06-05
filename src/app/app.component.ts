@@ -1,5 +1,4 @@
-import { BreakpointObserver } from '@angular/cdk/layout';
-import { Component, HostListener, ViewChild } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
@@ -20,16 +19,13 @@ export class AppComponent {
     this.checkScreenWidth();
   }
 
-  constructor(private router: Router, private observer: BreakpointObserver) {
+  constructor(private router: Router) {
     this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe((event: any) => {
       if (this.getPageTitle(event.urlAfterRedirects)) {
         this.pageTitle = this.getPageTitle(event.urlAfterRedirects) as string;
+        this.checkScreenWidth();
       }
     });
-  }
-
-  ngAfterViewInit() {
-    this.checkScreenWidth();
   }
 
   public checkIsMobile(): boolean {
@@ -38,7 +34,7 @@ export class AppComponent {
 
   public checkScreenWidth(): void {
     if (this.isSidenavExisted()) {
-      // this.isExpanded = true;
+      this.isExpanded = true;
       if (this.checkIsMobile()) {
         this.sidenav.close();
         this.sidenav.mode = 'over';

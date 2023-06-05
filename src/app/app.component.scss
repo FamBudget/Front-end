@@ -80,6 +80,18 @@ mat-toolbar {
   width: fit-content !important;
 }
 
+.header-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-content {
+  display: flex;
+  flex-direction: column;
+}
+
 .sidenav {
   padding: 10px;
 }
