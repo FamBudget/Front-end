@@ -9,9 +9,10 @@
 
 .mat-sidenav-content {
   padding: 10px;
+  background: #F9FFFE;
 }
 
-.sidenav__list-text {
+.sidenav__list-text { 
   font-family: 'Gilroy';
   font-style: normal;
   font-weight: 500;
@@ -69,12 +70,6 @@
   color: #263834;
 }
 
-mat-toolbar {
-  position: sticky;
-  top: 0;
-  z-index: 1;
-}
-
 .mat-sidenav {
   transition: width 0.2s;
   width: fit-content !important;
@@ -95,6 +90,8 @@ mat-toolbar {
 .sidenav {
   padding: 10px;
 }
+
+// sidenav__toggle-button
 
 mat-divider {
   margin-top: 16px;
@@ -119,3 +116,4 @@ mat-divider {
 .sidenav__toggle-button {
   margin-left: auto;
 }
+

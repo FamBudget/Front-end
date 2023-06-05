@@ -4,9 +4,9 @@
         <div class="range">
             <mat-form-field>
                 <mat-date-range-input [rangePicker]="picker" [formGroup]="dateRangeForm">
-                    <input readonly matStartDate placeholder="From Date" required formControlName="start"
+                    <input class="input-range" readonly matStartDate placeholder="From Date" required formControlName="start"
                         [(ngModel)]="startDate">
-                    <input readonly matEndDate placeholder="To Date" required formControlName="end"
+                    <input class="input-range" readonly matEndDate placeholder="To Date" required formControlName="end"
                         [(ngModel)]="endDate" (dateChange)="onDateRangeChange()">
                 </mat-date-range-input>
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>

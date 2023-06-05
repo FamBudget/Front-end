@@ -6,13 +6,13 @@
   padding: 20px;
 }
 
-
 .add-account-dialog__header {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 20px;
   grid-auto-flow: dense;
 }
+
 .dialog-actions {
   width: 100%;
   display: flex;
@@ -22,7 +22,7 @@
   font-family: 'Gilroy';
   font-style: normal;
   font-weight: 500;
-  font-size: 24px;
+  font-size: calc(14px + 2 * (100vw - 320px) / 1600);
   line-height: 133%;
   padding: 0 !important;
 }
@@ -68,7 +68,6 @@
   font-family: 'Gilroy';
   font-style: normal;
   font-weight: 500;
-  font-size: calc(16px + 4 * (100vw - 320px) / 1600);
   line-height: 140%;
   color: #263834;
 }
@@ -79,10 +78,10 @@
 
 .add-account-dialog__title {
   font-weight: 700;
-  font-size: calc(24px + 24 * (100vw - 320px) / 1600);
+  font-size: calc(18px + 8 * (100vw - 320px) / 1600);
   line-height: 135%;
   color: #263834;
-  padding: 0;
+  padding: 0; 
   white-space: nowrap;
 }
 
@@ -112,15 +111,23 @@ button[disabled] {
   opacity: 0.5;
 }
 
-
-
 .add-account-form__input-initial-balance::-webkit-calendar-picker-indicator,
 .add-account-form__input-initial-balance::-webkit-inner-spin-button {
   filter: invert(45%) sepia(99%) saturate(342%) hue-rotate(120deg) brightness(90%) contrast(91%); /* установите нужный цвет иконки */
 }
 
-.add-account-form__input-initial-balance[type="date"]::-webkit-calendar-picker-indicator,
-.add-account-form__input-initial-balance[type="date"]::-webkit-inner-spin-button,
-.add-account-form__input-initial-balance[type="date"]::-moz-calendar-picker-icon {
+.add-account-form__input-initial-balance[type='date']::-webkit-calendar-picker-indicator,
+.add-account-form__input-initial-balance[type='date']::-webkit-inner-spin-button,
+.add-account-form__input-initial-balance[type='date']::-moz-calendar-picker-icon {
   filter: invert(45%) sepia(99%) saturate(342%) hue-rotate(120deg) brightness(90%) contrast(91%); /* установите нужный цвет иконки */
+}
+
+@media screen and (max-width: 700px) {
+  .submit-btn {
+    width: 100%;
+  }
+
+  .cancel-btn {
+    width: 100%;
+  }
 }
