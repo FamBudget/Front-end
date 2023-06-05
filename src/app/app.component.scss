@@ -15,7 +15,7 @@
   font-family: 'Gilroy';
   font-style: normal;
   font-weight: 500;
-  font-size: calc(18px + 6 * (100vw - 320px) / 1600);
+  font-size: calc(14px + 8 * (100vw - 320px) / 1600);
   line-height: 133%;
   color: #263834;
 }
@@ -84,6 +84,26 @@ mat-toolbar {
   padding: 10px;
 }
 
+mat-divider {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
 .sidenav__link .ng-star-inserted {
   margin: 0;
+}
+
+.mat-drawer.mat-drawer-side {
+  width: 90%;
+}
+
+@media (min-width: 768px) {
+  .mat-drawer.mat-drawer-side {
+    width: 280px;
+  }
+}
+
+.sidenav__toggle-button {
+  margin-left: auto;
 }

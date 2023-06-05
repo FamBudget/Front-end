@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { Component, HostListener, ViewChild } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 
@@ -8,11 +10,17 @@ import { filter } from 'rxjs';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  isExpanded = true;
-  public isHandset!: boolean;
+  public isExpanded = true;
   public pageTitle: string = '';
+  @ViewChild(MatSidenav)
+  sidenav!: MatSidenav;
 
-  constructor(private router: Router) {
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.checkScreenWidth();
+  }
+
+  constructor(private router: Router, private observer: BreakpointObserver) {
     this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe((event: any) => {
       if (this.getPageTitle(event.urlAfterRedirects)) {
         this.pageTitle = this.getPageTitle(event.urlAfterRedirects) as string;
@@ -20,7 +28,34 @@ export class AppComponent {
     });
   }
 
-  public isSidenavOpened(): boolean {
+  ngAfterViewInit() {
+    this.checkScreenWidth();
+  }
+
+  public checkIsMobile(): boolean {
+    return window.innerWidth <= 768;
+  }
+
+  public checkScreenWidth(): void {
+    if (this.isSidenavExisted()) {
+      // this.isExpanded = true;
+      if (this.checkIsMobile()) {
+        this.sidenav.close();
+        this.sidenav.mode = 'over';
+      } else {
+        this.sidenav.mode = 'side';
+        this.sidenav.open();
+      }
+    }
+  }
+
+  public toggleSidenav(): void {
+    if (this.checkIsMobile()) {
+      this.sidenav.toggle();
+    }
+  }
+
+  public isSidenavExisted(): boolean {
     return this.router.url !== '/';
   }
 
