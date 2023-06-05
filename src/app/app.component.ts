@@ -1,3 +1,4 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { NavigationEnd, Router } from '@angular/router';
@@ -7,6 +8,25 @@ import { filter } from 'rxjs';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  animations: [
+    trigger('toggleState', [
+      state(
+        'open',
+        style({
+          transform: 'rotate(180deg)',
+          color: 'red',
+        }),
+      ),
+      state(
+        'closed',
+        style({
+          transform: 'rotate(0deg)',
+          color: 'green',
+        }),
+      ),
+      transition('open <=> closed', animate('0.5s ease-out')),
+    ]),
+  ],
 })
 export class AppComponent {
   public isExpanded = true;

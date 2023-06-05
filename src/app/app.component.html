@@ -4,42 +4,50 @@
         <p class="sidenav__logo">Logo</p>
         <mat-nav-list class="sidenav__list" (click)="toggleSidenav()">
             <a class="sidenav__list-item" mat-list-item routerLink="/operations" routerLinkActive="active"
-                matTooltip="Операции" matTooltipPosition="right" matTooltipHideDelay="300" class="sidenav__link">
+                [matTooltip]="!isExpanded ? 'Операции' : ''" matTooltipPosition="right" matTooltipHideDelay="300"
+                class="sidenav__link">
                 <mat-icon class="sidenav__list-icon">work_outline</mat-icon>
                 <p class="sidenav__list-text" *ngIf="isExpanded">Операции</p>
             </a>
             <a class="sidenav__list-item" mat-list-item routerLink="/accounts" routerLinkActive="active"
-                matTooltip="Счета" matTooltipPosition="right" matTooltipHideDelay="300" class="sidenav__link">
+                [matTooltip]="!isExpanded ? 'Счета' : ''" matTooltipPosition="right" matTooltipHideDelay="300"
+                class="sidenav__link">
                 <mat-icon class="sidenav__list-icon">account_balance</mat-icon>
                 <p class="sidenav__list-text" *ngIf="isExpanded">Счета</p>
             </a>
             <a class="sidenav__list-item" mat-list-item routerLink="/budget" routerLinkActive="active"
-                matTooltip="Бюджет" matTooltipPosition="right" matTooltipHideDelay="300" class="sidenav__link">
+                [matTooltip]="!isExpanded ? 'Бюджет' : ''" matTooltipPosition="right" matTooltipHideDelay="300"
+                class="sidenav__link">
                 <mat-icon class="sidenav__list-icon">pie_chart</mat-icon>
                 <p class="sidenav__list-text" *ngIf="isExpanded">Бюджет</p>
             </a>
             <a class="sidenav__list-item" mat-list-item routerLink="/income" routerLinkActive="active"
-                matTooltip="Доходы" matTooltipPosition="right" matTooltipHideDelay="300" class="sidenav__link">
+                [matTooltip]="!isExpanded ? 'Доходы' : ''" matTooltipPosition="right" matTooltipHideDelay="300"
+                class="sidenav__link">
                 <mat-icon class="sidenav__list-icon">attach_money</mat-icon>
                 <p class="sidenav__list-text" *ngIf="isExpanded">Доходы</p>
             </a>
             <a class="sidenav__list-item" mat-list-item routerLink="/expense" routerLinkActive="active"
-                matTooltip="Расходы" matTooltipPosition="right" matTooltipHideDelay="300" class="sidenav__link">
+                [matTooltip]="!isExpanded ? 'Расходы' : ''" matTooltipPosition="right" matTooltipHideDelay="300"
+                class="sidenav__link">
                 <mat-icon class="sidenav__list-icon">money_off</mat-icon>
                 <p class="sidenav__list-text" *ngIf="isExpanded">Расходы</p>
             </a>
             <a class="sidenav__list-item" mat-list-item routerLink="/reports" routerLinkActive="active"
-                matTooltip="Отчёты" matTooltipPosition="right" matTooltipHideDelay="300" class="sidenav__link">
+                [matTooltip]="!isExpanded ? 'Отчёты' : ''" matTooltipPosition="right" matTooltipHideDelay="300"
+                class="sidenav__link">
                 <mat-icon class="sidenav__list-icon">description</mat-icon>
                 <p class="sidenav__list-text" *ngIf="isExpanded">Отчёты</p>
             </a>
             <mat-divider></mat-divider>
-            <a class="sidenav__list-item" mat-list-item routerLink="/settings" matTooltip="Настройки"
-                matTooltipPosition="right" matTooltipHideDelay="300" class="sidenav__link">
+            <a class="sidenav__list-item" mat-list-item routerLink="/settings"
+                [matTooltip]="!isExpanded ? 'Настройки' : ''" matTooltipPosition="right" matTooltipHideDelay="300"
+                class="sidenav__link">
                 <mat-icon class="sidenav__list-icon">settings</mat-icon>
                 <p class="sidenav__list-text" *ngIf="isExpanded">Настройки</p>
             </a>
-            <a mat-list-item matTooltip="" matTooltipPosition="right" matTooltipHideDelay="300" class="sidenav__link">
+            <a mat-list-item [matTooltip]="!isExpanded ? 'Справка' : ''" matTooltipPosition="right"
+                matTooltipHideDelay="300" class="sidenav__link">
                 <mat-icon class="sidenav__list-icon">help_outline</mat-icon>
                 <p class="sidenav__list-text" *ngIf="isExpanded">Справка</p>
             </a>
@@ -61,9 +69,14 @@
         <div *ngIf="isSidenavExisted()" class="header-content">
             <div class="header-top" *ngIf="checkIsMobile()">
                 <p class="sidenav__logo">Logo</p>
-                <button mat-icon-button class="sidenav__toggle-button" (click)="sidenav.toggle()">
+                <!-- <button mat-icon-button class="sidenav__toggle-button" (click)="sidenav.toggle()">
                     <mat-icon class="sidenav__toggle-icon" *ngIf="!sidenav.opened"> menu </mat-icon>
                     <mat-icon class="sidenav__toggle-icon" *ngIf="sidenav.opened"> close </mat-icon>
+                </button> -->
+                <button mat-icon-button class="sidenav__toggle-button" (click)="sidenav.toggle()">
+                    <mat-icon class="sidenav__toggle-icon" [@toggleState]="sidenav.opened ? 'open' : 'closed'">
+                        {{ sidenav.opened ? 'close' : 'menu' }}
+                    </mat-icon>
                 </button>
             </div>
             <p class="top__title">{{ pageTitle }}</p>

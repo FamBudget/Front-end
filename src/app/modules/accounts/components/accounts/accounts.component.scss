@@ -1,6 +1,5 @@
 :host {
   width: 100%;
-  background-color: #ffffff;
   border-radius: 20px;
 }
 
@@ -48,7 +47,9 @@
 }
 
 .account-icon {
-  max-width: 24px;
+  font-size: calc(16px + 8 * (100vw - 320px) / 1600);
+  width: calc(16px + 8 * (100vw - 320px) / 1600);
+  height: calc(16px + 8 * (100vw - 320px) / 1600);
   width: 100%;
 }
 
@@ -65,7 +66,7 @@
 .account-amount {
   font-family: 'Gilroy';
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   font-size: calc(14px + 6 * (100vw - 320px) / 1600);
   line-height: 140%;
   color: #263834;
@@ -88,4 +89,20 @@
 
 .account-amount {
   text-align: end;
+}
+
+.mat-mdc-cell {
+  padding-left: 3px;  
+  padding-right: 3px; 
+}
+
+@media screen and (max-width: 767px) {
+  .mat-table-wrapper {
+    overflow-x: auto;
+    display: block;
+  }
+  .mat-table {
+    /* устанавливаем минимальную ширину таблицы, чтобы она не сжималась слишком сильно на маленьких экранах */
+    min-width: 100%;
+  }
 }

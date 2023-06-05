@@ -46,11 +46,12 @@
                     </mat-error>
                 </div>
             </div>
+
+            <mat-dialog-actions class="add-account-dialog">
+                <button type="submit" class="submit-btn"
+                    [disabled]="addAccountForm.invalid || addAccountForm.disabled">Ок</button>
+                <button class="cancel-btn" mat-dialog-close mat-dialog-close="cancel">Отмена</button>
+            </mat-dialog-actions>
         </mat-dialog-content>
-        <mat-dialog-actions class="add-account-dialog">
-            <button type="submit" class="submit-btn"
-                [disabled]="addAccountForm.invalid || addAccountForm.disabled">Ок</button>
-            <button class="cancel-btn" mat-dialog-close mat-dialog-close="cancel">Отмена</button>
-        </mat-dialog-actions>
     </div>
 </form>
