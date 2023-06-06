@@ -24,9 +24,9 @@
         <div class="toggle-btns">
             <mat-button-toggle-group #group="matButtonToggleGroup" class="toggle-group" name="fontStyle"
                 aria-label="Font Style" [(ngModel)]="selectedFilter" (change)="filterData()">
-                <mat-button-toggle value="day">За день</mat-button-toggle>
-                <mat-button-toggle checked value="week">Неделю</mat-button-toggle>
-                <mat-button-toggle value="month">За месяц</mat-button-toggle>
+                <mat-button-toggle class="toggle-btn" value="day">За день</mat-button-toggle>
+                <mat-button-toggle class="toggle-btn" checked value="week">Неделю</mat-button-toggle>
+                <mat-button-toggle class="toggle-btn" value="month">За месяц</mat-button-toggle>
             </mat-button-toggle-group>
         </div>
 

@@ -354,3 +354,24 @@ select {
 .add-account__form-field div[matformfieldlineripple] {
   display: none;
 }
+
+.range div[matformfieldlineripple] {
+  display: none;
+}
+
+.mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+  line-height: 100% !important;
+  padding: calc(12px + 4 * (100vw - 320px) / 1600) calc(20px + 4 * (100vw - 320px) / 1600) !important;
+}
+
+.table-moving .mat-mdc-paginator-range-label {
+  white-space: nowrap;
+}
+
+
+.mat-mdc-paginator-range-actions{
+  display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
