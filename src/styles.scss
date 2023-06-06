@@ -4,87 +4,72 @@
 @import 'normalize.css';
 @import './material';
 
-@font-face {
-  font-family: 'Gilroy';
-  src: url('./assets/fonts/Gilroy-Regular.woff2') format('woff2'),
-    url('./assets/fonts/Gilroy-Regular.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
 
 @font-face {
   font-family: 'Gilroy';
-  src: url('./assets/fonts/Gilroy-Bold.woff2') format('woff2'), url('./assets/fonts/Gilroy-Bold.woff') format('woff');
-  font-weight: bold;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Gilroy';
-  src: url('./assets/fonts/Gilroy-Black.woff2') format('woff2'), url('./assets/fonts/Gilroy-Black.woff') format('woff');
-  font-weight: 900;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Gilroy';
-  src: url('./assets/fonts/Gilroy-Light.woff2') format('woff2'), url('./assets/fonts/Gilroy-Light.woff') format('woff');
-
-  font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Gilroy';
-
-  src: url('./assets/fonts/Gilroy-Semibold.woff2') format('woff2'),
-    url('./assets/fonts/Gilroy-Semibold.woff') format('woff');
-
-  font-weight: 600;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Gilroy';
-  src: url('./assets/fonts/Gilroy-Medium.woff2') format('woff2'),
-    url('./assets/fonts/Gilroy-Medium.woff') format('woff');
-
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Gilroy';
-  src: url('./assets/fonts/Gilroy-UltraLight.woff2') format('woff2'),
-    url('./assets/fonts/Gilroy-UltraLight.woff') format('woff');
-
-  font-weight: 200;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Gilroy';
-  src: url('./assets/fonts/Gilroy-Extrabold.woff2') format('woff2'),
-    url('./assets/fonts/Gilroy-Extrabold.woff') format('woff');
-
-  font-weight: 800;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Gilroy';
-  src: url('./assets/fonts/Gilroy-Heavy.woff2') format('woff2'), url('./assets/fonts/Gilroy-Heavy.woff') format('woff');
-  font-weight: 900;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Gilroy';
-  src: url('./assets/fonts/Gilroy-Thin.woff2') format('woff2'), url('./assets/fonts/Gilroy-Thin.woff') format('woff');
-
   font-weight: 100;
   font-style: normal;
+  src: url('./assets/fonts/gilroy-thin.woff2') format('woff2'), url('./assets/fonts/gilroy-thin.woff') format('woff');
 }
+
+@font-face {
+  font-family: 'Gilroy';
+  font-weight: 200;
+  font-style: normal;
+  src: url('./assets/fonts/gilroy-ultralight.woff2') format('woff2'),
+    url('./assets/fonts/gilroy-ultralight.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  font-weight: 300;
+  font-style: normal;
+  src: url('./assets/fonts/gilroy-light.woff2') format('woff2'), url('./assets/fonts/gilroy-light.woff2') format('woff');
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  font-weight: 400;
+  font-style: normal;
+  src: url('./assets/fonts/gilroy-regular.woff2') format('woff2'),
+    url('./assets/fonts/gilroy-regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  font-weight: 500;
+  font-style: normal;
+  src: url('./assets/fonts/gilroy-medium.woff2') format('woff2'),
+    url('./assets/fonts/gilroy-medium.woff') format('woff');
+}
+@font-face {
+  font-family: 'Gilroy';
+  font-weight: 600;
+  font-style: normal;
+  src: url('./assets/fonts/gilroy-semibold.woff2') format('woff2'),
+    url('./assets/fonts/gilroy-semibold.woff') format('woff');
+}
+@font-face {
+  font-family: 'Gilroy';
+  font-weight: 700;
+  font-style: normal;
+  src: url('./assets/fonts/gilroy-bold.woff2') format('woff2'), url('./assets/fonts/gilroy-bold.woff') format('woff');
+}
+@font-face {
+  font-family: 'Gilroy';
+  font-weight: 800;
+  font-style: normal;
+  src: url('./assets/fonts/gilroy-extrabold.woff2') format('woff2'),
+    url('./assets/fonts/gilroy-extrabold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  font-weight: 900;
+  font-style: normal;
+  src: url('./assets/fonts/gilroy-black.woff2') format('woff2'), url('./assets/fonts/gilroy-black.woff') format('woff');
+}
+
 
 * {
   padding: 0;
