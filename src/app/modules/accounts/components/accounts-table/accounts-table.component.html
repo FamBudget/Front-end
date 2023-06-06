@@ -2,7 +2,7 @@
     <!-- <button (click)="addOperation()">Add operation</button> -->
     <div class="table-filters">
         <div class="range">
-            <mat-form-field>
+            <mat-form-field class="table-filters__range">
                 <mat-date-range-input [rangePicker]="picker" [formGroup]="dateRangeForm">
                     <input class="input-range" readonly matStartDate placeholder="From Date" required formControlName="start"
                         [(ngModel)]="startDate">
@@ -19,19 +19,14 @@
                     <span>{{ ERROR_MESSAGES.INVALID_FUTURE_DATE }}</span>
                 </mat-error>
             </mat-form-field>
-
-            <!-- !можно посмотреть начало и конец -->
-            <!-- <mat-divider></mat-divider>
-                <p>Selected Date Range: </p>
-                <p>{{dateRangeForm.value | json}}</p> -->
         </div>
 
         <div class="toggle-btns">
             <mat-button-toggle-group #group="matButtonToggleGroup" class="toggle-group" name="fontStyle"
                 aria-label="Font Style" [(ngModel)]="selectedFilter" (change)="filterData()">
-                <mat-button-toggle value="day">За день</mat-button-toggle>
-                <mat-button-toggle checked value="week">Неделю</mat-button-toggle>
-                <mat-button-toggle value="month">За месяц</mat-button-toggle>
+                <mat-button-toggle class="toggle-btn" value="day">За день</mat-button-toggle>
+                <mat-button-toggle class="toggle-btn" checked value="week">Неделю</mat-button-toggle>
+                <mat-button-toggle class="toggle-btn" value="month">За месяц</mat-button-toggle>
             </mat-button-toggle-group>
         </div>
 
@@ -60,7 +55,7 @@
             <ng-container matColumnDef="createdOn">
                 <th class="table-moving__header" mat-header-cell *matHeaderCellDef [disableClear]="true"
                     mat-sort-header="createdOn"> Дата </th>
-                <td class="table-moving__data" mat-cell *matCellDef="let element"> {{element.createdOn}} </td>
+                <td class="table-moving__data" mat-cell *matCellDef="let element"> {{element.createdOn | date:'dd-MM-yyyy'}} </td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

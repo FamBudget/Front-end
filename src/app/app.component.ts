@@ -29,7 +29,7 @@ import { filter } from 'rxjs';
   ],
 })
 export class AppComponent {
-  public isExpanded = true;
+  public isExpanded: boolean = true;
   public pageTitle: string = '';
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
@@ -70,6 +70,7 @@ export class AppComponent {
       this.sidenav.toggle();
     }
   }
+
 
   public isSidenavExisted(): boolean {
     return this.router.url !== '/';

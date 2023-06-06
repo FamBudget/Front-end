@@ -92,8 +92,8 @@
 }
 
 .mat-mdc-cell {
-  padding-left: 3px;  
-  padding-right: 3px; 
+  padding-left: 3px;
+  padding-right: 3px;
 }
 
 @media screen and (max-width: 767px) {
@@ -102,7 +102,6 @@
     display: block;
   }
   .mat-table {
-    /* устанавливаем минимальную ширину таблицы, чтобы она не сжималась слишком сильно на маленьких экранах */
     min-width: 100%;
   }
 }
