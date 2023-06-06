@@ -1,6 +1,6 @@
-<form novalidate >
+<form novalidate>
     <mat-form-field class="add-account__form-field" color="primary">
-          <mat-select class="add-account-icons" [(value)]="selectedLayout" (selectionChange)="toggle($event.value)"
+        <mat-select class="add-account-icons" [(value)]="selectedLayout" (selectionChange)="toggle($event.value)"
             [compareWith]="compareFn" [(ngModel)]="icon" (selectionChange)="iconChange()">
             <mat-select-trigger>
                 <img class="add-account-img" [src]="selectedLayout.path" alt="{{selectedLayout.label}}">
