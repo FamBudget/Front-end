@@ -158,6 +158,14 @@ select {
   padding: 0 !important;
 }
 
+.mat-mdc-form-field,
+.mat-mdc-floating-label {
+  font-family: 'Gilroy' !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
+  font-size: calc(15px + 1 * (100vw - 320px) / 1600) !important;
+}
+
 @media (max-width: 768px) {
   .mat-mdc-dialog-surface,
   .mdc-dialog__surface {
