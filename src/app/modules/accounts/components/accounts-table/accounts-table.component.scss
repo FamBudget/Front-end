@@ -120,7 +120,7 @@
   font-family: 'Gilroy';
   font-style: normal;
   font-weight: 600;
-  font-size: calc(13px + 6 * (100vw - 320px) / 1600);
+  font-size: calc(12px + 6 * (100vw - 320px) / 1600);
   line-height: 140%;
   color: #263834;
 }
@@ -129,14 +129,14 @@
   font-family: 'Gilroy';
   font-style: normal;
   font-weight: 500;
-  font-size: calc(15px + 3 * (100vw - 320px) / 1600);
+  font-size: calc(12px + 3 * (100vw - 320px) / 1600);
   line-height: 140%;
   color: #263834;
-}
+  white-space: nowrap;
+} 
 
 .table-moving__paginator {
-  margin: calc(15px + 10 * (100vw - 320px) / 1600)
-  
+  margin: calc(15px + 10 * (100vw - 320px) / 1600);
 }
 
 .table-moving__paginator ::ng-deep .mat-mdc-paginator-page-size-label,

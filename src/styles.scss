@@ -6,67 +6,174 @@
 
 @font-face {
   font-family: 'Gilroy';
-  font-weight: 100;
-  font-style: normal;
-  src: url('./assets/fonts/gilroy-thin.woff2') format('woff2'), url('./assets/fonts/gilroy-thin.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'Gilroy';
-  font-weight: 200;
-  font-style: normal;
-  src: url('./assets/fonts/gilroy-ultralight.woff2') format('woff2'),
-    url('./assets/fonts/gilroy-ultralight.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'Gilroy';
-  font-weight: 300;
-  font-style: normal;
-  src: url('./assets/fonts/gilroy-light.woff2') format('woff2'), url('./assets/fonts/gilroy-light.woff2') format('woff');
-}
-
-@font-face {
-  font-family: 'Gilroy';
-  font-weight: 400;
-  font-style: normal;
   src: url('./assets/fonts/gilroy-regular.woff2') format('woff2'),
     url('./assets/fonts/gilroy-regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
   font-family: 'Gilroy';
-  font-weight: 500;
-  font-style: normal;
-  src: url('./assets/fonts/gilroy-medium.woff2') format('woff2'),
-    url('./assets/fonts/gilroy-medium.woff') format('woff');
-}
-@font-face {
-  font-family: 'Gilroy';
-  font-weight: 600;
-  font-style: normal;
-  src: url('./assets/fonts/gilroy-semibold.woff2') format('woff2'),
-    url('./assets/fonts/gilroy-semibold.woff') format('woff');
-}
-@font-face {
-  font-family: 'Gilroy';
-  font-weight: 700;
-  font-style: normal;
-  src: url('./assets/fonts/gilroy-bold.woff2') format('woff2'), url('./assets/fonts/gilroy-bold.woff') format('woff');
-}
-@font-face {
-  font-family: 'Gilroy';
+  src: url('./assets/fonts/gilroy-extraboldItalic.woff2') format('woff2'),
+    url('./assets/fonts/gilroy-extraboldItalic.woff') format('woff');
   font-weight: 800;
-  font-style: normal;
-  src: url('./assets/fonts/gilroy-extrabold.woff2') format('woff2'),
-    url('./assets/fonts/gilroy-extrabold.woff') format('woff');
+  font-style: italic;
 }
 
 @font-face {
   font-family: 'Gilroy';
+  src: url('./assets/fonts/gilroy-bold.woff2') format('woff2'), url('./assets/fonts/gilroy-bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('./assets/fonts/gilroy-black.woff2') format('woff2'), url('./assets/fonts/gilroy-black.woff') format('woff');
   font-weight: 900;
   font-style: normal;
-  src: url('./assets/fonts/gilroy-black.woff2') format('woff2'), url('./assets/fonts/gilroy-black.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('./assets/fonts/gilroy-light.woff2') format('woff2'), url('./assets/fonts/gilroy-light.woff') format('woff');
+
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+
+  src: url('./assets/fonts/gilroy-semibold.woff2') format('woff2'),
+    url('./assets/fonts/gilroy-semibold.woff') format('woff');
+
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('./assets/fonts/gilroy-medium.woff2') format('woff2'),
+    url('./assets/fonts/gilroy-medium.woff') format('woff');
+
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('./assets/fonts/gilroy-mediumItalic.woff2') format('woff2'),
+    url('./assets/fonts/gilroy-mediumItalic.woff') format('woff');
+
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('./assets/fonts/gilroy-blackItalic.woff2') format('woff2'),
+    url('./assets/fonts/gilroy-blackItalic.woff') format('woff');
+
+  font-weight: 900;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('./assets/fonts/gilroy-ultraLight.woff2') format('woff2'),
+    url('./assets/fonts/gilroy-ultraLight.woff') format('woff');
+
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('./assets/fonts/gilroy-regularItalic.woff2') format('woff2'),
+    url('./assets/fonts/gilroy-regularItalic.woff') format('woff');
+
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('./assets/fonts/gilroy-semiboldItalic.woff2') format('woff2'),
+    url('./assets/fonts/gilroy-semiboldItalic.woff') format('woff');
+
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('./assets/fonts/gilroy-heavyItalic.woff2') format('woff2'),
+    url('./assets/fonts/gilroy-heavyItalic.woff') format('woff');
+
+  font-weight: 900;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('./assets/fonts/gilroy-extrabold.woff2') format('woff2'),
+    url('./assets/fonts/gilroy-extrabold.woff') format('woff');
+
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('./assets/fonts/gilroy-boldItalic.woff2') format('woff2'),
+    url('./assets/fonts/gilroy-boldItalic.woff') format('woff');
+
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('./assets/fonts/gilroy-ultraLightItalic.woff2') format('woff2'),
+    url('./assets/fonts/gilroy-ultraLightItalic.woff') format('woff');
+
+  font-weight: 200;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('./assets/fonts/gilroy-lightItalic.woff2') format('woff2'),
+    url('./assets/fonts/gilroy-lightItalic.woff') format('woff');
+
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('./assets/fonts/gilroy-heavy.woff2') format('woff2'), url('./assets/fonts/gilroy-heavy.woff') format('woff');
+
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('./assets/fonts/gilroy-thin.woff2') format('woff2'), url('./assets/fonts/gilroy-thin.woff') format('woff');
+
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('./assets/fonts/gilroy-thinItalic.woff2') format('woff2'),
+    url('./assets/fonts/gilroy-thinItalic.woff') format('woff');
+
+  font-weight: 100;
+  font-style: italic;
 }
 
 * {
@@ -153,27 +260,17 @@ select {
   background-color: red; // replace with the color you want to use
 }
 
-.google {
-  position: absolute;
-  left: -30px;
-  top: 20%;
-  width: 32px;
-  height: 32px;
-  background: url('./assets/google.svg') no-repeat center center;
-}
-
-.facebook {
-  position: absolute;
-  width: 32px;
-  top: 20%;
-  left: -30px;
-  height: 32px;
-  background: url('./assets/facebook.svg') no-repeat center center;
-}
-
 .mat-mdc-form-field-hint-wrapper,
 .mat-mdc-form-field-error-wrapper {
   padding: 0 !important;
+}
+
+.mat-mdc-form-field,
+.mat-mdc-floating-label {
+  font-family: 'Gilroy' !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
+  font-size: calc(15px + 1 * (100vw - 320px) / 1600) !important;
 }
 
 @media (max-width: 768px) {
@@ -190,7 +287,9 @@ select {
 }
 
 .registration-dialog .mat-mdc-dialog-container .mdc-dialog__surface {
-  border-radius: 1.1rem;
+  border-radius: 30px;
+  background: #ffffff;
+  box-shadow: -2px -2px 16px rgba(39, 222, 191, 0.06), 2px 2px 16px rgba(39, 222, 191, 0.06);
 }
 
 .forgot-password-dialog .mat-mdc-dialog-container .mdc-dialog__surface {
@@ -223,4 +322,35 @@ select {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.add-account-icons .mat-mdc-select-arrow {
+  display: none;
+}
+
+.add-account__form-field .mat-mdc-form-field-subscript-wrapper {
+  background-color: transparent !important;
+}
+
+.add-account__form-field .mdc-text-field--filled {
+  background-color: transparent !important;
+}
+.add-account__form-field .mat-mdc-form-field-focus-overlay {
+  background-color: transparent !important;
+}
+// ________
+
+.table-filters__range .mat-mdc-form-field-subscript-wrapper {
+  background-color: transparent !important;
+}
+
+.table-filters__range .mdc-text-field--filled {
+  background-color: transparent !important;
+}
+.table-filters__range .mat-mdc-form-field-focus-overlay {
+  background-color: transparent !important;
+}
+
+.add-account__form-field div[matformfieldlineripple] {
+  display: none;
 }

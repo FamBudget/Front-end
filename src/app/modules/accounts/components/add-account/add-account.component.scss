@@ -34,9 +34,11 @@
   justify-content: center;
   color: #1b9b85;
   background: #ffffff;
-  box-shadow: -2px -2px 16px rgba(39, 222, 191, 0.06), 2px 2px 16px rgba(39, 222, 191, 0.06);
   border-radius: 20px;
   padding: 16px 10px;
+  box-shadow: -2px -2px 16px rgba(39, 222, 191, 0.06), 2px 2px 16px rgba(39, 222, 191, 0.06);
+  border-radius: 20px;
+  border: 1px solid #1B9B85;
 }
 
 .submit-btn {
@@ -81,7 +83,7 @@
   font-size: calc(18px + 8 * (100vw - 320px) / 1600);
   line-height: 135%;
   color: #263834;
-  padding: 0; 
+  padding: 0;
   white-space: nowrap;
 }
 

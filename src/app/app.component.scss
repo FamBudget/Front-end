@@ -9,10 +9,10 @@
 
 .mat-sidenav-content {
   padding: 10px;
-  background: #F9FFFE;
+  background: #f9fffe;
 }
 
-.sidenav__list-text { 
+.sidenav__list-text {
   font-family: 'Gilroy';
   font-style: normal;
   font-weight: 500;
@@ -56,8 +56,9 @@
   font-family: 'Gilroy';
   font-style: normal;
   font-weight: 600;
-  font-size: 32px;
+  font-size: calc(25px + 15 * (100vw - 320px) / 1600);
   line-height: 131%;
+  padding: 3rem 0 3rem 3rem;
 }
 
 .sidenav__logo {
@@ -72,6 +73,11 @@
 
 .mat-sidenav {
   transition: width 0.2s;
+  width: 270px !important;
+  padding: 10px;
+}
+
+.mini-variant {
   width: fit-content !important;
 }
 
@@ -86,12 +92,6 @@
   display: flex;
   flex-direction: column;
 }
-
-.sidenav {
-  padding: 10px;
-}
-
-// sidenav__toggle-button
 
 mat-divider {
   margin-top: 16px;
@@ -109,11 +109,10 @@ mat-divider {
 
 @media (min-width: 768px) {
   .mat-drawer.mat-drawer-side {
-    width: 280px;
+    width: 300px;
   }
 }
 
 .sidenav__toggle-button {
   margin-left: auto;
 }
-
