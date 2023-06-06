@@ -11,35 +11,34 @@
     </div>
 
     <div class="auth-form-content">
-      <mat-card class="auth-form-card">
-        <mat-card-header>
-          <mat-card-title class="auth-title">Добро пожаловать в <span class="text-green-700">FamilyBudget</span>
-          </mat-card-title>
-        </mat-card-header>
+      <div class="auth-form-card">
+        <div>
+          <h1 class="auth-title">Добро пожаловать <br> в <span class="auth-title__span">FamilyBudget</span>
+          </h1>
+        </div>
 
         <mat-card-content>
           <app-authentication-form />
         </mat-card-content>
 
-        <div class="flex flex-row px-5 items-center">
-          <div class="w-1/2 h-0.5 bg-black opacity-30"></div>
-          <span class="w-1/4 auth-text">Или войти через</span>
-          <div class="w-1/2 h-0.5 bg-black opacity-30"></div>
+        <div class="help-auth__text-container">
+          <div class="help-auth__text-span"></div>
+          <p class="help-auth__text">Или войти через</p>
+          <div class="help-auth__text-span"></div>
         </div>
 
-        <mat-card-actions>
-          <div class="w-full flex flex-row gap-5 help-auth-btns">
-            <mat-button-toggle class="w-full flex flex-row relative">
-              <div class="google"></div>
-              <span class="help-auth-btn">Google</span>
-            </mat-button-toggle>
 
-            <mat-button-toggle class="w-full flex flex-row relative">
-              <div class="facebook"></div>
-              <span class="help-auth-btn">Facebook</span>
-            </mat-button-toggle>
-          </div>
-        </mat-card-actions>
+        <div class="help-auth">
+          <button class="help-auth__btn">
+            <img class="help-auth__btn-icon" src="../../../../../assets/google.svg" alt="">
+            <p class="help-auth__btn-text">Google</p>
+          </button>
+
+          <button class="help-auth__btn">
+            <img class="help-auth__btn-icon" src="../../../../../assets/facebook.svg" alt="">
+            <p class="help-auth__btn-text">Facebook</p>
+          </button>
+        </div>
 
         <mat-card-footer>
           <div class="w-full flex flex-row gap-2 items-center justify-center">
@@ -47,7 +46,7 @@
             <button class="py-2 m-0 font-bold" (click)="openDialog()">Зарегистрируйтесь</button>
           </div>
         </mat-card-footer>
-      </mat-card>
+      </div>
     </div>
   </div>
 </div>
