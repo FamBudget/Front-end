@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 
@@ -6,21 +8,70 @@ import { filter } from 'rxjs';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  animations: [
+    trigger('toggleState', [
+      state(
+        'open',
+        style({
+          transform: 'rotate(180deg)',
+          color: 'red',
+        }),
+      ),
+      state(
+        'closed',
+        style({
+          transform: 'rotate(0deg)',
+          color: 'green',
+        }),
+      ),
+      transition('open <=> closed', animate('0.5s ease-out')),
+    ]),
+  ],
 })
 export class AppComponent {
-  isExpanded = true;
-  public isHandset!: boolean;
+  public isExpanded = true;
   public pageTitle: string = '';
+  @ViewChild(MatSidenav)
+  sidenav!: MatSidenav;
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.checkScreenWidth();
+  }
 
   constructor(private router: Router) {
     this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe((event: any) => {
       if (this.getPageTitle(event.urlAfterRedirects)) {
         this.pageTitle = this.getPageTitle(event.urlAfterRedirects) as string;
+        this.checkScreenWidth();
       }
     });
   }
 
-  public isSidenavOpened(): boolean {
+  public checkIsMobile(): boolean {
+    return window.innerWidth <= 768;
+  }
+
+  public checkScreenWidth(): void {
+    if (this.isSidenavExisted()) {
+      this.isExpanded = true;
+      if (this.checkIsMobile()) {
+        this.sidenav.close();
+        this.sidenav.mode = 'over';
+      } else {
+        this.sidenav.mode = 'side';
+        this.sidenav.open();
+      }
+    }
+  }
+
+  public toggleSidenav(): void {
+    if (this.checkIsMobile()) {
+      this.sidenav.toggle();
+    }
+  }
+
+  public isSidenavExisted(): boolean {
     return this.router.url !== '/';
   }
 

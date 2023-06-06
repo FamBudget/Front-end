@@ -1,6 +1,5 @@
 :host {
-    justify-self: flex-end;
-  
+  justify-self: flex-end;
 }
 
 .add-account__form-field {
@@ -21,4 +20,8 @@
   color: #263834;
 }
 
-
+@media screen and (max-width: 715px) {
+  :host {
+    justify-self: center;
+  }
+}

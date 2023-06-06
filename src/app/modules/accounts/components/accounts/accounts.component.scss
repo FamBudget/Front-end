@@ -1,6 +1,5 @@
 :host {
   width: 100%;
-  background-color: #ffffff;
   border-radius: 20px;
 }
 
@@ -12,7 +11,15 @@
   max-width: 562px;
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 30px;
+  margin: 0 auto;
+}
+
+.accounts-title {
+  font-family: 'Gilroy';
+  font-weight: 600;
+  line-height: 131%;
+  font-size: calc(18px + 10 * (100vw - 320px) / 1600);
 }
 
 .accounts-top {
@@ -37,11 +44,12 @@
   line-height: 140%;
   font-size: calc(14px + 6 * (100vw - 320px) / 1600);
   white-space: nowrap;
-
 }
 
 .account-icon {
-  max-width: 24px;
+  font-size: calc(16px + 8 * (100vw - 320px) / 1600);
+  width: calc(16px + 8 * (100vw - 320px) / 1600);
+  height: calc(16px + 8 * (100vw - 320px) / 1600);
   width: 100%;
 }
 
@@ -49,7 +57,7 @@
   font-family: 'Gilroy';
   font-style: normal;
   font-weight: 600;
-  font-size: 24px;
+  font-size: calc(14px + 6 * (100vw - 320px) / 1600);
   line-height: 133%;
   color: #263834;
   margin: 0;
@@ -58,8 +66,8 @@
 .account-amount {
   font-family: 'Gilroy';
   font-style: normal;
-  font-weight: 600;
-  font-size: 20px;
+  font-weight: 500;
+  font-size: calc(14px + 6 * (100vw - 320px) / 1600);
   line-height: 140%;
   color: #263834;
   margin: 0;
@@ -81,4 +89,20 @@
 
 .account-amount {
   text-align: end;
+}
+
+.mat-mdc-cell {
+  padding-left: 3px;  
+  padding-right: 3px; 
+}
+
+@media screen and (max-width: 767px) {
+  .mat-table-wrapper {
+    overflow-x: auto;
+    display: block;
+  }
+  .mat-table {
+    /* устанавливаем минимальную ширину таблицы, чтобы она не сжималась слишком сильно на маленьких экранах */
+    min-width: 100%;
+  }
 }

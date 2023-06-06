@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { AccountsRoutingModule } from './accounts-routing.module';
 import { AccountsPageComponent } from './components/accounts-page/accounts-page.component';
 import { AccountsComponent } from './components/accounts/accounts.component';
-import { AccountsHeaderComponent } from './components/accounts-header/accounts-header.component';
 import { AccountsTableComponent } from './components/accounts-table/accounts-table.component';
 import { MaterialModule } from 'src/app/shared/modules';
 import { AddAccountComponent } from './components/add-account/add-account.component';
@@ -17,7 +16,6 @@ import { SharedModule } from 'src/app/shared';
   declarations: [
     AccountsPageComponent,
     AccountsComponent,
-    AccountsHeaderComponent,
     AccountsTableComponent,
     AddAccountComponent,
     SelectIconToggleComponent,

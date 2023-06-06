@@ -1,37 +1,35 @@
 <div class="accounts">
     <div class="accounts-top">
+        <h2 class="accounts-title">Счета</h2>
         <button class="add-account-btn" (click)="openAccountDialog()">
             <mat-icon>add_circle</mat-icon>
             Добавить счет</button>
-
     </div>
 
-    <table mat-table [dataSource]="accountsData" class="accounts-table">
-
+    <mat-table [dataSource]="accountsData" class="accounts-table">
 
         <ng-container matColumnDef="iconNumber">
-
-            <td mat-cell *matCellDef="let element">
+            <mat-cell *matCellDef="let element">
                 <img class="account-icon" [src]="getIconSrc(element.iconNumber)" alt="Icon">
-            </td>
+            </mat-cell>
         </ng-container>
-
 
         <ng-container matColumnDef="name">
-            <td mat-cell *matCellDef="let element">
-                <p class="account-name">{{element.name}} </p>
-            </td>
+            <mat-cell *matCellDef="let element">
+                <p class="account-name">{{element.name}}</p>
+            </mat-cell>
         </ng-container>
-
 
         <ng-container matColumnDef="amount">
-            <td mat-cell *matCellDef="let element" >
-                <p class="account-amount">{{element.amount}}<span class="account-amount__currency">{{element.currency}}</span></p> 
-            </td>
+            <mat-cell *matCellDef="let element">
+                <p class="account-amount">{{element.amount}}
+                    <span class="account-amount__currency">{{element.currency}}</span>
+                </p>
+            </mat-cell>
         </ng-container>
 
-        <tr class="account-amount__row" mat-row *matRowDef="let row; columns: displayedColumns;" class="accounts-table__data"></tr>
-    </table>
+        <mat-row class="account-amount__row" mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
+    </mat-table>
 
 </div>

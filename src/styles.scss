@@ -153,24 +153,6 @@ select {
   background-color: red; // replace with the color you want to use
 }
 
-.google {
-  position: absolute;
-  left: -30px;
-  top: 20%;
-  width: 32px;
-  height: 32px;
-  background: url('./assets/google.svg') no-repeat center center;
-}
-
-.facebook {
-  position: absolute;
-  width: 32px;
-  top: 20%;
-  left: -30px;
-  height: 32px;
-  background: url('./assets/facebook.svg') no-repeat center center;
-}
-
 .mat-mdc-form-field-hint-wrapper,
 .mat-mdc-form-field-error-wrapper {
   padding: 0 !important;
@@ -190,7 +172,9 @@ select {
 }
 
 .registration-dialog .mat-mdc-dialog-container .mdc-dialog__surface {
-  border-radius: 1.1rem;
+  border-radius: 30px;
+  background: #ffffff;
+  box-shadow: -2px -2px 16px rgba(39, 222, 191, 0.06), 2px 2px 16px rgba(39, 222, 191, 0.06);
 }
 
 .forgot-password-dialog .mat-mdc-dialog-container .mdc-dialog__surface {
