@@ -20,7 +20,7 @@
   text-align: center;
   color: #ffffff;
   transition: 0.5s;
-  margin-top: 10px;
+  margin-top: 17px;
 }
 
 .btn-submit:hover {
@@ -38,6 +38,13 @@ mat-error .ng-star-inserted {
   font-style: normal;
   font-weight: 500;
   font-size: calc(10px + 3 * (100vw - 320px) / 1600) !important;
+}
+
+.recaptcha-container {
+  background: #ffffff;
+  border: 1px solid #d0d0d0;
+  border-radius: 10px;
+  padding: 5px;
 }
 
 @media (max-width: 1020px) {
@@ -64,7 +71,7 @@ mat-error .ng-star-inserted {
 
 @media (max-width: 768px) {
   .registration-form {
-    gap: 40px;
+    gap: 10px;
   }
 
   .registration-form__passwords {

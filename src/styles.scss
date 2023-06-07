@@ -4,7 +4,6 @@
 @import 'normalize.css';
 @import './material';
 
-
 @font-face {
   font-family: 'Gilroy';
   font-weight: 100;
@@ -69,7 +68,6 @@
   font-style: normal;
   src: url('./assets/fonts/gilroy-black.woff2') format('woff2'), url('./assets/fonts/gilroy-black.woff') format('woff');
 }
-
 
 * {
   padding: 0;
@@ -166,6 +164,12 @@ select {
   font-style: normal !important;
   font-weight: 500 !important;
   font-size: calc(15px + 1 * (100vw - 320px) / 1600) !important;
+}
+
+.recaptcha__checkbox .mat-checkbox-background,
+.recaptcha__checkbox .mat-checkbox-frame,
+.recaptcha__checkbox .mdc-checkbox__background {
+  border-color: #1b9b85 !important;
 }
 
 @media (max-width: 768px) {

@@ -83,9 +83,11 @@
 
   <div class="flex flex-col gap-1 w-full">
     <p class="registration-form__text">Проверка*</p>
-    <mat-checkbox color="primary" formControlName="recaptcha" (change)="onChangeRecaptcha($event.checked)">
-      <span class="registration-form__text">Я не робот</span>
-    </mat-checkbox>
+    <div class="recaptcha-container">
+      <mat-checkbox class="recaptcha__checkbox" color="#1B9B85" formControlName="recaptcha" (change)="onChangeRecaptcha($event.checked)">
+        <span class="registration-form__text">Я не робот</span>
+      </mat-checkbox>
+    </div>
     <mat-error class="w-full" *ngIf="f['recaptcha'].invalid && f['recaptcha'].touched">
       <span *ngIf="f['recaptcha'].errors?.['required']">{{ ERROR_MESSAGES.REQUIRED }}</span>
     </mat-error>
