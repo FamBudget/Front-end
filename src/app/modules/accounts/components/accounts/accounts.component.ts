@@ -77,4 +77,5 @@ export class AccountsComponent implements OnInit {
     let src = this.iconsData.filter((data) => data.id === iconNumber)[0].path;
     return src;
   }
+  
 }

@@ -8,9 +8,10 @@
 
 .add-account-dialog__header {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: 3fr 1fr;
   grid-gap: 20px;
   grid-auto-flow: dense;
+  align-items: center;
 }
 
 .dialog-actions {
@@ -82,9 +83,10 @@
   font-weight: 700;
   font-size: calc(18px + 8 * (100vw - 320px) / 1600);
   line-height: 135%;
-  color: #263834;
+  color: #263834; 
   padding: 0;
   white-space: nowrap;
+  margin-bottom: 0;
 }
 
 input[type='date'] {

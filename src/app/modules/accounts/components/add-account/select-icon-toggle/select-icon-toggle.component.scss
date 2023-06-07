@@ -44,8 +44,8 @@
   color: #263834;
 }
 
-@media screen and (max-width: 715px) {
-  :host {
-    justify-self: center;
-  }
+::ng-deep mat-form-field {
+  width: 50px !important;
+  height: 50px !important;
+  background-color: antiquewhite !important;
 }

@@ -168,6 +168,12 @@ select {
   font-size: calc(15px + 1 * (100vw - 320px) / 1600) !important;
 }
 
+.recaptcha__checkbox .mat-checkbox-background,
+.recaptcha__checkbox .mat-checkbox-frame,
+.recaptcha__checkbox .mdc-checkbox__background {
+  border-color: #1b9b85 !important;
+}
+
 @media (max-width: 768px) {
   .mat-mdc-dialog-surface,
   .mdc-dialog__surface {
