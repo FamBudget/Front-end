@@ -4,7 +4,6 @@
 @import 'normalize.css';
 @import './material';
 
-
 @font-face {
   font-family: 'Gilroy';
   font-weight: 100;
@@ -69,7 +68,6 @@
   font-style: normal;
   src: url('./assets/fonts/gilroy-black.woff2') format('woff2'), url('./assets/fonts/gilroy-black.woff') format('woff');
 }
-
 
 * {
   padding: 0;
