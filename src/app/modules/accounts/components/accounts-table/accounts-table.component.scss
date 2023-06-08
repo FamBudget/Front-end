@@ -44,14 +44,15 @@
   grid-gap: 20px;
   grid-auto-flow: dense;
 }
-.mat-date-range-input {
-  width: fit-content;
-}
 
 .mat-date-range-input-wrapper {
   width: fit-content !important;
 }
-
+.table-filters__range .mat-mdc-form-field-flex {
+  display: flex;
+  gap: 30px;
+  width: 300px;
+}
 .input-range {
   font-family: 'Gilroy';
   font-style: normal;
@@ -61,9 +62,9 @@
   color: #263834;
 }
 
-.picker-form {
-  width: 100%;
-}
+// .picker-form {
+//   width: 100%;
+// }
 
 .toggle-group {
   border-radius: 10px;
@@ -76,7 +77,6 @@
   line-height: 140%;
 }
 
-
 .mat-button-toggle {
   background-color: transparent;
   color: #263834 !important;
@@ -84,12 +84,11 @@
   border: 1px solid #d0d0d0;
 }
 
-
 .mat-button-toggle:hover {
   background-color: transparent;
   color: #263834 !important;
 }
- 
+
 .mat-button-toggle-checked {
   background: #1b9b85;
   color: #ffffff !important;
@@ -143,7 +142,7 @@
 
 .table-moving__paginator ::ng-deep .mat-mdc-paginator-page-size-label,
 ::ng-deep .mat-mdc-paginator-range-label,
-::ng-deep .ng-tns-c26-6 { 
+::ng-deep .ng-tns-c26-6 {
   font-family: 'Gilroy';
   font-style: normal;
   font-weight: 400;
@@ -151,12 +150,6 @@
   line-height: 140%;
   color: #263834;
   padding: 0;
-}
-
-.range {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .toggle-btns {

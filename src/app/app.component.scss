@@ -11,7 +11,7 @@
   padding: 10px;
   background: #f9fffe;
 }
-
+ 
 .sidenav__list-text {
   font-family: 'Gilroy';
   font-style: normal;
@@ -35,13 +35,12 @@
   }
 }
 
-.sidenav__list-icon {
-  margin-top: 3px;
-}
-
 .chevron-btn {
-  margin-top: 1rem;
-  margin-left: 30%;
+  margin-top: 50%;
+  align-self: flex-end;
+  background: #e2fffa;
+  box-shadow: -2px -2px 16px rgba(39, 222, 191, 0.02), 2px 2px 16px rgba(39, 222, 191, 0.02);
+  border-radius: 12px 0px 0px 12px;
 }
 
 .chevron-btn:hover {
@@ -75,6 +74,7 @@
   transition: width 0.2s;
   width: 270px !important;
   padding: 10px;
+  padding-right: 0;
 }
 
 .mini-variant {
@@ -91,6 +91,17 @@
 .header-content {
   display: flex;
   flex-direction: column;
+}
+
+.sidenav__list-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-icon {
+  width: 22px;
+  height: 22px;
 }
 
 mat-divider {

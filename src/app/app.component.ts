@@ -71,7 +71,6 @@ export class AppComponent {
     }
   }
 
-
   public isSidenavExisted(): boolean {
     return this.router.url !== '/';
   }
@@ -97,12 +96,13 @@ export class AppComponent {
         case 'expense':
           return 'Расходы';
         case 'reports':
-          return 'Отчеты';
+          return 'Отчёты';
         case 'settings':
           return 'Настройки';
         default:
           return '';
       }
     }
+    
   }
 }

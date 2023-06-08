@@ -44,8 +44,7 @@
   color: #263834;
 }
 
-@media screen and (max-width: 715px) {
-  :host {
-    justify-self: center;
-  }
+ .add-account__form-item {
+  width: 100px;
+  height: 50px !important;
 }
