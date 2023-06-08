@@ -48,23 +48,22 @@
 .mat-date-range-input-wrapper {
   width: fit-content !important;
 }
+
 .table-filters__range .mat-mdc-form-field-flex {
   display: flex;
   gap: 30px;
   width: 300px;
 }
+
+
 .input-range {
   font-family: 'Gilroy';
   font-style: normal;
   font-weight: 500;
-  font-size: calc(12px + 4 * (100vw - 320px) / 1600);
+  font-size: calc(12px + 2 * (100vw - 320px) / 1600);
   line-height: 140%;
   color: #263834;
 }
-
-// .picker-form {
-//   width: 100%;
-// }
 
 .toggle-group {
   border-radius: 10px;
@@ -104,6 +103,20 @@
 
 .table-moving {
   max-width: 100%;
+}
+
+@media (max-width: 768px) {
+  .table-moving {
+    width: 100%;
+  }
+  .mat-header-row {
+    display: flex;
+  }
+
+  .mat-header-cell {
+    flex: 1 1 auto;
+    min-width: 100px;
+  }
 }
 
 .table-moving__header {
@@ -154,7 +167,7 @@
 
 .toggle-btns {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
 }
 

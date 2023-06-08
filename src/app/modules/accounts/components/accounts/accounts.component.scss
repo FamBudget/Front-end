@@ -92,6 +92,12 @@
   justify-content: flex-end;
 }
 
+.accounts-table__wrapper {
+  width: 100%;
+  border-radius: 1.25rem;
+  overflow: auto;
+}
+
 .account-amount {
   text-align: end;
 }
@@ -114,5 +120,19 @@
 @media screen and (max-width: 600px) {
   .mat-add-btn[size='medium'] {
     width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .accounts-table {
+    width: 100%;
+  }
+  .accounts-table .mat-header-row {
+    display: flex;
+  }
+
+  .accounts-table .mat-header-cell {
+    flex: 1 1 auto;
+    min-width: 100px;
   }
 }
