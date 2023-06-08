@@ -11,10 +11,14 @@
   grid-gap: calc(20px + 20 * (100vw - 320px) / 1600);
 }
 
-
-
 @media screen and (max-width: 1200px) {
-.accounts-content {
+  .accounts-content {
     grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .accounts-content {
+    grid-template-columns: repeat(auto-fit, minmax(285px, 1fr));
   }
 }
