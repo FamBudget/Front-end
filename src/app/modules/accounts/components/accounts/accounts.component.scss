@@ -79,12 +79,17 @@
   border-bottom-style: solid;
 }
 
+.accounts-table .mat-table-row:last-child .mat-cell:last-of-type .account-amount {
+  justify-content: flex-end !important;
+}
+
 .account-amount__currency {
   margin-left: 5px;
 }
 
-.mat-mdc-cell {
-  justify-content: flex-start;
+.accounts-table .mat-mdc-cell:last-child {
+  text-align: right;
+  justify-content: flex-end;
 }
 
 .account-amount {

@@ -215,12 +215,23 @@ select {
 .mdc-list-item__primary-text {
   display: flex !important;
   gap: 10px !important;
+  align-items: center;
 }
 
 .mini-variant .mdc-list-item__content {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.mdc-list-item,
+.mdc-list-item--with-one-line {
+  height: 60px !important;
+}
+
+.mat-drawer-inner-container {
+  display: flex;
+  flex-direction: column;
 }
 
 .add-account-icons .mat-mdc-select-arrow {
@@ -272,4 +283,9 @@ select {
   align-items: center;
   justify-content: center;
   width: 100%;
+}
+
+.table-moving__paginator .mat-mdc-paginator-container {
+  justify-content: center !important;
+  gap: 5px !important;
 }

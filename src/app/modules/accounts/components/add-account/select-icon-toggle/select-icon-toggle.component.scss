@@ -44,8 +44,7 @@
   color: #263834;
 }
 
-::ng-deep mat-form-field {
-  width: 50px !important;
+ .add-account__form-item {
+  width: 100px;
   height: 50px !important;
-  background-color: antiquewhite !important;
 }

@@ -1,6 +1,7 @@
 .accounts-section {
   width: 100%;
   height: 100%;
+  padding: calc(20px + 20 * (100vw - 320px) / 1600);
 }
 
 .accounts-content {
