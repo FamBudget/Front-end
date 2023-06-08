@@ -1,25 +1,25 @@
 <section class="table-section">
     <!-- <button (click)="addOperation()">Add operation</button> -->
     <div class="table-filters">
-        <div class="range">
-            <mat-form-field class="table-filters__range">
-                <mat-date-range-input [rangePicker]="picker" [formGroup]="dateRangeForm">
-                    <input class="input-range" readonly matStartDate placeholder="From Date" required formControlName="start"
-                        [(ngModel)]="startDate">
-                    <input class="input-range" readonly matEndDate placeholder="To Date" required formControlName="end"
-                        [(ngModel)]="endDate" (dateChange)="onDateRangeChange()">
-                </mat-date-range-input>
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-date-range-picker #picker color="accent"></mat-date-range-picker>
-                <!-- Invalid Date Messages -->
-                <mat-error *ngIf="(f['start'].errors?.['required']) || (f['end'].errors?.['required'])">
-                    {{ERROR_MESSAGES.REQUIRED}}
-                </mat-error>
-                <mat-error *ngIf="f['start'].errors?.['futureDate'] || f['end'].errors?.['futureDate']">
-                    <span>{{ ERROR_MESSAGES.INVALID_FUTURE_DATE }}</span>
-                </mat-error>
-            </mat-form-field>
-        </div>
+
+        <mat-form-field class="table-filters__range">
+            <mat-date-range-input [rangePicker]="picker" [formGroup]="dateRangeForm">
+                <input class="input-range" readonly matStartDate placeholder="From Date" required
+                    formControlName="start" [(ngModel)]="startDate" (click)="openDatePicker()">
+                <input class="input-range" readonly matEndDate placeholder="To Date" required formControlName="end"
+                    [(ngModel)]="endDate" (dateChange)="onDateRangeChange()" (click)="openDatePicker()">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker color="accent"></mat-date-range-picker>
+            <!-- Invalid Date Messages -->
+            <mat-error *ngIf="(f['start'].errors?.['required']) || (f['end'].errors?.['required'])">
+                {{ERROR_MESSAGES.REQUIRED}}
+            </mat-error>
+            <mat-error *ngIf="f['start'].errors?.['futureDate'] || f['end'].errors?.['futureDate']">
+                <span>{{ ERROR_MESSAGES.INVALID_FUTURE_DATE }}</span>
+            </mat-error>
+        </mat-form-field>
+
 
         <div class="toggle-btns">
             <mat-button-toggle-group #group="matButtonToggleGroup" class="toggle-group" name="fontStyle"
@@ -31,8 +31,8 @@
         </div>
 
     </div>
-    <div class="mat-elevation-z8 table-moving ">
-        <table class="table table-moving" mat-table [dataSource]="dataSource" matSort>
+    <div class="mat-elevation-z8 table-moving">
+        <table class="moving-table" mat-table [dataSource]="dataSource" matSort>
             <ng-container matColumnDef="accountFrom">
                 <th class="table-moving__header" mat-header-cell *matHeaderCellDef mat-sort-header="accountFrom"
                     [disableClear]="true"> Откуда</th>
@@ -55,13 +55,15 @@
             <ng-container matColumnDef="createdOn">
                 <th class="table-moving__header" mat-header-cell *matHeaderCellDef [disableClear]="true"
                     mat-sort-header="createdOn"> Дата </th>
-                <td class="table-moving__data" mat-cell *matCellDef="let element"> {{element.createdOn | date:'dd-MM-yyyy'}} </td>
+                <td class="table-moving__data" mat-cell *matCellDef="let element"> {{element.createdOn |
+                    date:'dd-MM-yyyy'}} </td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr class="table-moving__row" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
-        <mat-paginator class="table-moving__paginator"[pageSizeOptions]="[5,10,20]" showFirstLastButtons></mat-paginator>
+        <mat-paginator class="table-moving__paginator" [pageSizeOptions]="[5,10,20]"
+            showFirstLastButtons></mat-paginator>
     </div>
 
 </section>

@@ -250,14 +250,14 @@ select {
 }
 // ________
 
-.table-filters__range .mat-mdc-form-field-subscript-wrapper {
+.table-filters .mat-mdc-form-field-subscript-wrapper {
   background-color: transparent !important;
 }
 
-.table-filters__range .mdc-text-field--filled {
+.table-filters .mdc-text-field--filled {
   background-color: transparent !important;
 }
-.table-filters__range .mat-mdc-form-field-focus-overlay {
+.table-filters .mat-mdc-form-field-focus-overlay {
   background-color: transparent !important;
 }
 
@@ -265,8 +265,26 @@ select {
   display: none;
 }
 
-.range div[matformfieldlineripple] {
+.table-filters div[matformfieldlineripple] {
   display: none;
+}
+
+.table-filters .mat-mdc-form-field-flex {
+  max-width: 350px;
+}
+
+.table-filters .mat-mdc-form-field-has-icon-suffix .mat-mdc-text-field-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.table-filters .mat-mdc-form-field-error {
+  text-align: center;
+}
+
+.table-filters .mdc-text-field {
+  padding: 0 !important;
 }
 
 .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
@@ -288,4 +306,8 @@ select {
 .table-moving__paginator .mat-mdc-paginator-container {
   justify-content: center !important;
   gap: 5px !important;
+}
+
+.table-filters .mat-date-range-input-separator {
+  margin-right: auto !important;
 }

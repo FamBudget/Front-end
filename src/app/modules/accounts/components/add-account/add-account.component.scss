@@ -39,7 +39,7 @@
   padding: 16px 10px;
   box-shadow: -2px -2px 16px rgba(39, 222, 191, 0.06), 2px 2px 16px rgba(39, 222, 191, 0.06);
   border-radius: 1.25rem;
-  border: 1px solid #1B9B85;
+  border: 1px solid #1b9b85;
 }
 
 .submit-btn {
@@ -50,16 +50,18 @@
   background: #1b9b85;
   box-shadow: inset -5px -5px 32px rgba(255, 255, 255, 0.16), inset 5px 5px 32px rgba(255, 255, 255, 0.16);
   border-radius: 1.25rem;
-  color: #ffffff;  
+  color: #ffffff;
   padding: 16px 10px;
 }
 
 .add-account-form__input {
   width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
+  padding: 14px 22px;
+  margin: 5px 0 20px 0;
   display: inline-block;
-  border: 1px solid #ccc;
+  background: #ffffff;
+  border: 1px solid #d0d0d0;
+  border-radius: 10px;
 }
 
 .add-account-form {
@@ -83,7 +85,7 @@
   font-weight: 700;
   font-size: calc(18px + 8 * (100vw - 320px) / 1600);
   line-height: 135%;
-  color: #263834; 
+  color: #263834;
   padding: 0;
   white-space: nowrap;
   margin-bottom: 0;
@@ -105,6 +107,12 @@ input[type='number']:focus {
   -moz-appearance: textfield;
 }
 
+.add-account-form__field-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
 .add-account-form__field {
   display: flex;
   flex-direction: column;
@@ -113,17 +121,6 @@ input[type='number']:focus {
 
 button[disabled] {
   opacity: 0.5;
-}
-
-.add-account-form__input-initial-balance::-webkit-calendar-picker-indicator,
-.add-account-form__input-initial-balance::-webkit-inner-spin-button {
-  filter: invert(45%) sepia(99%) saturate(342%) hue-rotate(120deg) brightness(90%) contrast(91%); /* установите нужный цвет иконки */
-}
-
-.add-account-form__input-initial-balance[type='date']::-webkit-calendar-picker-indicator,
-.add-account-form__input-initial-balance[type='date']::-webkit-inner-spin-button,
-.add-account-form__input-initial-balance[type='date']::-moz-calendar-picker-icon {
-  filter: invert(45%) sepia(99%) saturate(342%) hue-rotate(120deg) brightness(90%) contrast(91%); /* установите нужный цвет иконки */
 }
 
 @media screen and (max-width: 700px) {
