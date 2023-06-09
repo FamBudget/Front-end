@@ -12,6 +12,12 @@
   flex-direction: column;
   gap: 30px;
   margin: 0 auto;
+  max-height: 40vh;
+  overflow-y: auto;
+}
+
+.accounts-table {
+  padding-right: calc(10px + 5 * (100vw - 320px) / 1600);
 }
 
 .accounts-title {

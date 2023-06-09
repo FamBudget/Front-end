@@ -167,7 +167,7 @@ export class AccountsTableComponent implements OnInit {
         this.dataSource.data = this.empData;
         break;
     }
-    this.dataSource.paginator.firstPage(); // сброс пагинации при фильтрации
+    // this.dataSource.paginator.firstPage(); // сброс пагинации при фильтрации
   }
 
   public nameComparator(a: any, b: any): number {

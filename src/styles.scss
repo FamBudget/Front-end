@@ -191,6 +191,12 @@ select {
   box-shadow: -2px -2px 16px rgba(39, 222, 191, 0.06), 2px 2px 16px rgba(39, 222, 191, 0.06);
 }
 
+.accounts-image-dialog .mat-mdc-dialog-container .mdc-dialog__surface {
+  background: #ffffff;
+  box-shadow: -2px -2px 16px rgba(39, 222, 191, 0.06), 2px 2px 16px rgba(39, 222, 191, 0.06);
+  border-radius: 30px;
+}
+
 .forgot-password-dialog .mat-mdc-dialog-container .mdc-dialog__surface {
   border-radius: 1.1rem;
 }

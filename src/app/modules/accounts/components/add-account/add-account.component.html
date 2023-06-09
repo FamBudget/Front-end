@@ -2,8 +2,9 @@
     <div class="add-account-dialog">
         <div class="add-account-dialog__header">
             <h2 class="add-account-dialog__title" mat-dialog-title>Добавить счет</h2>
-            <app-select-icon-toggle (toggleLayout)="onToggleLayout($event)" [isTileLayout]="isTileLayout"
-                (selectIconChanged)="onIconChanged($event)"></app-select-icon-toggle>
+            <!-- <app-select-icon-toggle (toggleLayout)="onToggleLayout($event)" [isTileLayout]="isTileLayout"
+                (selectIconChanged)="onIconChanged($event)"></app-select-icon-toggle> -->
+            <app-image-picker></app-image-picker>
         </div>
         <mat-dialog-content>
             <div class="add-account-form">

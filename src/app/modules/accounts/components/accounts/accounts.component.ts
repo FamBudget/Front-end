@@ -6,10 +6,12 @@ import { LocalStorageService, SnackBarService } from 'src/app/shared/services';
 import { Account, AccountIcon, RequestGetAccounts } from '../../models';
 import { ACCOUNT_ICONS_DATA } from './data';
 
+
 @Component({
   selector: 'app-accounts',
   templateUrl: './accounts.component.html',
   styleUrls: ['./accounts.component.scss'],
+  
 })
 export class AccountsComponent implements OnInit {
   public params: RequestGetAccounts = {
@@ -77,5 +79,4 @@ export class AccountsComponent implements OnInit {
     let src = this.iconsData.filter((data) => data.id === iconNumber)[0].path;
     return src;
   }
-  
 }
