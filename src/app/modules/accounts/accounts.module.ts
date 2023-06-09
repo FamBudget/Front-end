@@ -12,7 +12,6 @@ import {
   AccountsTableComponent,
   AddAccountComponent,
   ImagePickerComponent,
-  SelectIconToggleComponent,
 } from './components';
 import { ImageDialogComponent } from './components/add-account/image-dialog/image-dialog.component';
 @NgModule({
@@ -21,7 +20,6 @@ import { ImageDialogComponent } from './components/add-account/image-dialog/imag
     AccountsComponent,
     AccountsTableComponent,
     AddAccountComponent,
-    SelectIconToggleComponent,
     ImagePickerComponent,
     ImageDialogComponent,
   ],

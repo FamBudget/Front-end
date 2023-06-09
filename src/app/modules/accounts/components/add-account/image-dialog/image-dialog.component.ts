@@ -1,5 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { AccountIcon } from '../../../models';
+import { ACCOUNT_ICONS_DATA } from '../../..';
 
 @Component({
   selector: 'app-image-dialog',
@@ -7,25 +9,25 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./image-dialog.component.scss'],
 })
 export class ImageDialogComponent {
-  images: any[];
-  selectedImage: any;
+  public images: AccountIcon[] = ACCOUNT_ICONS_DATA;
+  public selectedImage: AccountIcon = this.images[0];
 
   constructor(
     public dialogRef: MatDialogRef<ImageDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { images: any[] },
+    @Inject(MAT_DIALOG_DATA) public data: { images: AccountIcon[] },
   ) {
     this.images = data.images;
   }
 
-  selectImage(image: any) {
+  public selectImage(image: AccountIcon): void {
     this.selectedImage = image;
   }
 
-  ok() {
+  public ok(): void {
     this.dialogRef.close(this.selectedImage);
   }
 
-  cancel() {
+  public cancel(): void {
     this.dialogRef.close();
   }
 }
