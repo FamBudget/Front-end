@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ACCOUNT_ICONS_DATA } from '../../..';
+import { ACCOUNT_ICONS_DATA, AccountIcon } from '../../..';
 import { MatDialog } from '@angular/material/dialog';
 import { ImageDialogComponent } from '../image-dialog/image-dialog.component';
 
@@ -9,8 +9,8 @@ import { ImageDialogComponent } from '../image-dialog/image-dialog.component';
   styleUrls: ['./image-picker.component.scss'],
 })
 export class ImagePickerComponent {
-  public images = ACCOUNT_ICONS_DATA;
-  public selectedImage = this.images[0];
+  public images: Array<AccountIcon> = ACCOUNT_ICONS_DATA;
+  public selectedImage: AccountIcon = this.images[0];
   constructor(private dialog: MatDialog) {}
 
   openDialog() {
