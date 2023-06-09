@@ -1,10 +1,10 @@
 .accounts-section {
   width: 100%;
-  height: 100%;
   padding: calc(20px + 20 * (100vw - 320px) / 1600);
+  padding-top: 0;
 }
 
-.accounts-content {
+.accounts-content { 
   display: grid;
   grid-template-columns: 1.2fr 2fr;
   grid-gap: 20px;
