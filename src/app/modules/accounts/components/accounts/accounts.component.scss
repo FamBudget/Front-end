@@ -142,3 +142,15 @@
     min-width: 100px;
   }
 }
+
+.account-amount__row {
+  background: #f9fffe;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.account-amount__row:hover {
+  background-color: #f9fffe !important;
+}

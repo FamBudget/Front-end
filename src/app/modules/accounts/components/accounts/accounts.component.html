@@ -6,7 +6,8 @@
             Добавить счет</button>
     </div>
 
-    <div class="accounts-table__wrapper"> <mat-table [dataSource]="accountsData" class="accounts-table">
+    <div class="accounts-table__wrapper">
+        <mat-table [dataSource]="accountsData" class="accounts-table">
 
             <ng-container matColumnDef="iconNumber">
                 <mat-cell *matCellDef="let element">
@@ -30,7 +31,8 @@
 
             <mat-row class="account-amount__row" mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
-        </mat-table></div>
+        </mat-table>
+    </div>
 
 
 </div>
