@@ -185,6 +185,12 @@
 
   .auth-page__left {
     order: 2;
+    display: block;
+  }
+  
+  .auth-page__img-container {
+    align-items: center;
+    justify-content: center;
   }
 
   .auth-page__right {
@@ -209,11 +215,6 @@
     line-height: 37px;
   }
 }
-
-// .auth-page__left,
-//   .auth-page__right{
-//   width: calc(50% - 32px);
-// }
 
 @media screen and (min-width: 768px) {
   .auth-page__left,
