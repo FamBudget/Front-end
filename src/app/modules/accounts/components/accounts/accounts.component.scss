@@ -8,11 +8,16 @@
   background-color: #ffffff;
   box-shadow: -2px -2px 16px rgba(39, 222, 191, 0.06), 2px 2px 16px rgba(39, 222, 191, 0.06);
   border-radius: 20px;
-  max-width: 562px;
   display: flex;
   flex-direction: column;
   gap: 30px;
   margin: 0 auto;
+  max-height: 40vh;
+  overflow-y: auto;
+}
+
+.accounts-table {
+  padding-right: calc(10px + 5 * (100vw - 320px) / 1600);
 }
 
 .accounts-title {
@@ -20,6 +25,7 @@
   font-weight: 600;
   line-height: 131%;
   font-size: calc(18px + 10 * (100vw - 320px) / 1600);
+  margin: 0;
 }
 
 .accounts-top {
@@ -29,28 +35,28 @@
   grid-auto-flow: dense;
 }
 
-.add-account-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 12px 24px;
-  gap: 16px;
-  background: #1b9b85;
+.mat-add-btn {
+  background-color: #1b9b85 !important;
+  color: white !important;
   box-shadow: inset -5px -5px 32px rgba(255, 255, 255, 0.16), inset 5px 5px 32px rgba(255, 255, 255, 0.16);
-  border-radius: 10px;
+  border-radius: 10px !important;
   color: #ffffff;
   font-family: 'Gilroy';
-  font-weight: 500;
+  font-weight: 400;
   line-height: 140%;
   font-size: calc(14px + 6 * (100vw - 320px) / 1600);
   white-space: nowrap;
+}
+
+.mat-add-btn[size='medium'] {
+  height: 52px;
 }
 
 .account-icon {
   font-size: calc(16px + 8 * (100vw - 320px) / 1600);
   width: calc(16px + 8 * (100vw - 320px) / 1600);
   height: calc(16px + 8 * (100vw - 320px) / 1600);
-  width: 100%;
+  width: fit-content;
 }
 
 .account-name {
@@ -79,12 +85,23 @@
   border-bottom-style: solid;
 }
 
+.accounts-table .mat-table-row:last-child .mat-cell:last-of-type .account-amount {
+  justify-content: flex-end !important;
+}
+
 .account-amount__currency {
   margin-left: 5px;
 }
 
-.mat-mdc-cell {
-  justify-content: flex-start;
+.accounts-table .mat-mdc-cell:last-child {
+  text-align: right;
+  justify-content: flex-end;
+}
+
+.accounts-table__wrapper {
+  width: 100%;
+  border-radius: 1.25rem;
+  overflow: auto;
 }
 
 .account-amount {
@@ -92,8 +109,8 @@
 }
 
 .mat-mdc-cell {
-  padding-left: 3px;  
-  padding-right: 3px; 
+  padding-left: 3px;
+  padding-right: 3px;
 }
 
 @media screen and (max-width: 767px) {
@@ -102,7 +119,38 @@
     display: block;
   }
   .mat-table {
-    /* устанавливаем минимальную ширину таблицы, чтобы она не сжималась слишком сильно на маленьких экранах */
     min-width: 100%;
   }
+}
+
+@media screen and (max-width: 600px) {
+  .mat-add-btn[size='medium'] {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .accounts-table {
+    width: 100%;
+  }
+  .accounts-table .mat-header-row {
+    display: flex;
+  }
+
+  .accounts-table .mat-header-cell {
+    flex: 1 1 auto;
+    min-width: 100px;
+  }
+}
+
+.account-amount__row {
+  background: #f9fffe;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.account-amount__row:hover {
+  background-color: #f9fffe !important;
 }

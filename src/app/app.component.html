@@ -6,62 +6,72 @@
             <a class="sidenav__list-item" mat-list-item routerLink="/operations" routerLinkActive="active"
                 [matTooltip]="!isExpanded ? 'Операции' : ''" matTooltipPosition="right" matTooltipHideDelay="300"
                 class="sidenav__link">
-                <mat-icon class="sidenav__list-icon">work_outline</mat-icon>
+                <img class="menu-icon"
+                    [src]="(pageTitle === 'Операции') ? '../assets/menu/fill/transactions-fill.svg' : '../assets/menu/outline/transactions-outline.svg'"
+                    alt="Menu icon">
                 <p class="sidenav__list-text" *ngIf="isExpanded">Операции</p>
             </a>
             <a class="sidenav__list-item" mat-list-item routerLink="/accounts" routerLinkActive="active"
                 [matTooltip]="!isExpanded ? 'Счета' : ''" matTooltipPosition="right" matTooltipHideDelay="300"
                 class="sidenav__link">
-                <mat-icon class="sidenav__list-icon">account_balance</mat-icon>
+                <img class="menu-icon"
+                    [src]="(pageTitle === 'Счета') ? '../assets/menu/fill/accounts-fill.svg' : '../assets/menu/outline/accounts-outline.svg'"
+                    alt="Menu icon">
                 <p class="sidenav__list-text" *ngIf="isExpanded">Счета</p>
             </a>
             <a class="sidenav__list-item" mat-list-item routerLink="/budget" routerLinkActive="active"
                 [matTooltip]="!isExpanded ? 'Бюджет' : ''" matTooltipPosition="right" matTooltipHideDelay="300"
                 class="sidenav__link">
-                <mat-icon class="sidenav__list-icon">pie_chart</mat-icon>
+                <img class="menu-icon"
+                    [src]="(pageTitle === 'Бюджет') ? '../assets/menu/fill/budget-fill.svg' : '../assets/menu/outline/budget-outline.svg'"
+                    alt="Menu icon">
                 <p class="sidenav__list-text" *ngIf="isExpanded">Бюджет</p>
             </a>
             <a class="sidenav__list-item" mat-list-item routerLink="/income" routerLinkActive="active"
                 [matTooltip]="!isExpanded ? 'Доходы' : ''" matTooltipPosition="right" matTooltipHideDelay="300"
                 class="sidenav__link">
-                <mat-icon class="sidenav__list-icon">attach_money</mat-icon>
+                <img class="menu-icon"
+                    [src]="(pageTitle === 'Доходы') ? '../assets/menu/fill/income-fill.svg' : '../assets/menu/outline/income-outline.svg'"
+                    alt="Menu icon">
                 <p class="sidenav__list-text" *ngIf="isExpanded">Доходы</p>
             </a>
             <a class="sidenav__list-item" mat-list-item routerLink="/expense" routerLinkActive="active"
                 [matTooltip]="!isExpanded ? 'Расходы' : ''" matTooltipPosition="right" matTooltipHideDelay="300"
                 class="sidenav__link">
-                <mat-icon class="sidenav__list-icon">money_off</mat-icon>
+                <img class="menu-icon"
+                    [src]="(pageTitle === 'Расходы') ? '../assets/menu/fill/expenses-fill.svg' : '../assets/menu/outline/expenses-outline.svg'"
+                    alt="Menu icon">
                 <p class="sidenav__list-text" *ngIf="isExpanded">Расходы</p>
             </a>
             <a class="sidenav__list-item" mat-list-item routerLink="/reports" routerLinkActive="active"
                 [matTooltip]="!isExpanded ? 'Отчёты' : ''" matTooltipPosition="right" matTooltipHideDelay="300"
                 class="sidenav__link">
-                <mat-icon class="sidenav__list-icon">description</mat-icon>
+                <img class="menu-icon"
+                    [src]="(pageTitle === 'Отчёты') ? '../assets/menu/fill/reports-fill.svg' : '../assets/menu/outline/reports-outline.svg'"
+                    alt="Menu icon">
                 <p class="sidenav__list-text" *ngIf="isExpanded">Отчёты</p>
             </a>
             <mat-divider></mat-divider>
             <a class="sidenav__list-item" mat-list-item routerLink="/settings"
                 [matTooltip]="!isExpanded ? 'Настройки' : ''" matTooltipPosition="right" matTooltipHideDelay="300"
                 class="sidenav__link">
-                <mat-icon class="sidenav__list-icon">settings</mat-icon>
+                <img class="menu-icon"
+                    [src]="(pageTitle === 'Настройки') ? '../assets/menu/fill/settings-fill.svg' : '../assets/menu/outline/settings-ouline.svg'"
+                    alt="Menu icon">
                 <p class="sidenav__list-text" *ngIf="isExpanded">Настройки</p>
             </a>
             <a mat-list-item [matTooltip]="!isExpanded ? 'Справка' : ''" matTooltipPosition="right"
                 matTooltipHideDelay="300" class="sidenav__link">
-                <mat-icon class="sidenav__list-icon">help_outline</mat-icon>
+                <img class="menu-icon" src="../assets/menu/outline/help-outline.svg" alt="Menu icon">
                 <p class="sidenav__list-text" *ngIf="isExpanded">Справка</p>
             </a>
-            <mat-divider></mat-divider>
-
-            <button class="chevron-btn" mat-icon-button (click)="isExpanded = !isExpanded" matTooltip="Меню"
-                matTooltipPosition="right" matTooltipHideDelay="300" *ngIf="!checkIsMobile()">
-                <mat-icon class="sidenav__list-icon sidenav__list-icon-chevron"
-                    *ngIf="!isExpanded">chevron_right</mat-icon>
-                <mat-icon class="sidenav__list-icon sidenav__list-icon-chevron"
-                    *ngIf="isExpanded">chevron_left</mat-icon>
-            </button>
-
         </mat-nav-list>
+
+        <button class="chevron-btn" mat-icon-button (click)="isExpanded = !isExpanded" matTooltip="Меню"
+            matTooltipPosition="right" matTooltipHideDelay="300" *ngIf="!checkIsMobile()">
+            <mat-icon class="sidenav__list-icon sidenav__list-icon-chevron" *ngIf="!isExpanded">chevron_right</mat-icon>
+            <mat-icon class="sidenav__list-icon sidenav__list-icon-chevron" *ngIf="isExpanded">chevron_left</mat-icon>
+        </button>
     </mat-sidenav>
 
     <!-- контент страницы -->

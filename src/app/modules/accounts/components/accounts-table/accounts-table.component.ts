@@ -11,6 +11,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { FutureDateValidator } from 'src/app/shared/validators';
+import { MatDatepicker } from '@angular/material/datepicker';
 
 export const GRI_DATE_FORMATS: MatDateFormats = {
   ...MAT_NATIVE_DATE_FORMATS,
@@ -19,7 +20,7 @@ export const GRI_DATE_FORMATS: MatDateFormats = {
     dateInput: {
       year: 'numeric',
       month: 'long',
-      day: '2-digit'
+      day: '2-digit',
     } as Intl.DateTimeFormatOptions,
   },
 };
@@ -46,6 +47,7 @@ export class AccountsTableComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild('picker') picker!: MatDatepicker<Date>;
 
   constructor(
     private readonly adapter: DateAdapter<Date>,
@@ -69,6 +71,10 @@ export class AccountsTableComponent implements OnInit {
 
   public get f() {
     return this.dateRangeForm.controls;
+  }
+
+  public openDatePicker(): void {
+    this.picker.open();
   }
 
   public getMovingAccounts(): void {
@@ -161,7 +167,7 @@ export class AccountsTableComponent implements OnInit {
         this.dataSource.data = this.empData;
         break;
     }
-    this.dataSource.paginator.firstPage(); // сброс пагинации при фильтрации
+    // this.dataSource.paginator.firstPage(); // сброс пагинации при фильтрации
   }
 
   public nameComparator(a: any, b: any): number {

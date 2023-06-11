@@ -4,15 +4,15 @@
 }
 
 .mat-sidenav {
-  height: 98%;
+  height: 100%;
 }
 
 .mat-sidenav-content {
-  padding: 10px;
-  background: #F9FFFE;
+  background: #f9fffe;
+  overflow: auto;
 }
 
-.sidenav__list-text { 
+.sidenav__list-text {
   font-family: 'Gilroy';
   font-style: normal;
   font-weight: 500;
@@ -35,13 +35,12 @@
   }
 }
 
-.sidenav__list-icon {
-  margin-top: 3px;
-}
-
 .chevron-btn {
-  margin-top: 1rem;
-  margin-left: 30%;
+  margin-top: 50%;
+  align-self: flex-end;
+  background: #e2fffa;
+  box-shadow: -2px -2px 16px rgba(39, 222, 191, 0.02), 2px 2px 16px rgba(39, 222, 191, 0.02);
+  border-radius: 12px 0px 0px 12px;
 }
 
 .chevron-btn:hover {
@@ -56,8 +55,9 @@
   font-family: 'Gilroy';
   font-style: normal;
   font-weight: 600;
-  font-size: 32px;
+  font-size: calc(25px + 15 * (100vw - 320px) / 1600);
   line-height: 131%;
+  padding: 3rem 0 3rem 3rem;
 }
 
 .sidenav__logo {
@@ -72,6 +72,12 @@
 
 .mat-sidenav {
   transition: width 0.2s;
+  width: 270px !important;
+  padding: 10px;
+  padding-right: 0;
+}
+
+.mini-variant {
   width: fit-content !important;
 }
 
@@ -87,16 +93,30 @@
   flex-direction: column;
 }
 
-.sidenav {
-  padding: 10px;
+.sidenav__list-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-// sidenav__toggle-button
+.menu-icon {
+  width: 22px;
+  height: 22px;
+}
 
 mat-divider {
   margin-top: 16px;
   margin-bottom: 16px;
   background-color: rgba(255, 255, 255, 0.5);
+}
+
+.mat-sidenav {
+  transform: translateX(-100%);
+  transition: transform 0.5s ease-out;
+}
+
+.mat-sidenav.mat-sidenav-opened {
+  transform: translateX(0);
 }
 
 .sidenav__link .ng-star-inserted {
@@ -109,11 +129,10 @@ mat-divider {
 
 @media (min-width: 768px) {
   .mat-drawer.mat-drawer-side {
-    width: 280px;
+    width: 300px;
   }
 }
 
 .sidenav__toggle-button {
   margin-left: auto;
 }
-

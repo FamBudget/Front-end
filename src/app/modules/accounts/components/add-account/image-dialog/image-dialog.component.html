@@ -1,0 +1,15 @@
+<div class="selected-image__container">
+    <h2 class="selected-image__title">Выберите иконку</h2>
+    <ul class="selected-image__list">
+        <li *ngFor="let image of images" class="selected-image__list-item" [class.selected]="image.id === selectedImage.id">
+            <button (click)="selectImage(image)" class="selected-image__list-btn">
+                <img class="selected-image__list-item-img" [src]="image.path" [alt]="image.value">
+            </button>
+        </li>
+    </ul>
+    <div class="buttons">
+        <button class="button-img-dialog image-dialog__button-cancel" mat-button (click)="cancel()">Отмена</button>
+        <button class="button-img-dialog image-dialog__button-ok" mat-button color="primary" [disabled]="!selectedImage"
+            (click)="ok()">Oк</button>
+    </div>
+</div>

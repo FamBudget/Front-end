@@ -1,35 +1,38 @@
 <div class="accounts">
     <div class="accounts-top">
         <h2 class="accounts-title">Счета</h2>
-        <button class="add-account-btn" (click)="openAccountDialog()">
+        <button mat-raised-button color="add-btn" size="medium" class="add-account-btn" (click)="openAccountDialog()">
             <mat-icon>add_circle</mat-icon>
             Добавить счет</button>
     </div>
 
-    <mat-table [dataSource]="accountsData" class="accounts-table">
+    <div class="accounts-table__wrapper">
+        <mat-table [dataSource]="accountsData" class="accounts-table">
 
-        <ng-container matColumnDef="iconNumber">
-            <mat-cell *matCellDef="let element">
-                <img class="account-icon" [src]="getIconSrc(element.iconNumber)" alt="Icon">
-            </mat-cell>
-        </ng-container>
+            <ng-container matColumnDef="iconNumber">
+                <mat-cell *matCellDef="let element">
+                    <img class="account-icon" [src]="getIconSrc(element.iconNumber)" alt="Icon">
+                </mat-cell>
+            </ng-container>
 
-        <ng-container matColumnDef="name">
-            <mat-cell *matCellDef="let element">
-                <p class="account-name">{{element.name}}</p>
-            </mat-cell>
-        </ng-container>
+            <ng-container matColumnDef="name">
+                <mat-cell *matCellDef="let element">
+                    <p class="account-name">{{element.name}}</p>
+                </mat-cell>
+            </ng-container>
 
-        <ng-container matColumnDef="amount">
-            <mat-cell *matCellDef="let element">
-                <p class="account-amount">{{element.amount}}
-                    <span class="account-amount__currency">{{element.currency}}</span>
-                </p>
-            </mat-cell>
-        </ng-container>
+            <ng-container matColumnDef="amount">
+                <mat-cell *matCellDef="let element">
+                    <p class="account-amount">{{element.amount}}
+                        <span class="account-amount__currency">{{element.currency}}</span>
+                    </p>
+                </mat-cell>
+            </ng-container>
 
-        <mat-row class="account-amount__row" mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            <mat-row class="account-amount__row" mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
-    </mat-table>
+        </mat-table>
+    </div>
+
 
 </div>

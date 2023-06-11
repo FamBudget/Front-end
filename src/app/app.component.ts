@@ -29,7 +29,7 @@ import { filter } from 'rxjs';
   ],
 })
 export class AppComponent {
-  public isExpanded = true;
+  public isExpanded: boolean = true;
   public pageTitle: string = '';
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
@@ -96,12 +96,13 @@ export class AppComponent {
         case 'expense':
           return 'Расходы';
         case 'reports':
-          return 'Отчеты';
+          return 'Отчёты';
         case 'settings':
           return 'Настройки';
         default:
           return '';
       }
     }
+    
   }
 }

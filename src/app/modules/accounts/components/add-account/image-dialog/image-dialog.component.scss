@@ -1,0 +1,119 @@
+.selected-image__container {
+  padding: calc(20px + 20 * (100vw - 320px) / 1600);
+}
+
+.selected-image__title {
+  text-align: center;
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 600;
+  font-size: calc(18px + 10 * (100vw - 320px) / 1600);
+  line-height: 135%;
+  color: #263834;
+}
+
+.selected-image__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.selected-image__list-item-img {
+  width: calc(30px + 10 * (100vw - 320px) / 1600);
+}
+
+.selected-image__list-item {
+  margin: 9px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 45px;
+}
+
+.selected-image__list-btn {
+  padding: 3px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.button-img-dialog {
+  flex-basis: 50%;
+  max-width: 304px;
+  margin: 0 5px;
+}
+
+.image-dialog__button-cancel {
+  border: 2px solid #1b9b85;
+  border-radius: 10px;
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 133%;
+  text-align: center;
+  color: #1b9b85;
+}
+
+.image-dialog__button-ok {
+  background: #1b9b85;
+  box-shadow: inset -5px -5px 32px rgba(255, 255, 255, 0.16), inset 5px 5px 32px rgba(255, 255, 255, 0.16);
+  border-radius: 10px;
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 133%;
+  text-align: center;
+  color: #ffffff;
+}
+
+.image-dialog__button-ok[disabled] {
+  background: #dbdbdb;
+  box-shadow: inset -5px -5px 32px rgba(255, 255, 255, 0.16), inset 5px 5px 32px rgba(255, 255, 255, 0.16);
+  border-radius: 10px;
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 400;
+  font-size: calc(16px + 4 * (100vw - 320px) / 1600);
+  line-height: 133%;
+  text-align: center;
+  color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .buttons {
+    flex-wrap: wrap;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .selected-image__list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 680px) {
+  .image-dialog__button-cancel,
+  .image-dialog__button-ok {
+    flex-basis: 100%;
+  }
+}
+
+.selected-image__list-item.selected {
+  border: 2px solid #1b9b85;
+  border-radius: 10px;
+}

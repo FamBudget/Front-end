@@ -2,21 +2,21 @@
     <div class="add-account-dialog">
         <div class="add-account-dialog__header">
             <h2 class="add-account-dialog__title" mat-dialog-title>Добавить счет</h2>
-            <app-select-icon-toggle (toggleLayout)="onToggleLayout($event)" [isTileLayout]="isTileLayout"
-                (selectIconChanged)="onIconChanged($event)"></app-select-icon-toggle>
+            <app-image-picker></app-image-picker>
         </div>
         <mat-dialog-content>
             <div class="add-account-form">
-                <div class="add-account-form__field">
+                <div class="add-account-form__field-container">
                     <label class="add-account-form__label" for="account-name">Название счета*</label>
-                    <input autocomplete="off" class="add-account-form__input" type="text" name="account-name"
-                        id="account-name" placeholder="Наличные" formControlName="name" trimOnChange>
-                    <mat-error *ngIf="f['name'].invalid && f['name'].touched">
-                        <span *ngIf="f['name'].errors?.['required'] || f['name'].errors?.['emptyString']">{{
-                            ERROR_MESSAGES.REQUIRED }}</span>
-                        <span *ngIf="f['name'].errors?.['pattern']">{{ ERROR_MESSAGES['PATTERN_SYMBOLS']}}</span>
-                    </mat-error>
-
+                    <mat-form-field appearance="outline">
+                        <input matInput autocomplete="off" type="text" name="account-name" id="account-name"
+                            placeholder="Наличные" formControlName="name" trimOnChange>
+                        <mat-error *ngIf="f['name'].invalid && f['name'].touched">
+                            <span *ngIf="f['name'].errors?.['required'] || f['name'].errors?.['emptyString']">{{
+                                ERROR_MESSAGES.REQUIRED }}</span>
+                            <span *ngIf="f['name'].errors?.['pattern']">{{ ERROR_MESSAGES['PATTERN_SYMBOLS']}}</span>
+                        </mat-error>
+                    </mat-form-field>
                 </div>
 
                 <div class="add-account-form__field">
@@ -25,16 +25,17 @@
                         type="text" name="account-currency" id="account-currency" formControlName="currency">
                 </div>
 
-                <div class="add-account-form__field">
+                <div class="add-account-form__field-container">
                     <label class="add-account-form__label" for="initial-balance">Начальный остаток*</label>
-                    <input autocomplete="off" class="add-account-form__input" name="initial-balance"
-                        id="initial-balance" placeholder="0" formControlName="startAmount" inputmode="numeric">
-                    <mat-error *ngIf="f['startAmount'].invalid && f['startAmount'].touched  && f['startAmount'].dirty">
-                        <span *ngIf="f['startAmount'].errors?.['required']">{{ ERROR_MESSAGES.REQUIRED }}</span>
-                        <span *ngIf="f['startAmount'].errors?.['pattern']">{{ ERROR_MESSAGES['ONLY_NUMBERS_PATTERN']
-                            }}</span>
-                    </mat-error>
-
+                    <mat-form-field appearance="outline">
+                        <input matInput autocomplete="off" name="initial-balance" id="initial-balance" placeholder="0"
+                            formControlName="startAmount" inputmode="numeric">
+                        <mat-error *ngIf="f['startAmount'].invalid && f['startAmount'].touched">
+                            <span *ngIf="f['startAmount'].errors?.['required']">{{ ERROR_MESSAGES.REQUIRED }}</span>
+                            <span *ngIf="f['startAmount'].errors?.['pattern']">{{ ERROR_MESSAGES['ONLY_NUMBERS_PATTERN']
+                                }}</span>
+                        </mat-error>
+                    </mat-form-field>
                 </div>
 
                 <div class="add-account-form__field">
