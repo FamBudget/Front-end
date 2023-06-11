@@ -22,7 +22,7 @@
 }
 
 .moving-table {
-  padding-right:calc(10px + 5 * (100vw - 320px) / 1600)
+  padding-right: calc(10px + 5 * (100vw - 320px) / 1600);
 }
 
 .table-moving .mat-table {
@@ -135,6 +135,7 @@
 
 .table-moving__amount,
 .table-moving__name-to,
+.table-moving__data,
 .table-moving__name-from {
   font-family: 'Gilroy';
   font-style: normal;
@@ -142,16 +143,6 @@
   font-size: calc(12px + 6 * (100vw - 320px) / 1600);
   line-height: 140%;
   color: #263834;
-}
-
-.table-moving__data {
-  font-family: 'Gilroy';
-  font-style: normal;
-  font-weight: 500;
-  font-size: calc(12px + 3 * (100vw - 320px) / 1600);
-  line-height: 140%;
-  color: #263834;
-  white-space: nowrap;
 }
 
 .table-moving__paginator {

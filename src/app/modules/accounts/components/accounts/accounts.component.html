@@ -9,8 +9,8 @@
     <div class="accounts-table__wrapper">
         <mat-table [dataSource]="accountsData" class="accounts-table">
 
-            <ng-container matColumnDef="iconNumber">
-                <mat-cell *matCellDef="let element">
+            <ng-container matColumnDef="iconNumber" class="icon-cell-container">
+                <mat-cell *matCellDef="let element" class="icon-cell">
                     <img class="account-icon" [src]="getIconSrc(element.iconNumber)" alt="Icon">
                 </mat-cell>
             </ng-container>
