@@ -6,7 +6,6 @@ import { LocalStorageService, SnackBarService } from 'src/app/shared/services';
 import { Account, AccountIcon, RequestGetAccounts } from '../../models';
 import { ACCOUNT_ICONS_DATA } from './data';
 
-
 @Component({
   selector: 'app-accounts',
   templateUrl: './accounts.component.html',
@@ -15,7 +14,7 @@ import { ACCOUNT_ICONS_DATA } from './data';
 export class AccountsComponent implements OnInit {
   public params: RequestGetAccounts = {
     email: this.localStorageService.getItem('email') as string,
-    size: 1000000000,
+    size: 10000000000000,
   };
 
   public accountsData: Array<Account> = [];
