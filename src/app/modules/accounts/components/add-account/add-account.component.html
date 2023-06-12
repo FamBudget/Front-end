@@ -2,7 +2,7 @@
     <div class="add-account-dialog">
         <div class="add-account-dialog__header">
             <h2 class="add-account-dialog__title" mat-dialog-title>Добавить счет</h2>
-            <app-image-picker></app-image-picker>
+            <app-image-picker (icon)="receiveData($event)"></app-image-picker>
         </div>
         <mat-dialog-content>
             <div class="add-account-form">
