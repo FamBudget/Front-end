@@ -78,3 +78,13 @@ mat-error .ng-star-inserted {
     gap: 40px;
   }
 }
+
+.form__input[placeholder]::placeholder,
+.form__input[placeholder]::placeholder {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 400 !important;
+  font-size: 16px !important;
+  line-height: 138% !important;
+  color: #dbdbdb;
+}
