@@ -1,4 +1,4 @@
-import { HttpClient,HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { API_URL } from 'src/app/constants';
