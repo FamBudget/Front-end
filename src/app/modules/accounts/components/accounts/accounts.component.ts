@@ -11,11 +11,11 @@ import { ACCOUNT_ICONS_DATA } from './data';
   selector: 'app-accounts',
   templateUrl: './accounts.component.html',
   styleUrls: ['./accounts.component.scss'],
-  
 })
 export class AccountsComponent implements OnInit {
   public params: RequestGetAccounts = {
     email: this.localStorageService.getItem('email') as string,
+    size: 1000000000,
   };
 
   public accountsData: Array<Account> = [];

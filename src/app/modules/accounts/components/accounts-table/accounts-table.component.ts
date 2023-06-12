@@ -43,6 +43,7 @@ export class AccountsTableComponent implements OnInit {
   public empData: Array<OperationAccounts> = [];
   public params: OperationAccountsQuery = {
     email: this.localStorageService.getItem('email') as string,
+    size: 1000000000,
   };
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -82,7 +83,7 @@ export class AccountsTableComponent implements OnInit {
       (res: Array<OperationAccounts>) => {
         this.empData = res;
         this.dataSource = new MatTableDataSource<OperationAccounts>(this.empData);
-        this.dataSource.paginator = this.paginator;
+        // this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
         this.dataSource.sort.sort({ id: 'createdOn', start: 'desc', disableClear: true });
         if (this.dataSource) {
@@ -131,7 +132,7 @@ export class AccountsTableComponent implements OnInit {
       return transactionDate.getTime() >= dateStart.getTime() && transactionDate.getTime() <= dateEnd.getTime();
     });
 
-    this.dataSource.paginator.firstPage();
+    // this.dataSource.paginator.firstPage();
   }
 
   public filterData(): void {
