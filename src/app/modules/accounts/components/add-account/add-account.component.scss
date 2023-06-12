@@ -122,6 +122,38 @@ input[type='number']:focus {
 button[disabled] {
   opacity: 0.5;
 }
+.initial-balance__form-field {
+  position: relative;
+}
+.initial-balance__input {
+  padding-right: 30px;
+}
+.initial-balance__cur {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+}
+
+.currency-input {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 500 !important;
+  font-size: 16px !important;
+  line-height: 138% !important;
+  color: #dbdbdb;
+}
+
+.account-name-input[placeholder]::placeholder,
+.initial-balance__input[placeholder]::placeholder {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 500 !important;
+  font-size: 16px !important;
+  line-height: 138% !important;
+  color: #dbdbdb;
+}
+
 
 @media screen and (max-width: 700px) {
   .submit-btn {

@@ -14,6 +14,7 @@ import { EmptyStringValidator, FutureDateValidator } from 'src/app/shared/valida
   styleUrls: ['./add-account.component.scss'],
 })
 export class AddAccountComponent implements OnInit {
+  @ViewChild('currencySpan') currencySpan!: ElementRef;
   public isTileLayout: boolean = true;
   public selectIconNumber: number = 0;
   public addAccountForm: FormGroup = new FormGroup({
@@ -21,6 +22,7 @@ export class AddAccountComponent implements OnInit {
     currency: new FormControl(''),
     startAmount: new FormControl(null, [Validators.required, Validators.pattern('[0-9]+')]),
     createdOn: new FormControl(new Date().toISOString().substring(0, 10)),
+
     iconNumber: new FormControl(this.selectIconNumber),
   });
   protected readonly ERROR_MESSAGES = ERROR_MESSAGES;
@@ -52,11 +54,16 @@ export class AddAccountComponent implements OnInit {
         EmptyStringValidator,
         Validators.pattern('^[^W_]+( [^W_]+)*$'),
       ]),
-      currency: new FormControl(`${this.inputData.currency}`),
+      currency: new FormControl(this.getCurrencyName(this.inputData.currency)),
       startAmount: new FormControl(null, [Validators.required, Validators.pattern('[0-9]+')]),
       createdOn: new FormControl(new Date().toISOString().substring(0, 10), FutureDateValidator),
       iconNumber: new FormControl(this.selectIconNumber),
     });
+  }
+
+  ngAfterViewInit() {
+    this.currencySpan.nativeElement.textContent = this.data.currency;
+    console.log(this.currencySpan.nativeElement.textContent);
   }
 
   public get f() {
@@ -67,6 +74,23 @@ export class AddAccountComponent implements OnInit {
     this.addAccountForm.value['iconNumber'] = this.selectIconNumber;
     this.addAccountForm.value['startAmount'] = parseInt(this.addAccountForm.value['startAmount']);
     this.convertDateValue();
+  }
+
+  public getCurrencyName(currencyCode: string): string {
+    switch (currencyCode) {
+      case 'RUB':
+        return `${currencyCode} ("Российский рубль")`;
+      case 'BYN':
+        return `${currencyCode} ("Белорусский рубль")`;
+      case 'KZT':
+        return `${currencyCode} ("Казахстанский тенге")`;
+      case 'USD':
+        return `${currencyCode} ("Доллар США")`;
+      case 'EUR':
+        return `${currencyCode} ("Евро")`;
+      default:
+        return '';
+    }
   }
 
   public convertDateValue(): void {

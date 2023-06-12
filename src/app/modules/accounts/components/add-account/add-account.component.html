@@ -10,7 +10,7 @@
                     <label class="add-account-form__label" for="account-name">Название счета*</label>
                     <mat-form-field appearance="outline">
                         <input matInput autocomplete="off" type="text" name="account-name" id="account-name"
-                            placeholder="Наличные" formControlName="name" trimOnChange>
+                            placeholder="Наличные" formControlName="name" trimOnChange class="account-name-input">
                         <mat-error *ngIf="f['name'].invalid && f['name'].touched">
                             <span *ngIf="f['name'].errors?.['required'] || f['name'].errors?.['emptyString']">{{
                                 ERROR_MESSAGES.REQUIRED }}</span>
@@ -27,9 +27,10 @@
 
                 <div class="add-account-form__field-container">
                     <label class="add-account-form__label" for="initial-balance">Начальный остаток*</label>
-                    <mat-form-field appearance="outline">
-                        <input matInput autocomplete="off" name="initial-balance" id="initial-balance" placeholder="0"
+                    <mat-form-field appearance="outline" class="initial-balance__form-field">
+                        <input class="initial-balance__input" matInput autocomplete="off" name="initial-balance" id="initial-balance" placeholder="0"
                             formControlName="startAmount" inputmode="numeric">
+                            <span class="initial-balance__cur" #currencySpan></span>
                         <mat-error *ngIf="f['startAmount'].invalid && f['startAmount'].touched">
                             <span *ngIf="f['startAmount'].errors?.['required']">{{ ERROR_MESSAGES.REQUIRED }}</span>
                             <span *ngIf="f['startAmount'].errors?.['pattern']">{{ ERROR_MESSAGES['ONLY_NUMBERS_PATTERN']
@@ -41,7 +42,7 @@
                 <div class="add-account-form__field">
                     <label class="add-account-form__label" for="date-initial-balance">Дата начального остатка</label>
                     <input class="add-account-form__input add-account-form__input-initial-balance"
-                        name="date-initial-balance" id="date-initial-balance" type="date" formControlName="createdOn">
+                        name="date-initial-balance" id="date-initial-balance" type="date" formControlName="createdOn" placeholder="Выберите дату">
                     <mat-error *ngIf="f['createdOn'].errors?.['futureDate']">
                         <span class="add-account-form__err">{{ ERROR_MESSAGES.INVALID_FUTURE_DATE }}</span>
                     </mat-error>
