@@ -335,3 +335,19 @@ select {
 .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__trailing {
   border-color: #d0d0d0;
 }
+
+@media (max-width: 768px) {
+  .registration-dialog {
+    width: 85% !important;
+  }
+}
+
+@media (max-width: 500px) {
+  .registration-dialog {
+    width: 91% !important;
+  }
+
+  .registration__container {
+    padding: 1.25rem;
+  }
+}
