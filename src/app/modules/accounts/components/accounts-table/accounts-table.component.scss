@@ -70,6 +70,15 @@
   color: #263834;
 }
 
+.input-date-range {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: calc(12px + 2 * (100vw - 320px) / 1600);
+  line-height: 140%;
+  color: #263834;
+}
+
 .toggle-group {
   border-radius: 10px;
   font-family: 'Gilroy';
@@ -143,6 +152,10 @@
   font-size: calc(12px + 6 * (100vw - 320px) / 1600);
   line-height: 140%;
   color: #263834;
+}
+
+.table-moving__data {
+  white-space: nowrap;
 }
 
 .table-moving__paginator {
