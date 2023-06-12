@@ -17,7 +17,7 @@ export class AccountsComponent implements OnInit {
   public params: RequestGetAccounts = {
     email: this.localStorageService.getItem('email') as string,
     from: 0,
-    size: 10,
+    size: 100,
   };
 
   public accountsData: Array<Account> = [];
