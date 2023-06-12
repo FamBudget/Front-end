@@ -6,6 +6,7 @@ import { LocalStorageService, SnackBarService } from 'src/app/shared/services';
 import { Account, AccountIcon, RequestGetAccounts } from '../../models';
 import { ACCOUNT_ICONS_DATA } from './data';
 
+
 @Component({
   selector: 'app-accounts',
   templateUrl: './accounts.component.html',

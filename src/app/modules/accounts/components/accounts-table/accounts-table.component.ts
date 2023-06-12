@@ -131,6 +131,8 @@ export class AccountsTableComponent implements OnInit {
 
       return transactionDate.getTime() >= dateStart.getTime() && transactionDate.getTime() <= dateEnd.getTime();
     });
+
+    // this.dataSource.paginator.firstPage();
   }
 
   public filterData(): void {
@@ -166,6 +168,7 @@ export class AccountsTableComponent implements OnInit {
         this.dataSource.data = this.empData;
         break;
     }
+    // this.dataSource.paginator.firstPage(); // сброс пагинации при фильтрации
   }
 
   public nameComparator(a: any, b: any): number {
