@@ -28,7 +28,8 @@
 }
 
 .btn-submit[disabled] {
-  background-color: #cccccc;
+  background-color: #dbdbdb;
+  border: 2px solid #dbdbdb;
   color: black;
   cursor: default;
 }
