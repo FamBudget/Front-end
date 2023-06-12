@@ -16,8 +16,6 @@ import { ACCOUNT_ICONS_DATA } from './data';
 export class AccountsComponent implements OnInit {
   public params: RequestGetAccounts = {
     email: this.localStorageService.getItem('email') as string,
-    from: 0,
-    size: 100,
   };
 
   public accountsData: Array<Account> = [];
