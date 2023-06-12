@@ -11,6 +11,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { FutureDateValidator } from 'src/app/shared/validators';
+import { MatDatepicker } from '@angular/material/datepicker';
 
 export const GRI_DATE_FORMATS: MatDateFormats = {
   ...MAT_NATIVE_DATE_FORMATS,
@@ -19,6 +20,7 @@ export const GRI_DATE_FORMATS: MatDateFormats = {
     dateInput: {
       year: 'numeric',
       month: 'long',
+      day: '2-digit',
     } as Intl.DateTimeFormatOptions,
   },
 };
@@ -30,7 +32,7 @@ export const GRI_DATE_FORMATS: MatDateFormats = {
   providers: [{ provide: MAT_DATE_FORMATS, useValue: GRI_DATE_FORMATS }],
 })
 export class AccountsTableComponent implements OnInit {
-  public startDate: Date = new Date(new Date().setDate(new Date().getDate() - 29));
+  public startDate: Date = new Date();
   public endDate: Date = new Date();
   public dateRangeForm: FormGroup = new FormGroup({});
 
@@ -45,6 +47,7 @@ export class AccountsTableComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild('picker') picker!: MatDatepicker<Date>;
 
   constructor(
     private readonly adapter: DateAdapter<Date>,
@@ -68,6 +71,10 @@ export class AccountsTableComponent implements OnInit {
 
   public get f() {
     return this.dateRangeForm.controls;
+  }
+
+  public openDatePicker(): void {
+    this.picker.open();
   }
 
   public getMovingAccounts(): void {
@@ -160,28 +167,28 @@ export class AccountsTableComponent implements OnInit {
         this.dataSource.data = this.empData;
         break;
     }
-    this.dataSource.paginator.firstPage(); // сброс пагинации при фильтрации
+    // this.dataSource.paginator.firstPage(); // сброс пагинации при фильтрации
   }
 
   public nameComparator(a: any, b: any): number {
     return a.name.localeCompare(b.name, undefined, { sensitivity: 'base' });
   }
 
-  public addOperation(): void {
-    const body: any = {
-      accountFromId: 5,
-      accountToId: 4,
-      amount: 500,
-      createdOn: '2023-05-30 08:12:23',
-      description: 'Перевод5',
-    };
-    this.movingService.addOperation(body, this.params).subscribe(
-      (value: OperationAccounts) => {
-        console.log(value);
-      },
-      () => {
-        this.snackBar.showSnackBar('Ошибка!');
-      },
-    );
-  }
+  // public addOperation(): void {
+  //   const body: any = {
+  //     accountFromId: 5,
+  //     accountToId: 4,
+  //     amount: 500,
+  //     createdOn: '2023-05-30 08:12:23',
+  //     description: 'Перевод5',
+  //   };
+  //   this.movingService.addOperation(body, this.params).subscribe(
+  //     (value: OperationAccounts) => {
+  //       console.log(value);
+  //     },
+  //     () => {
+  //       this.snackBar.showSnackBar('Ошибка!');
+  //     },
+  //   );
+  // }
 }

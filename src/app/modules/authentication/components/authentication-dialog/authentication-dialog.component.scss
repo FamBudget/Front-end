@@ -3,9 +3,6 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  background: #ffffff;
-  box-shadow: -2px -2px 16px rgba(39, 222, 191, 0.06), 2px 2px 16px rgba(39, 222, 191, 0.06);
-  border-radius: 30px;
 }
 
 .registration__title {
@@ -18,7 +15,7 @@
 
 .registration-form-container {
   width: 100%;
-  height: 75vh;
+  height: 78vh;
   overflow-y: auto;
   padding: 10px;
 }
@@ -29,8 +26,8 @@
 }
 
 .registration-form-container::-webkit-scrollbar {
-  height: 12px;
-  width: 12px;
+  height: 5px;
+  width: 5px;
 }
 
 .registration-form-container::-webkit-scrollbar-track {

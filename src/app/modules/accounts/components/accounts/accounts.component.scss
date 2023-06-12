@@ -1,6 +1,5 @@
 :host {
   width: 100%;
-  background-color: #ffffff;
   border-radius: 20px;
 }
 
@@ -9,10 +8,22 @@
   background-color: #ffffff;
   box-shadow: -2px -2px 16px rgba(39, 222, 191, 0.06), 2px 2px 16px rgba(39, 222, 191, 0.06);
   border-radius: 20px;
-  max-width: 562px;
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 30px;
+  margin: 0 auto;
+}
+
+.accounts-table {
+  padding-right: calc(10px + 5 * (100vw - 320px) / 1600);
+}
+
+.accounts-title {
+  font-family: 'Gilroy';
+  font-weight: 600;
+  line-height: 131%;
+  font-size: calc(18px + 10 * (100vw - 320px) / 1600);
+  margin: 0;
 }
 
 .accounts-top {
@@ -22,34 +33,37 @@
   grid-auto-flow: dense;
 }
 
-.add-account-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 12px 24px;
-  gap: 16px;
-  background: #1b9b85;
+.mat-add-btn {
+  background-color: #1b9b85 !important;
+  color: white !important;
   box-shadow: inset -5px -5px 32px rgba(255, 255, 255, 0.16), inset 5px 5px 32px rgba(255, 255, 255, 0.16);
-  border-radius: 10px;
+  border-radius: 10px !important;
   color: #ffffff;
   font-family: 'Gilroy';
-  font-weight: 500;
+  font-weight: 400;
   line-height: 140%;
   font-size: calc(14px + 6 * (100vw - 320px) / 1600);
   white-space: nowrap;
+}
 
+.mat-add-btn[size='medium'] {
+  height: 52px;
 }
 
 .account-icon {
-  max-width: 24px;
-  width: 100%;
+  font-size: calc(20px + 4 * (100vw - 320px) / 1600);
+  width: calc(20px + 4 * (100vw - 320px) / 1600);
+  height: calc(20px + 4 * (100vw - 320px) / 1600);
+  width: fit-content;
+  margin-right: 12px;
+  min-width: 30px;
 }
 
 .account-name {
   font-family: 'Gilroy';
   font-style: normal;
   font-weight: 600;
-  font-size: 24px;
+  font-size: calc(14px + 6 * (100vw - 320px) / 1600);
   line-height: 133%;
   color: #263834;
   margin: 0;
@@ -58,8 +72,8 @@
 .account-amount {
   font-family: 'Gilroy';
   font-style: normal;
-  font-weight: 600;
-  font-size: 20px;
+  font-weight: 500;
+  font-size: calc(14px + 6 * (100vw - 320px) / 1600);
   line-height: 140%;
   color: #263834;
   margin: 0;
@@ -71,14 +85,77 @@
   border-bottom-style: solid;
 }
 
+.accounts-table .mat-table-row:last-child .mat-cell:last-of-type .account-amount {
+  justify-content: flex-end !important;
+}
+
 .account-amount__currency {
   margin-left: 5px;
 }
 
-.mat-mdc-cell {
-  justify-content: flex-start;
+.accounts-table .mat-mdc-cell:last-child {
+  text-align: right;
+  justify-content: flex-end;
+}
+
+.accounts-table__wrapper {
+  width: 100%;
+  border-radius: 1.25rem;
+  overflow: auto;
+  max-height: 65vh;
+  overflow: auto;
 }
 
 .account-amount {
   text-align: end;
+}
+
+.mat-mdc-cell {
+  padding-left: 3px;
+  padding-right: 3px;
+}
+
+.icon-cell-container {
+  width: 30% !important;
+}
+
+@media screen and (max-width: 767px) {
+  .mat-table-wrapper {
+    overflow-x: auto;
+    display: block;
+  }
+  .mat-table {
+    min-width: 100%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .mat-add-btn[size='medium'] {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .accounts-table {
+    width: 100%;
+  }
+  .accounts-table .mat-header-row {
+    display: flex;
+  }
+
+  .accounts-table .mat-header-cell {
+    flex: 1 1 auto;
+    min-width: 100px;
+  }
+}
+
+.account-amount__row {
+  background: #f9fffe;
+  display: grid;
+  grid-template-columns: max-content 1fr 1fr;
+  margin-bottom: 1.5rem;
+}
+
+.account-amount__row:hover {
+  background-color: #f9fffe !important;
 }

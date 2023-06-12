@@ -1,0 +1,14 @@
+:host {
+  margin-left: auto;
+  padding-right: 30px;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+}
+
+.selected-image__list-item-img {
+  width: calc(30px + 10 * (100vw - 320px) / 1600);
+}
