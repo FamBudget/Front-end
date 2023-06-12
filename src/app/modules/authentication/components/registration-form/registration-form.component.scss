@@ -28,7 +28,8 @@
 }
 
 .btn-submit[disabled] {
-  background-color: #cccccc;
+  background-color: #dbdbdb;
+  border: 2px solid #dbdbdb;
   color: black;
   cursor: default;
 }
@@ -77,4 +78,14 @@ mat-error .ng-star-inserted {
   .registration-form__passwords {
     gap: 40px;
   }
+}
+
+.form__input[placeholder]::placeholder,
+.form__input[placeholder]::placeholder {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 400 !important;
+  font-size: 16px !important;
+  line-height: 138% !important;
+  color: #dbdbdb;
 }
