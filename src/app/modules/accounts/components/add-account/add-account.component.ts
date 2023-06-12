@@ -79,15 +79,15 @@ export class AddAccountComponent implements OnInit {
   public getCurrencyName(currencyCode: string): string {
     switch (currencyCode) {
       case 'RUB':
-        return `${currencyCode} ("Российский рубль")`;
+        return `${currencyCode}`;
       case 'BYN':
-        return `${currencyCode} ("Белорусский рубль")`;
+        return `${currencyCode}`;
       case 'KZT':
-        return `${currencyCode} ("Казахстанский тенге")`;
+        return `${currencyCode}`;
       case 'USD':
-        return `${currencyCode} ("Доллар США")`;
+        return `${currencyCode}`;
       case 'EUR':
-        return `${currencyCode} ("Евро")`;
+        return `${currencyCode}`;
       default:
         return '';
     }
