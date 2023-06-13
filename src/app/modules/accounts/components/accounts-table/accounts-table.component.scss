@@ -70,13 +70,17 @@
   color: #263834;
 }
 
-.input-date-range {
-  font-family: 'Roboto', sans-serif;
-  font-style: normal;
-  font-weight: 500;
-  font-size: calc(12px + 2 * (100vw - 320px) / 1600);
-  line-height: 140%;
-  color: #263834;
+.input-date-range,
+.mat-date-range-input-separator,
+mat-date-range-input,
+mat-datepicker-toggle,
+mat-date-range-picker,
+.table-filters__range {
+  font-family: 'Roboto', sans-serif !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
+  font-size: calc(12px + 2 * (100vw - 320px) / 1600) !important;
+  line-height: 140% !important;
 }
 
 .toggle-group {
