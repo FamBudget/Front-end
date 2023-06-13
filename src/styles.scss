@@ -316,7 +316,9 @@ select {
 
 .table-filters .mat-date-range-input-separator {
   margin-right: auto !important;
+  margin-left: auto;
 }
+
 .mat-form-field-appearance-outline .mat-form-field-wrapper {
   border-radius: 20px !important;
   border-color: #ff0000 !important; /* замените значение на нужный вам цвет */
