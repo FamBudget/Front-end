@@ -1,99 +1,101 @@
 <mat-sidenav-container class="sidenav-container" autosize>
-    <mat-sidenav #sidenav mat-elevation-z8 class="sidenav" [ngClass]="{'mini-variant': !isExpanded}"
-        [opened]="isSidenavExisted() && !this.checkIsMobile()">
+  <mat-sidenav #sidenav mat-elevation-z8 class="sidenav" [ngClass]="{'mini-variant': !isExpanded}"
+    [opened]="isSidenavExisted() && !this.checkIsMobile()">
+    <p class="sidenav__logo">Logo</p>
+    <mat-nav-list class="sidenav__list" (click)="toggleSidenav()">
+      <a class="sidenav__list-item" mat-list-item routerLink="/operations" routerLinkActive="active"
+        [matTooltip]="!isExpanded ? 'Операции' : ''" matTooltipPosition="right" matTooltipHideDelay="300"
+        class="sidenav__link">
+        <img class="menu-icon"
+          [src]="(pageTitle === 'Операции') ? '../assets/menu/fill/transactions-fill.svg' : '../assets/menu/outline/transactions-outline.svg'"
+          alt="Menu icon">
+        <p class="sidenav__list-text" *ngIf="isExpanded">Операции</p>
+      </a>
+      <a class="sidenav__list-item" mat-list-item routerLink="/accounts" routerLinkActive="active"
+        [matTooltip]="!isExpanded ? 'Счета' : ''" matTooltipPosition="right" matTooltipHideDelay="300"
+        class="sidenav__link">
+        <img class="menu-icon"
+          [src]="(pageTitle === 'Счета') ? '../assets/menu/fill/accounts-fill.svg' : '../assets/menu/outline/accounts-outline.svg'"
+          alt="Menu icon">
+        <p class="sidenav__list-text" *ngIf="isExpanded">Счета</p>
+      </a>
+      <a class="sidenav__list-item" mat-list-item routerLink="/budget" routerLinkActive="active"
+        [matTooltip]="!isExpanded ? 'Бюджет' : ''" matTooltipPosition="right" matTooltipHideDelay="300"
+        class="sidenav__link">
+        <img class="menu-icon"
+          [src]="(pageTitle === 'Бюджет') ? '../assets/menu/fill/budget-fill.svg' : '../assets/menu/outline/budget-outline.svg'"
+          alt="Menu icon">
+        <p class="sidenav__list-text" *ngIf="isExpanded">Бюджет</p>
+      </a>
+      <a class="sidenav__list-item" mat-list-item routerLink="/income" routerLinkActive="active"
+        [matTooltip]="!isExpanded ? 'Доходы' : ''" matTooltipPosition="right" matTooltipHideDelay="300"
+        class="sidenav__link">
+        <img class="menu-icon"
+          [src]="(pageTitle === 'Доходы') ? '../assets/menu/fill/income-fill.svg' : '../assets/menu/outline/income-outline.svg'"
+          alt="Menu icon">
+        <p class="sidenav__list-text" *ngIf="isExpanded">Доходы</p>
+      </a>
+      <a class="sidenav__list-item" mat-list-item routerLink="/expense" routerLinkActive="active"
+        [matTooltip]="!isExpanded ? 'Расходы' : ''" matTooltipPosition="right" matTooltipHideDelay="300"
+        class="sidenav__link">
+        <img class="menu-icon"
+          [src]="(pageTitle === 'Расходы') ? '../assets/menu/fill/expenses-fill.svg' : '../assets/menu/outline/expenses-outline.svg'"
+          alt="Menu icon">
+        <p class="sidenav__list-text" *ngIf="isExpanded">Расходы</p>
+      </a>
+      <a class="sidenav__list-item" mat-list-item routerLink="/reports" routerLinkActive="active"
+        [matTooltip]="!isExpanded ? 'Отчёты' : ''" matTooltipPosition="right" matTooltipHideDelay="300"
+        class="sidenav__link">
+        <img class="menu-icon"
+          [src]="(pageTitle === 'Отчёты') ? '../assets/menu/fill/reports-fill.svg' : '../assets/menu/outline/reports-outline.svg'"
+          alt="Menu icon">
+        <p class="sidenav__list-text" *ngIf="isExpanded">Отчёты</p>
+      </a>
+      <mat-divider></mat-divider>
+      <a class="sidenav__list-item" mat-list-item routerLink="/settings" [matTooltip]="!isExpanded ? 'Настройки' : ''"
+        matTooltipPosition="right" matTooltipHideDelay="300" class="sidenav__link">
+        <img class="menu-icon"
+          [src]="(pageTitle === 'Настройки') ? '../assets/menu/fill/settings-fill.svg' : '../assets/menu/outline/settings-ouline.svg'"
+          alt="Menu icon">
+        <p class="sidenav__list-text" *ngIf="isExpanded">Настройки</p>
+      </a>
+      <a mat-list-item [matTooltip]="!isExpanded ? 'Справка' : ''" matTooltipPosition="right" matTooltipHideDelay="300"
+        class="sidenav__link">
+        <img class="menu-icon" src="../assets/menu/outline/help-outline.svg" alt="Menu icon">
+        <p class="sidenav__list-text" *ngIf="isExpanded">Справка</p>
+      </a>
+    </mat-nav-list>
+
+    <button class="chevron-btn" mat-icon-button (click)="isExpanded = !isExpanded" matTooltip="Меню"
+      matTooltipPosition="right" matTooltipHideDelay="300" *ngIf="!checkIsMobile()">
+      <mat-icon class="sidenav__list-icon sidenav__list-icon-chevron" *ngIf="!isExpanded">chevron_right</mat-icon>
+      <mat-icon class="sidenav__list-icon sidenav__list-icon-chevron" *ngIf="isExpanded">chevron_left</mat-icon>
+    </button>
+  </mat-sidenav>
+
+  <!-- контент страницы -->
+  <mat-sidenav-content class="content">
+    <div *ngIf="isSidenavExisted()" class="header-content">
+      <div class="header-top" *ngIf="checkIsMobile()">
         <p class="sidenav__logo">Logo</p>
-        <mat-nav-list class="sidenav__list" (click)="toggleSidenav()">
-            <a class="sidenav__list-item" mat-list-item routerLink="/operations" routerLinkActive="active"
-                [matTooltip]="!isExpanded ? 'Операции' : ''" matTooltipPosition="right" matTooltipHideDelay="300"
-                class="sidenav__link">
-                <img class="menu-icon"
-                    [src]="(pageTitle === 'Операции') ? '../assets/menu/fill/transactions-fill.svg' : '../assets/menu/outline/transactions-outline.svg'"
-                    alt="Menu icon">
-                <p class="sidenav__list-text" *ngIf="isExpanded">Операции</p>
-            </a>
-            <a class="sidenav__list-item" mat-list-item routerLink="/accounts" routerLinkActive="active"
-                [matTooltip]="!isExpanded ? 'Счета' : ''" matTooltipPosition="right" matTooltipHideDelay="300"
-                class="sidenav__link">
-                <img class="menu-icon"
-                    [src]="(pageTitle === 'Счета') ? '../assets/menu/fill/accounts-fill.svg' : '../assets/menu/outline/accounts-outline.svg'"
-                    alt="Menu icon">
-                <p class="sidenav__list-text" *ngIf="isExpanded">Счета</p>
-            </a>
-            <a class="sidenav__list-item" mat-list-item routerLink="/budget" routerLinkActive="active"
-                [matTooltip]="!isExpanded ? 'Бюджет' : ''" matTooltipPosition="right" matTooltipHideDelay="300"
-                class="sidenav__link">
-                <img class="menu-icon"
-                    [src]="(pageTitle === 'Бюджет') ? '../assets/menu/fill/budget-fill.svg' : '../assets/menu/outline/budget-outline.svg'"
-                    alt="Menu icon">
-                <p class="sidenav__list-text" *ngIf="isExpanded">Бюджет</p>
-            </a>
-            <a class="sidenav__list-item" mat-list-item routerLink="/income" routerLinkActive="active"
-                [matTooltip]="!isExpanded ? 'Доходы' : ''" matTooltipPosition="right" matTooltipHideDelay="300"
-                class="sidenav__link">
-                <img class="menu-icon"
-                    [src]="(pageTitle === 'Доходы') ? '../assets/menu/fill/income-fill.svg' : '../assets/menu/outline/income-outline.svg'"
-                    alt="Menu icon">
-                <p class="sidenav__list-text" *ngIf="isExpanded">Доходы</p>
-            </a>
-            <a class="sidenav__list-item" mat-list-item routerLink="/expense" routerLinkActive="active"
-                [matTooltip]="!isExpanded ? 'Расходы' : ''" matTooltipPosition="right" matTooltipHideDelay="300"
-                class="sidenav__link">
-                <img class="menu-icon"
-                    [src]="(pageTitle === 'Расходы') ? '../assets/menu/fill/expenses-fill.svg' : '../assets/menu/outline/expenses-outline.svg'"
-                    alt="Menu icon">
-                <p class="sidenav__list-text" *ngIf="isExpanded">Расходы</p>
-            </a>
-            <a class="sidenav__list-item" mat-list-item routerLink="/reports" routerLinkActive="active"
-                [matTooltip]="!isExpanded ? 'Отчёты' : ''" matTooltipPosition="right" matTooltipHideDelay="300"
-                class="sidenav__link">
-                <img class="menu-icon"
-                    [src]="(pageTitle === 'Отчёты') ? '../assets/menu/fill/reports-fill.svg' : '../assets/menu/outline/reports-outline.svg'"
-                    alt="Menu icon">
-                <p class="sidenav__list-text" *ngIf="isExpanded">Отчёты</p>
-            </a>
-            <mat-divider></mat-divider>
-            <a class="sidenav__list-item" mat-list-item routerLink="/settings"
-                [matTooltip]="!isExpanded ? 'Настройки' : ''" matTooltipPosition="right" matTooltipHideDelay="300"
-                class="sidenav__link">
-                <img class="menu-icon"
-                    [src]="(pageTitle === 'Настройки') ? '../assets/menu/fill/settings-fill.svg' : '../assets/menu/outline/settings-ouline.svg'"
-                    alt="Menu icon">
-                <p class="sidenav__list-text" *ngIf="isExpanded">Настройки</p>
-            </a>
-            <a mat-list-item [matTooltip]="!isExpanded ? 'Справка' : ''" matTooltipPosition="right"
-                matTooltipHideDelay="300" class="sidenav__link">
-                <img class="menu-icon" src="../assets/menu/outline/help-outline.svg" alt="Menu icon">
-                <p class="sidenav__list-text" *ngIf="isExpanded">Справка</p>
-            </a>
-        </mat-nav-list>
-
-        <button class="chevron-btn" mat-icon-button (click)="isExpanded = !isExpanded" matTooltip="Меню"
-            matTooltipPosition="right" matTooltipHideDelay="300" *ngIf="!checkIsMobile()">
-            <mat-icon class="sidenav__list-icon sidenav__list-icon-chevron" *ngIf="!isExpanded">chevron_right</mat-icon>
-            <mat-icon class="sidenav__list-icon sidenav__list-icon-chevron" *ngIf="isExpanded">chevron_left</mat-icon>
-        </button>
-    </mat-sidenav>
-
-    <!-- контент страницы -->
-    <mat-sidenav-content class="content">
-        <div *ngIf="isSidenavExisted()" class="header-content">
-            <div class="header-top" *ngIf="checkIsMobile()">
-                <p class="sidenav__logo">Logo</p>
-                <!-- <button mat-icon-button class="sidenav__toggle-button" (click)="sidenav.toggle()">
+        <!-- <button mat-icon-button class="sidenav__toggle-button" (click)="sidenav.toggle()">
                     <mat-icon class="sidenav__toggle-icon" *ngIf="!sidenav.opened"> menu </mat-icon>
                     <mat-icon class="sidenav__toggle-icon" *ngIf="sidenav.opened"> close </mat-icon>
                 </button> -->
-                <button mat-icon-button class="sidenav__toggle-button" (click)="sidenav.toggle()">
-                    <mat-icon class="sidenav__toggle-icon" [@toggleState]="sidenav.opened ? 'open' : 'closed'">
-                        {{ sidenav.opened ? 'close' : 'menu' }}
-                    </mat-icon>
-                </button>
-            </div>
-            <p class="top__title">{{ pageTitle }}</p>
-        </div>
+        <button mat-icon-button class="sidenav__toggle-button" (click)="sidenav.toggle()">
+          <mat-icon class="sidenav__toggle-icon" [@toggleState]="sidenav.opened ? 'open' : 'closed'">
+            {{ sidenav.opened ? 'close' : 'menu' }}
+          </mat-icon>
+        </button>
+      </div>
+      <div class="top__content">
+        <p class="top__title">{{ pageTitle }}</p>
+        <app-logout *ngIf="!checkIsMobile()"></app-logout>
+      </div>
+    </div>
 
-        <router-outlet></router-outlet>
-    </mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
 </mat-sidenav-container>
 
 <app-loader></app-loader>

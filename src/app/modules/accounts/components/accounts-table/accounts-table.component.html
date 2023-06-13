@@ -3,7 +3,7 @@
     <div class="table-filters">
 
         <mat-form-field class="table-filters__range">
-            <mat-date-range-input [rangePicker]="picker" [formGroup]="dateRangeForm">
+            <mat-date-range-input [separator]="'\u2014'" [rangePicker]="picker" [formGroup]="dateRangeForm">
                 <input class="input-date-range" readonly matStartDate placeholder="From Date" required
                     formControlName="start" [(ngModel)]="startDate" (click)="openDatePicker()">
                 <input class="input-date-range" readonly matEndDate placeholder="To Date" required formControlName="end"
