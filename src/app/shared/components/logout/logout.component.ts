@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { LogoutDialogComponent } from './logout-dialog';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -8,16 +8,30 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./logout.component.scss'],
 })
 export class LogoutComponent {
+  public isSmallScreen: boolean = window.innerWidth <= 550;
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.isSmallScreen = window.innerWidth <= 550;
+  }
+
   constructor(private matDialog: MatDialog) {}
 
   public openModalLogout(): void {
-    this.matDialog.open(LogoutDialogComponent, {
+    const dialogRef = this.matDialog.open(LogoutDialogComponent, {
       panelClass: 'logout-dialog',
       width: '100%',
       maxWidth: '600px',
       position: {
-        top: '5%',
+        top: this.isSmallScreen ? '50%' : '5%',
       },
+    });
+
+    window.addEventListener('resize', () => {
+      this.isSmallScreen = window.innerWidth <= 550;
+      dialogRef.updatePosition({
+        top: this.isSmallScreen ? '50%' : '5%',
+      });
     });
   }
 }
