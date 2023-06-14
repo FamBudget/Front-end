@@ -1,4 +1,13 @@
-<button class="profile__btn">
+<button class="profile__btn" [matMenuTriggerFor]="menu">
   <img class="profile__btn-img" src="../../../../assets/authentication/human.svg" alt="human">
   <mat-icon class="profile__btn-arrow">expand_more</mat-icon>
 </button>
+
+<mat-menu #menu="matMenu" class="profile__menu" xPosition="before">
+  <div class="profile__menu-container">
+    <button class="profile__menu-logout" (click)="openModalLogout()">
+      <mat-icon class="material-symbols-sharp profile__menu-logout-icon">circle</mat-icon>
+      <p class="profile__menu-logout-text">Выйти</p>
+    </button>
+  </div>
+</mat-menu>

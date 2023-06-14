@@ -3,11 +3,10 @@ import { CommonModule } from '@angular/common';
 import { TrimOnChangeDirective } from './directives';
 
 import { MaterialModule } from './modules';
-import { AppNavigationComponent, LoaderComponent, LogoutComponent } from './components';
-
+import { LoaderComponent, LogoutComponent, LogoutDialogComponent } from './components';
 @NgModule({
-  declarations: [TrimOnChangeDirective, LoaderComponent, AppNavigationComponent, LogoutComponent],
-  exports: [TrimOnChangeDirective,  LoaderComponent, AppNavigationComponent, LogoutComponent],
+  declarations: [TrimOnChangeDirective, LoaderComponent, LogoutComponent, LogoutDialogComponent],
+  exports: [TrimOnChangeDirective, LoaderComponent, LogoutComponent, LogoutDialogComponent],
   imports: [CommonModule, MaterialModule],
 })
 export class SharedModule {}

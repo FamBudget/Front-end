@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AppNavigationComponent } from './app-navigation.component';
+import { LogoutDialogComponent } from './logout-dialog.component';
 
-describe('AppNavigationComponent', () => {
-  let component: AppNavigationComponent;
-  let fixture: ComponentFixture<AppNavigationComponent>;
+describe('LogoutDialogComponent', () => {
+  let component: LogoutDialogComponent;
+  let fixture: ComponentFixture<LogoutDialogComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AppNavigationComponent ]
+      declarations: [ LogoutDialogComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AppNavigationComponent);
+    fixture = TestBed.createComponent(LogoutDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
