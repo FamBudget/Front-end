@@ -21,7 +21,7 @@ export class LogoutComponent {
     const dialogRef = this.matDialog.open(LogoutDialogComponent, {
       panelClass: 'logout-dialog',
       width: '100%',
-      maxWidth: '600px',
+      maxWidth: '550px',
       position: {
         top: this.isSmallScreen ? '50%' : '5%',
       },
