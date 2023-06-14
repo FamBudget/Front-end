@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { LocalStorageService } from '../../../shared/services';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { RegistrationStatus, User, UserStatus } from '../models';
 import { catchError, Observable, tap, throwError } from 'rxjs';
 import { API_URL } from '../../../constants';
@@ -10,6 +10,14 @@ import { API_URL } from '../../../constants';
 })
 export class AuthenticationService {
   constructor(private localStorageService: LocalStorageService, private http: HttpClient) {}
+
+  public toHttpParams(request: any): HttpParams {
+    let httpParams = new HttpParams();
+    Object.keys(request).forEach(function (key) {
+      httpParams = httpParams.append(key, request[key]);
+    });
+    return httpParams;
+  }
 
   public signUp(user: User): Observable<RegistrationStatus> {
     return this.http.post<RegistrationStatus>(`${API_URL}/registration`, user).pipe(
@@ -52,8 +60,17 @@ export class AuthenticationService {
     return '';
   }
 
-  public logout(): void {
+  public logout(email: string): Observable<UserStatus> {
     this.localStorageService.clear();
+    return this.http
+      .post<UserStatus>(`${API_URL}​/auth​/logout`, {
+        params: this.toHttpParams(email),
+      })
+      .pipe(
+        catchError((err) => {
+          return throwError(err);
+        }),
+      );
   }
 
   public resetPassword(email: string): Observable<{}> {

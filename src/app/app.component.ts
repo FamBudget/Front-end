@@ -72,13 +72,12 @@ export class AppComponent {
   }
 
   public isSidenavExisted(): boolean {
-    let check: boolean = this.router.url !== '/';
-    this.route.queryParams.subscribe((params) => {
-      if (params['code'] && params['email']) {
-        check = false;
-      }
-    });
-    return check;
+    const urlTree = this.router.parseUrl(this.router.url);
+    if (Object.keys(urlTree.queryParams).length === 0 && this.router.url !== '/') {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   public getPageTitle(url: string): string {
