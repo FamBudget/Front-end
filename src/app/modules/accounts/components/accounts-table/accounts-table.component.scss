@@ -3,21 +3,23 @@
 }
 
 .table-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 40px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.1fr 1fr;
+  gap: 30px;
   max-width: 946px;
 }
 
 .table-moving {
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
   width: 100%;
   border-radius: 1.25rem;
   overflow: auto;
   background-color: #ffffff;
   box-shadow: -2px -2px 16px rgba(39, 222, 191, 0.06), 2px 2px 16px rgba(39, 222, 191, 0.06);
-  max-height: 68vh;
+  max-height: 70vh;
   overflow-y: auto;
 }
 
@@ -68,6 +70,19 @@
   font-size: calc(12px + 2 * (100vw - 320px) / 1600);
   line-height: 140%;
   color: #263834;
+}
+
+.input-date-range,
+.mat-date-range-input-separator,
+mat-date-range-input,
+mat-datepicker-toggle,
+mat-date-range-picker,
+.table-filters__range {
+  font-family: 'Roboto', sans-serif !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
+  font-size: calc(12px + 2 * (100vw - 320px) / 1600) !important;
+  line-height: 140% !important;
 }
 
 .toggle-group {
@@ -143,6 +158,10 @@
   font-size: calc(12px + 6 * (100vw - 320px) / 1600);
   line-height: 140%;
   color: #263834;
+}
+
+.table-moving__data {
+  white-space: nowrap;
 }
 
 .table-moving__paginator {

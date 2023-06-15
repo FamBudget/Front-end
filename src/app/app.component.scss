@@ -51,6 +51,14 @@
   }
 }
 
+.top__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-right: calc(20px + 20 * (100vw - 320px) / 1600);
+}
+
 .top__title {
   font-family: 'Gilroy';
   font-style: normal;

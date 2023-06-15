@@ -80,12 +80,11 @@ mat-error .ng-star-inserted {
   }
 }
 
-.form__input[placeholder]::placeholder,
 .form__input[placeholder]::placeholder {
   font-family: 'Gilroy';
   font-style: normal;
   font-weight: 400 !important;
-  font-size: 16px !important;
+  font-size: calc(14px + 2 * (100vw - 320px) / 1600) !important;
   line-height: 138% !important;
   color: #dbdbdb;
 }

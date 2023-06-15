@@ -4,9 +4,10 @@ import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { currencies } from 'src/app/constants';
 import { ERROR_MESSAGES } from 'src/app/enums';
 import { AccountsService } from '../../services/accounts.service';
-import { Account } from '../../models';
+import { Account, AccountIcon } from '../../models';
 import { LocalStorageService, SnackBarService } from 'src/app/shared/services';
 import { EmptyStringValidator, FutureDateValidator } from 'src/app/shared/validators';
+import { ACCOUNT_ICONS_DATA } from '../..';
 
 @Component({
   selector: 'app-add-account',
@@ -36,6 +37,7 @@ export class AddAccountComponent implements OnInit {
     name: '',
     startAmount: 0,
   };
+  public receivedData: AccountIcon = ACCOUNT_ICONS_DATA[0];
 
   constructor(
     public dialog: MatDialog,
@@ -70,6 +72,11 @@ export class AddAccountComponent implements OnInit {
     return this.addAccountForm.controls;
   }
 
+  public receiveData(data: AccountIcon): void {
+    this.receivedData = data;
+    this.selectIconNumber = this.receivedData.id;
+  }
+
   public convertValues(): void {
     this.addAccountForm.value['iconNumber'] = this.selectIconNumber;
     this.addAccountForm.value['startAmount'] = parseInt(this.addAccountForm.value['startAmount']);
@@ -79,15 +86,15 @@ export class AddAccountComponent implements OnInit {
   public getCurrencyName(currencyCode: string): string {
     switch (currencyCode) {
       case 'RUB':
-        return `${currencyCode} ("Российский рубль")`;
+        return `${currencyCode}`;
       case 'BYN':
-        return `${currencyCode} ("Белорусский рубль")`;
+        return `${currencyCode}`;
       case 'KZT':
-        return `${currencyCode} ("Казахстанский тенге")`;
+        return `${currencyCode}`;
       case 'USD':
-        return `${currencyCode} ("Доллар США")`;
+        return `${currencyCode}`;
       case 'EUR':
-        return `${currencyCode} ("Евро")`;
+        return `${currencyCode}`;
       default:
         return '';
     }

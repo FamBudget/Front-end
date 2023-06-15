@@ -191,6 +191,12 @@ select {
   box-shadow: -2px -2px 16px rgba(39, 222, 191, 0.06), 2px 2px 16px rgba(39, 222, 191, 0.06);
 }
 
+.logout-dialog .mat-mdc-dialog-container .mdc-dialog__surface {
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: -2px -2px 16px rgba(39, 222, 191, 0.06), 2px 2px 16px rgba(39, 222, 191, 0.06);
+}
+
 .accounts-image-dialog .mat-mdc-dialog-container .mdc-dialog__surface {
   background: #ffffff;
   box-shadow: -2px -2px 16px rgba(39, 222, 191, 0.06), 2px 2px 16px rgba(39, 222, 191, 0.06);
@@ -199,22 +205,27 @@ select {
 
 .forgot-password-dialog .mat-mdc-dialog-container .mdc-dialog__surface {
   border-radius: 1.1rem;
+  box-shadow: -2px -2px 16px rgba(39, 222, 191, 0.06), 2px 2px 16px rgba(39, 222, 191, 0.06);
 }
 
 .password-recovery-dialog .mat-mdc-dialog-container .mdc-dialog__surface {
   border-radius: 1.1rem;
+  box-shadow: -2px -2px 16px rgba(39, 222, 191, 0.06), 2px 2px 16px rgba(39, 222, 191, 0.06);
 }
 
 .password-recovery-second-dialog .mat-mdc-dialog-container .mdc-dialog__surface {
   border-radius: 1.1rem;
+  box-shadow: -2px -2px 16px rgba(39, 222, 191, 0.06), 2px 2px 16px rgba(39, 222, 191, 0.06);
 }
 
 .password-recovered-dialog .mat-mdc-dialog-container .mdc-dialog__surface {
   border-radius: 1.1rem;
+  box-shadow: -2px -2px 16px rgba(39, 222, 191, 0.06), 2px 2px 16px rgba(39, 222, 191, 0.06);
 }
 
 .add-account-dialog-item .mat-mdc-dialog-container .mdc-dialog__surface {
   border-radius: 1.25rem;
+  box-shadow: -2px -2px 16px rgba(39, 222, 191, 0.06), 2px 2px 16px rgba(39, 222, 191, 0.06);
 }
 
 .mat-mdc-list-item-unscoped-content,
@@ -316,7 +327,9 @@ select {
 
 .table-filters .mat-date-range-input-separator {
   margin-right: auto !important;
+  margin-left: auto;
 }
+
 .mat-form-field-appearance-outline .mat-form-field-wrapper {
   border-radius: 20px !important;
   border-color: #ff0000 !important; /* замените значение на нужный вам цвет */
