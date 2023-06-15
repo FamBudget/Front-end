@@ -7,6 +7,11 @@
   background: #ffffff;
   border: 2px solid #1b9b85;
   border-radius: 100px;
+  transition: 0.5s;
+
+  &:hover {
+    background: #f9fffe;
+  }
 }
 
 .profile__btn-img {
@@ -16,4 +21,52 @@
 
 .profile__btn-arrow {
   color: #1b9b85;
+}
+
+::ng-deep.profile__menu {
+  background-color: #ffffff;
+  border-radius: 10px !important;
+}
+
+.profile__menu-container {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  width: 140px;
+}
+
+.profile__menu-logout {
+  padding: 9px 8px;
+  background: #e3e3e3;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  &:hover {
+    .profile__menu-logout-icon {
+      color: #1b9b85;
+    }
+
+    .profile__menu-logout-text {
+      color: #1b9b85;
+    }
+  }
+}
+
+.profile__menu-logout-icon {
+  color: #a5a5a5;
+  transition: 0.5s;
+}
+
+.profile__menu-logout-text {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 500;
+  font-size: calc(15px + 2 * (100vw - 320px) / 1600);
+  text-align: center;
+  color: #a5a5a5;
+  margin: 0;
+  transition: 0.5s;
 }

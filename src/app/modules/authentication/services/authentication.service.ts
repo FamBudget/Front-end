@@ -64,7 +64,7 @@ export class AuthenticationService {
     this.localStorageService.clear();
     return this.http
       .post<UserStatus>(`${API_URL}​/auth​/logout`, {
-        params: this.toHttpParams(email),
+        params: this.toHttpParams({ email }),
       })
       .pipe(
         catchError((err) => {
