@@ -1,7 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
-import { NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 
 @Component({
@@ -39,7 +39,7 @@ export class AppComponent {
     this.checkScreenWidth();
   }
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private route: ActivatedRoute) {
     this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe((event: any) => {
       if (this.getPageTitle(event.urlAfterRedirects)) {
         this.pageTitle = this.getPageTitle(event.urlAfterRedirects) as string;
@@ -72,7 +72,12 @@ export class AppComponent {
   }
 
   public isSidenavExisted(): boolean {
-    return this.router.url !== '/';
+    const urlTree = this.router.parseUrl(this.router.url);
+    if (Object.keys(urlTree.queryParams).length === 0 && this.router.url !== '/') {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   public getPageTitle(url: string): string {
@@ -103,6 +108,5 @@ export class AppComponent {
           return '';
       }
     }
-    
   }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { ACCOUNT_ICONS_DATA, AccountIcon } from '../../..';
 import { MatDialog } from '@angular/material/dialog';
 import { ImageDialogComponent } from '../image-dialog/image-dialog.component';
@@ -11,9 +11,10 @@ import { ImageDialogComponent } from '../image-dialog/image-dialog.component';
 export class ImagePickerComponent {
   public images: Array<AccountIcon> = ACCOUNT_ICONS_DATA;
   public selectedImage: AccountIcon = this.images[0];
+  @Output() icon = new EventEmitter();
   constructor(private dialog: MatDialog) {}
 
-  openDialog() {
+  public openDialog(): void {
     const dialogRef = this.dialog.open(ImageDialogComponent, {
       width: '400px',
       data: { images: this.images },
@@ -23,8 +24,12 @@ export class ImagePickerComponent {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.selectedImage = result;
-        console.log('Selected image ID:', result.id);
+        this.sendIcon();
       }
     });
+  }
+
+  public sendIcon(): void {
+    this.icon.emit(this.selectedImage);
   }
 }
